@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Presentation", "4 - Pre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeChamados.Domain.Tests", "SistemaDeChamados.Domain.Tests\SistemaDeChamados.Domain.Tests.csproj", "{AC2603AC-92EA-46E6-8974-3C16ECF06A22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeChamados.Infra.Data", "SistemaDeChamados.Infra.Data\SistemaDeChamados.Infra.Data.csproj", "{DDB3EBB0-579D-44BC-A335-683D2B5B4F69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{AC2603AC-92EA-46E6-8974-3C16ECF06A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC2603AC-92EA-46E6-8974-3C16ECF06A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC2603AC-92EA-46E6-8974-3C16ECF06A22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDB3EBB0-579D-44BC-A335-683D2B5B4F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDB3EBB0-579D-44BC-A335-683D2B5B4F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDB3EBB0-579D-44BC-A335-683D2B5B4F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB3EBB0-579D-44BC-A335-683D2B5B4F69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BC845599-9683-431A-92DB-7A6B729E8614} = {F4142784-823C-4D23-876E-E9D3C9159D22}
 		{AC2603AC-92EA-46E6-8974-3C16ECF06A22} = {F4142784-823C-4D23-876E-E9D3C9159D22}
+		{DDB3EBB0-579D-44BC-A335-683D2B5B4F69} = {4F3258A6-AB1F-43CC-892A-626CBA01BE42}
 	EndGlobalSection
 EndGlobal
