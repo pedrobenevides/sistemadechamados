@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Domain", "0 - Domain", "{F4142784-823C-4D23-876E-E9D3C9159D22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeChamados.Domain", "SistemaDeChamados.Domain\SistemaDeChamados.Domain.csproj", "{BC845599-9683-431A-92DB-7A6B729E8614}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Infrastructure", "1 - Infrastructure", "{4F3258A6-AB1F-43CC-892A-626CBA01BE42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{72196AC8-7BE6-4DD7-A5A1-A74EA96A3B8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Application", "{945E62D1-DAA0-4E81-80C1-DA0A25C8999B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Presentation", "4 - Presentation", "{F8478D30-1C31-4966-8556-E91A6B3F3064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeChamados.Domain.Tests", "SistemaDeChamados.Domain.Tests\SistemaDeChamados.Domain.Tests.csproj", "{AC2603AC-92EA-46E6-8974-3C16ECF06A22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC845599-9683-431A-92DB-7A6B729E8614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC845599-9683-431A-92DB-7A6B729E8614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC845599-9683-431A-92DB-7A6B729E8614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC845599-9683-431A-92DB-7A6B729E8614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2603AC-92EA-46E6-8974-3C16ECF06A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2603AC-92EA-46E6-8974-3C16ECF06A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2603AC-92EA-46E6-8974-3C16ECF06A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2603AC-92EA-46E6-8974-3C16ECF06A22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC845599-9683-431A-92DB-7A6B729E8614} = {F4142784-823C-4D23-876E-E9D3C9159D22}
+		{AC2603AC-92EA-46E6-8974-3C16ECF06A22} = {F4142784-823C-4D23-876E-E9D3C9159D22}
+	EndGlobalSection
+EndGlobal
