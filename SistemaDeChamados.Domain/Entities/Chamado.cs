@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Interfaces;
 
@@ -15,14 +14,14 @@ namespace SistemaDeChamados.Domain.Entities
         public long UsuarioCriador { get; set; }
         public StatusDoChamado StatusDoChamado { get; set; }
 
-        public bool OChamadoEstaEncerrado()
+        public bool EstaEncerrado()
         {
             return StatusDoChamado == StatusDoChamado.NaoReproduzido || StatusDoChamado == StatusDoChamado.Resolvido;
         }
         
         public int NumeroDeDiasUteis(ICalculateDate calculateDate)
         {
-            return DataDeEncerramento.HasValue && OChamadoEstaEncerrado() 
+            return DataDeEncerramento.HasValue && EstaEncerrado() 
                 ? calculateDate.CalculateBusinessDays(DataDeCriacao, DataDeEncerramento.Value)
                 :calculateDate.CalculateBusinessDays(DataDeCriacao, DateTime.Now);
         }
