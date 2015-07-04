@@ -27,14 +27,14 @@ namespace SistemaDeChamados.Domain.Tests
         [TestMethod]
         public void AoVerificarSeChamadoFoiFechadoRetornaTrueSeOStatusForResolvido()
         {
-            Assert.AreEqual(true, chamado.EstaEncerrado());
+            Assert.AreEqual(true, chamado.EstaEncerrado);
         }
 
         [TestMethod]
         public void AoVerificarSeChamadoFoiFechadoRetornaTrueSeOStatusForNaoReproduzido()
         {
             chamado.StatusDoChamado = StatusDoChamado.NaoReproduzido;
-            Assert.AreEqual(true, chamado.EstaEncerrado());
+            Assert.AreEqual(true, chamado.EstaEncerrado);
         }
 
         [TestMethod]

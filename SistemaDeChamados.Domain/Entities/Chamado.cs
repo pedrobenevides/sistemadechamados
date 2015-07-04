@@ -13,15 +13,14 @@ namespace SistemaDeChamados.Domain.Entities
         public string Descricao { get; set; }
         public long UsuarioCriador { get; set; }
         public StatusDoChamado StatusDoChamado { get; set; }
-
-        public bool EstaEncerrado()
+        public bool EstaEncerrado
         {
-            return StatusDoChamado == StatusDoChamado.NaoReproduzido || StatusDoChamado == StatusDoChamado.Resolvido;
+            get { return StatusDoChamado == StatusDoChamado.NaoReproduzido || StatusDoChamado == StatusDoChamado.Resolvido; }
         }
         
         public int NumeroDeDiasUteis(ICalculateDate calculateDate)
         {
-            return DataDeEncerramento.HasValue && EstaEncerrado() 
+            return DataDeEncerramento.HasValue && EstaEncerrado 
                 ? calculateDate.CalculateBusinessDays(DataDeCriacao, DataDeEncerramento.Value)
                 :calculateDate.CalculateBusinessDays(DataDeCriacao, DateTime.Now);
         }
