@@ -18,14 +18,14 @@ namespace SistemaDeChamados.Domain.Tests
         [TestMethod]
         public void SeADataForIgualADeHojeDeveRetornarZero()
         {
-            var businessDays = calculateDate.CalculateBusinessDays(DateTime.Now);
+            var businessDays = calculateDate.CalculateBusinessDays(DateTime.Now, DateTime.Now);
             Assert.AreEqual(0, businessDays);
         }
 
         [TestMethod]
         public void SeADataForIgualA10Do7DeveRetornar2DiasUteis()
         {
-            var businessDays = calculateDate.CalculateBusinessDays(new DateTime(2015,07,01));
+            var businessDays = calculateDate.CalculateBusinessDays(new DateTime(2015,07,01), DateTime.Now);
             Assert.AreEqual(2, businessDays);
         }
 

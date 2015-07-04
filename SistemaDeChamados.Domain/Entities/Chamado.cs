@@ -9,7 +9,7 @@ namespace SistemaDeChamados.Domain.Entities
     {
         public long ChamadoId { get; set; }
         public DateTime DataDeCriacao { get; set; }
-        public DateTime DataDeEncerramento { get; set; }
+        public DateTime? DataDeEncerramento { get; set; }
         public DateTime DataDeReabertura { get; set; }
         public string Descricao { get; set; }
         public long UsuarioCriador { get; set; }
@@ -22,7 +22,9 @@ namespace SistemaDeChamados.Domain.Entities
         
         public int NumeroDeDiasUteis(ICalculateDate calculateDate)
         {
-            return calculateDate.CalculateBusinessDays(DataDeCriacao);
+            return DataDeEncerramento.HasValue && OChamadoEstaEncerrado() 
+                ? calculateDate.CalculateBusinessDays(DataDeCriacao, DataDeEncerramento.Value)
+                :calculateDate.CalculateBusinessDays(DataDeCriacao, DateTime.Now);
         }
     }
 }

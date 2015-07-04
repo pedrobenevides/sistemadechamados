@@ -5,13 +5,13 @@ namespace SistemaDeChamados.Domain
 {
     public class CalculateDate : ICalculateDate
     {
-        public int CalculateBusinessDays(DateTime initialDate)
+        public int CalculateBusinessDays(DateTime initialDate, DateTime finalDate)
         {
-            if (initialDate.Date == DateTime.Now.Date)
+            if (initialDate.Date == finalDate.Date)
                 return 0;
-            
+
             var result = 0;
-            while (initialDate.Date < DateTime.Now.Date)
+            while (initialDate.Date < finalDate.Date)
             {
                 initialDate = initialDate.AddDays(1);
 
@@ -21,11 +21,6 @@ namespace SistemaDeChamados.Domain
             }
 
             return result;
-        }
-
-        public int CalculateBusinessDays(DateTime initialDate, DateTime finalDate)
-        {
-            throw new NotImplementedException();
         }
 
         public bool IsBusinessDay(DateTime date)
