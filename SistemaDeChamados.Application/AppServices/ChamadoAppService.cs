@@ -19,19 +19,19 @@ namespace SistemaDeChamados.Application.AppServices
 
         public void Create(ChamadoVM chamadoVM)
         {
-            var chamado = Mapper.Map<ChamadoVM, Chamado>(chamadoVM);
+            var chamado = Mapper.Map<Chamado>(chamadoVM);
             chamadoService.Create(chamado);
         }
 
         public IEnumerable<ChamadoVM> Retrieve()
         {
             var listaDeChamados = chamadoService.Retrieve();
-            return Mapper.Map<IList<Chamado>, IList<ChamadoVM>>(listaDeChamados.ToList());
+            return Mapper.Map<IList<ChamadoVM>>(listaDeChamados.ToList());
         }
 
         public void Update(ChamadoVM chamadoVM)
         {
-            var chamado = Mapper.Map<ChamadoVM, Chamado>(chamadoVM);
+            var chamado = Mapper.Map<Chamado>(chamadoVM);
             chamadoService.Update(chamado);
         }
 
@@ -43,7 +43,7 @@ namespace SistemaDeChamados.Application.AppServices
         public ChamadoVM GetById(long id)
         {
             var chamado = chamadoService.GetById(id);
-            return Mapper.Map<Chamado, ChamadoVM>(chamado);
+            return Mapper.Map<ChamadoVM>(chamado);
         }
     }
 }
