@@ -50,6 +50,7 @@
     <Compile Include="Configuration\MensagemConfiguration.cs" />
     <Compile Include="Configuration\UsuarioConfiguration.cs" />
     <Compile Include="Contexto\SistemaContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ChamadoRepository.cs" />
     <Compile Include="Repositories\MensagemRepository.cs" />
