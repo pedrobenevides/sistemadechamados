@@ -8,7 +8,7 @@ namespace SistemaDeChamados.Infra.Data.Contexto
     public class SistemaContext : DbContext
     {
         public SistemaContext()
-            : base("conn")
+            : base("ChamadosDb")
         { }
 
         public DbSet<Chamado> Chamados { get; set; }

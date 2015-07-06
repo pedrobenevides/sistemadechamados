@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using SistemaDeChamados.Domain.Interfaces;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Infra.Data.Contexto;
 

@@ -6,7 +6,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(SistemaDeChamados.Infra.Data.Contexto.SistemaContext context)
