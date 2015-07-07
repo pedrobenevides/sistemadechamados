@@ -23,9 +23,9 @@ namespace SistemaDeChamados.Domain.Tests
         }
 
         [TestMethod]
-        public void SeADataForIgualA10Do7DeveRetornar2DiasUteis()
+        public void SeADataForIgualA01Do7DeveRetornar2DiasUteis()
         {
-            var businessDays = calculateDate.CalculateBusinessDays(new DateTime(2015,07,01), DateTime.Now);
+            var businessDays = calculateDate.CalculateBusinessDays(new DateTime(2015,07,01), new DateTime(2015, 07, 03));
             Assert.AreEqual(2, businessDays);
         }
 

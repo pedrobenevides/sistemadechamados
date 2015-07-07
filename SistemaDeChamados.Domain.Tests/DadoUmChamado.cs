@@ -40,6 +40,7 @@ namespace SistemaDeChamados.Domain.Tests
         [TestMethod]
         public void PossoVerificarONumeroDeDiasUteis()
         {
+            chamado.DataDeEncerramento = new DateTime(2015, 07, 03);
             Assert.AreEqual(10, chamado.NumeroDeDiasUteis(calculateDate));
         }
 
