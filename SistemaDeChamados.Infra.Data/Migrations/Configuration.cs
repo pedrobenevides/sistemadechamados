@@ -1,3 +1,8 @@
+using System;
+using System.Linq;
+using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
+
 namespace SistemaDeChamados.Infra.Data.Migrations
 {
     using System.Data.Entity.Migrations;
@@ -9,20 +14,29 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(SistemaDeChamados.Infra.Data.Contexto.SistemaContext context)
+        protected override void Seed(Contexto.SistemaContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.Usuarios.Add(new Usuario
+            {
+                Email = "teste@mail.com",
+                EstaAtivo = true,
+                Nome = "Pedro Benevides",
+                Password = "123456"
+            });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var usuario = context.Usuarios.FirstOrDefault();
+
+            //context.Chamados.Add(new Chamado
+            //{
+            //    DataDeCriacao = DateTime.Now,
+            //    StatusDoChamado = StatusDoChamado.Aberto,
+            //    Titulo = "Sem Rede",
+            //    Descricao = "blablabla",
+            //    UsuarioCriadorId = 1, 
+                
+            //});
+
+            context.SaveChanges();
         }
     }
 }
