@@ -1,3 +1,5 @@
+using SistemaDeChamados.Infra.CrossCuting.IoC;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(SistemaDeChamados.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(SistemaDeChamados.Web.App_Start.NinjectWebCommon), "Stop")]
 
@@ -39,13 +41,12 @@ namespace SistemaDeChamados.Web.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var kernel = RegisterServices();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-                RegisterServices(kernel);
                 return kernel;
             }
             catch
@@ -58,9 +59,9 @@ namespace SistemaDeChamados.Web.App_Start
         /// <summary>
         /// Load your modules or register your services here!
         /// </summary>
-        /// <param name="kernel">The kernel.</param>
-        private static void RegisterServices(IKernel kernel)
+        private static StandardKernel RegisterServices()
         {
+            return new Container().GetModules();
         }        
     }
 }

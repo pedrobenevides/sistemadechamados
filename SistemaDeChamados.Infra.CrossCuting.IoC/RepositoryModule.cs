@@ -11,6 +11,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<IChamadoRepository>().To<ChamadoRepository>();
             Bind<IMensagemRepository>().To<MensagemRepository>();
             Bind<IUsuarioRepository>().To<UsuarioRepository>();
+            Bind(typeof (IRepositoryBase<>)).To(typeof (RepositoryBase<>));
         }
     }
 }
