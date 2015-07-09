@@ -2970,7 +2970,6 @@ select[multiple].form-group-lg .form-control {
   .form-horizontal .control-label {
     padding-top: 7px;
     margin-bottom: 0;
-    text-align: right;
   }
 }
 .form-horizontal .has-feedback .form-control-feedback {
