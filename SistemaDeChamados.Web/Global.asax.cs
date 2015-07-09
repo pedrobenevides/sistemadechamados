@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using SistemaDeChamados.Application.AutoMapper;
 using SistemaDeChamados.Web.App_Start;
 
 namespace SistemaDeChamados.Web
@@ -12,6 +13,7 @@ namespace SistemaDeChamados.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.RegisterMappings();
         }
     }
 }

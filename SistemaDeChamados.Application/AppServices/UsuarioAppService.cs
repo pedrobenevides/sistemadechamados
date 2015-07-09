@@ -26,7 +26,7 @@ namespace SistemaDeChamados.Application.AppServices
         public IEnumerable<UsuarioVM> Retrieve()
         {
             var listaDeUsuario = usuarioService.Retrieve();
-            return Mapper.Map<IList<Usuario>, IList<UsuarioVM>>(listaDeUsuario.ToList());
+            return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario.ToList());
         }
 
         public void Update(UsuarioVM usuarioVM)

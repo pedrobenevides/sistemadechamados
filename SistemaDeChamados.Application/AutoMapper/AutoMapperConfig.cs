@@ -8,7 +8,8 @@ namespace SistemaDeChamados.Application.AutoMapper
         {
             Mapper.Initialize(m =>
             {
-                
+                m.AddProfile<DomainToViewModelMappingProfile>();
+                m.AddProfile<ViewModelToDomainMappingProfile>();
             });
         }
     }
