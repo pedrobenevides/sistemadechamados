@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DadoUmCalculateDate.cs" />
     <Compile Include="DadoUmChamado.cs" />
+    <Compile Include="DadoUmCriptografadorDeSenha.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
