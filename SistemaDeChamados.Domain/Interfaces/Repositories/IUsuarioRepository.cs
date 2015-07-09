@@ -4,5 +4,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
 {
     public interface IUsuarioRepository : IRepositoryBase<Usuario>
     {
+        Usuario ObterPorEmail(string email);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -6,10 +7,10 @@ namespace SistemaDeChamados.Domain.Services
 {
     public class UsuarioService : ServiceBase<Usuario>, IUsuarioService
     {
-        private readonly IRepositoryBase<Usuario> usuarioRepository;
+        private readonly IUsuarioRepository usuarioRepository;
         private readonly ICriptografadorDeSenha criptografadorDeSenha;
 
-        public UsuarioService(IRepositoryBase<Usuario> usuarioRepository, ICriptografadorDeSenha criptografadorDeSenha) 
+        public UsuarioService(IUsuarioRepository usuarioRepository, ICriptografadorDeSenha criptografadorDeSenha) 
             : base(usuarioRepository)
         {
             this.usuarioRepository = usuarioRepository;
@@ -22,6 +23,19 @@ namespace SistemaDeChamados.Domain.Services
             entity.Password = criptografadorDeSenha.CriptografarSenha(entity.Password);
 
             base.Create(entity);
+        }
+
+        public Usuario ValidaSenhaInformada(string login, string senha)
+        {
+            var usuario = usuarioRepository.ObterPorEmail(login);
+
+            if(usuario == null)
+                throw new ServiceException("Não existe Usuário com o login informado.");
+
+            if(criptografadorDeSenha.CriptografarSenha(senha) != usuario.Password)
+                throw new ServiceException("Credenciais inválidas");
+            
+            return usuario;
         }
     }
 }

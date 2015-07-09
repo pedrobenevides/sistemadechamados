@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.8.2.0\lib\net45\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -53,6 +56,7 @@
     <Compile Include="DadoUmCalculateDate.cs" />
     <Compile Include="DadoUmChamado.cs" />
     <Compile Include="DadoUmCriptografadorDeSenha.cs" />
+    <Compile Include="DadoUmUsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
