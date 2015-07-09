@@ -13,9 +13,9 @@ namespace SistemaDeChamados.Domain.Services
             this.repository = repository;
         }
 
-        public virtual void Create(T entity)
+        public virtual T Create(T entity)
         {
-            repository.Create(entity);
+            return repository.Create(entity);
         }
 
         public virtual IQueryable<T> Retrieve()

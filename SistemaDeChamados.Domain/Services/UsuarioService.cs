@@ -17,12 +17,12 @@ namespace SistemaDeChamados.Domain.Services
             this.criptografadorDeSenha = criptografadorDeSenha;
         }
 
-        public override void Create(Usuario entity)
+        public override Usuario Create(Usuario entity)
         {
             entity.EstaAtivo = true;
             entity.Password = criptografadorDeSenha.CriptografarSenha(entity.Password);
 
-            base.Create(entity);
+            return base.Create(entity);
         }
 
         public Usuario ValidaSenhaInformada(string login, string senha)

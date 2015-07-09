@@ -16,10 +16,12 @@ namespace SistemaDeChamados.Infra.Data.Repositories
             dbSet = context.Set<T>();
         }
 
-        public void Create(T entity)
+        public T Create(T entity)
         {
-            dbSet.Add(entity);
+            var obj = dbSet.Add(entity);
             context.SaveChanges();
+
+            return obj;
         }
 
         public IQueryable<T> Retrieve()
