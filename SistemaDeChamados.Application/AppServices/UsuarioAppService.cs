@@ -51,5 +51,11 @@ namespace SistemaDeChamados.Application.AppServices
             var usuario = usuarioService.GetById(id);
             return Mapper.Map<Usuario, UsuarioVM>(usuario); 
         }
+
+        public IEnumerable<UsuarioVM> ObterReadOnly()
+        {
+            var listaDeUsuario = usuarioService.ObterReadOnly();
+            return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario.ToList());
+        }
     }
 }

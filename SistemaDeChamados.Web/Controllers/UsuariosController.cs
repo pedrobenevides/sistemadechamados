@@ -16,7 +16,7 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(usuarioAppService.Retrieve());
+            return View(usuarioAppService.ObterReadOnly());
         }
 
         [HttpGet]

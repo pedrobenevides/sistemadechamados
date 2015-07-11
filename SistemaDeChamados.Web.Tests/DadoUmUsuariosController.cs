@@ -27,7 +27,7 @@ namespace SistemaDeChamados.Web.Tests
         public void IndexDeveListarTodosOsUsuariosEPassarParaAView()
         {
             usuariosController.Index();
-            usuarioAppService.Received().Retrieve();
+            usuarioAppService.Received().ObterReadOnly();
         }
 
         [TestMethod]

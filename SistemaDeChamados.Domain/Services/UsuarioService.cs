@@ -1,4 +1,5 @@
-﻿using SistemaDeChamados.Domain.Entities;
+﻿using System.Collections.Generic;
+using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -36,6 +37,11 @@ namespace SistemaDeChamados.Domain.Services
                 throw new ServiceException("Credenciais inválidas");
             
             return usuario;
+        }
+
+        public IEnumerable<Usuario> ObterReadOnly()
+        {
+            return usuarioRepository.ObterReadOnly();
         }
     }
 }
