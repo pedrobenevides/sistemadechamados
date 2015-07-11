@@ -10,7 +10,7 @@ namespace SistemaDeChamados.Domain.Entities
         public long Id { get; set; }
         public DateTime DataDeCriacao { get; set; }
         public DateTime? DataDeEncerramento { get; set; }
-        public DateTime DataDeReabertura { get; set; }
+        public DateTime? DataDeReabertura { get; set; }
         public string Descricao { get; set; }
         public long UsuarioCriadorId { get; set; }
         public StatusDoChamado StatusDoChamado { get; set; }
@@ -19,14 +19,18 @@ namespace SistemaDeChamados.Domain.Entities
         public virtual IList<Mensagem> Mensagens { get; set; }
         public bool EstaEncerrado
         {
-            get { return StatusDoChamado == StatusDoChamado.NaoReproduzido || StatusDoChamado == StatusDoChamado.Resolvido; }
+            get { return ((StatusDoChamado == StatusDoChamado.NaoReproduzido || StatusDoChamado == StatusDoChamado.Resolvido) && DataDeEncerramento.HasValue); }
         }
         
         public int NumeroDeDiasUteis(ICalculateDate calculateDate)
         {
-            return DataDeEncerramento.HasValue && EstaEncerrado 
-                ? calculateDate.CalculateBusinessDays(DataDeCriacao, DataDeEncerramento.Value)
-                :calculateDate.CalculateBusinessDays(DataDeCriacao, DateTime.Now);
+            if (DataDeEncerramento.HasValue && EstaEncerrado)
+                return calculateDate.CalculateBusinessDays(DataDeCriacao, DataDeEncerramento.Value);
+
+            if (DataDeReabertura.HasValue && !DataDeEncerramento.HasValue)
+                return calculateDate.CalculateBusinessDays(DataDeReabertura.Value, DateTime.Now);
+
+            return calculateDate.CalculateBusinessDays(DataDeCriacao, DateTime.Now);
         }
     }
 }

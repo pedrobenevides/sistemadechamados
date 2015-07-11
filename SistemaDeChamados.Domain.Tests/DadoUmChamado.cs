@@ -27,12 +27,14 @@ namespace SistemaDeChamados.Domain.Tests
         [TestMethod]
         public void AoVerificarSeChamadoFoiFechadoRetornaTrueSeOStatusForResolvido()
         {
+            chamado.DataDeEncerramento = new DateTime(2015, 06, 19);
             Assert.AreEqual(true, chamado.EstaEncerrado);
         }
-
+        
         [TestMethod]
         public void AoVerificarSeChamadoFoiFechadoRetornaTrueSeOStatusForNaoReproduzido()
         {
+            chamado.DataDeEncerramento = new DateTime(2015, 06, 19);
             chamado.StatusDoChamado = StatusDoChamado.NaoReproduzido;
             Assert.AreEqual(true, chamado.EstaEncerrado);
         }
@@ -51,5 +53,11 @@ namespace SistemaDeChamados.Domain.Tests
             Assert.AreEqual(2, chamado.NumeroDeDiasUteis(calculateDate));
         }
 
+        [TestMethod]
+        public void PossoVerificarONumeroDeDiasUteisDoChamadoReaberto()
+        {
+            chamado.DataDeReabertura = new DateTime(2015,07,08);
+            Assert.AreEqual(2, chamado.NumeroDeDiasUteis(calculateDate));
+        }
     }
 }
