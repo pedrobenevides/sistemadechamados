@@ -4,12 +4,11 @@ using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
-using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
 {
-    public class MensagemAppService : IMensagemAppService
+    public class MensagemAppService : AppService, IMensagemAppService
     {
         private readonly IMensagemService mensagemService;
 
@@ -21,7 +20,9 @@ namespace SistemaDeChamados.Application.AppServices
         public void Create(MensagemVM mensagemVM)
         {
             var mensagem = Mapper.Map<MensagemVM,Mensagem>(mensagemVM);
+            BeginTransaction();
             mensagemService.Create(mensagem);
+            Commit();
         }
 
         public IEnumerable<MensagemVM> Retrieve()
@@ -33,12 +34,16 @@ namespace SistemaDeChamados.Application.AppServices
         public void Update(MensagemVM mensagemVM)
         {
             var mensagem = Mapper.Map<MensagemVM, Mensagem>(mensagemVM);
+            BeginTransaction();
             mensagemService.Update(mensagem);
+            Commit();
         }
 
         public void Delete(long id)
         {
+            BeginTransaction();
             mensagemService.Delete(id);
+            Commit();
         }
 
         public MensagemVM GetById(long id)

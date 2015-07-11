@@ -8,7 +8,7 @@ using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
 {
-    public class UsuarioAppService : IUsuarioAppService
+    public class UsuarioAppService : AppService, IUsuarioAppService
     {
         private readonly IUsuarioService usuarioService;
 
@@ -20,7 +20,9 @@ namespace SistemaDeChamados.Application.AppServices
         public void Create(UsuarioVM usuarioVM)
         {
             var usuario = Mapper.Map<UsuarioVM, Usuario>(usuarioVM);
+            BeginTransaction();
             usuarioService.Create(usuario);
+            Commit();
         }
 
         public IEnumerable<UsuarioVM> Retrieve()
@@ -32,12 +34,16 @@ namespace SistemaDeChamados.Application.AppServices
         public void Update(UsuarioVM usuarioVM)
         {
             var usuario = Mapper.Map<UsuarioVM, Usuario>(usuarioVM);
+            BeginTransaction();
             usuarioService.Update(usuario);
+            Commit();
         }
 
         public void Delete(long id)
         {
+            BeginTransaction();
             usuarioService.Delete(id);
+            Commit();
         }
 
         public UsuarioVM GetById(long id)

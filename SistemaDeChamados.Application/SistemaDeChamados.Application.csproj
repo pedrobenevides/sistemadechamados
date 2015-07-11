@@ -44,6 +44,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,12 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppService.cs" />
     <Compile Include="AppServices\ChamadoAppService.cs" />
     <Compile Include="AppServices\MensagemAppService.cs" />
     <Compile Include="AppServices\UsuarioAppService.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Interface\IAppService.cs" />
     <Compile Include="Interface\IChamadoAppService.cs" />
     <Compile Include="Interface\IMensagemAppService.cs" />
     <Compile Include="Interface\IUsuarioAppService.cs" />
@@ -72,6 +77,10 @@
     <ProjectReference Include="..\SistemaDeChamados.Domain\SistemaDeChamados.Domain.csproj">
       <Project>{BC845599-9683-431A-92DB-7A6B729E8614}</Project>
       <Name>SistemaDeChamados.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SistemaDeChamados.Infra.Data\SistemaDeChamados.Infra.Data.csproj">
+      <Project>{DDB3EBB0-579D-44BC-A335-683D2B5B4F69}</Project>
+      <Name>SistemaDeChamados.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

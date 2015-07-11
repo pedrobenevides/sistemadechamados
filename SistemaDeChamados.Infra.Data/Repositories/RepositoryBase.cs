@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using Microsoft.Practices.ServiceLocation;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Infra.Data.Contexto;
+using SistemaDeChamados.Infra.Data.Interfaces;
 
 namespace SistemaDeChamados.Infra.Data.Repositories
 {
     public class RepositoryBase<T> : IDisposable, IRepositoryBase<T> where T : class
     {
-        protected SistemaContext context = new SistemaContext();
+        protected SistemaContext context;
+        private IContextManager contextManager;
         private readonly DbSet<T> dbSet;
-
+        
         public RepositoryBase()
         {
+            contextManager = ServiceLocator.Current.GetInstance<IContextManager>();
+            context = contextManager.GetContext();
             dbSet = context.Set<T>();
         }
 
         public T Create(T entity)
         {
             var obj = dbSet.Add(entity);
-            context.SaveChanges();
-
             return obj;
         }
 
@@ -32,7 +35,6 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         public void Update(T entity)
         {
             context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
         }
 
         public void Delete(long id)

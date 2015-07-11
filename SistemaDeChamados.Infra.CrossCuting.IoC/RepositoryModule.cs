@@ -1,6 +1,9 @@
 ﻿using Ninject.Modules;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
+using SistemaDeChamados.Infra.Data.Contexto;
+using SistemaDeChamados.Infra.Data.Interfaces;
 using SistemaDeChamados.Infra.Data.Repositories;
+using SistemaDeChamados.Infra.Data.UoW;
 
 namespace SistemaDeChamados.Infra.CrossCuting.IoC
 {
@@ -12,6 +15,8 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<IMensagemRepository>().To<MensagemRepository>();
             Bind<IUsuarioRepository>().To<UsuarioRepository>();
             Bind(typeof (IRepositoryBase<>)).To(typeof (RepositoryBase<>));
+            Bind<IUnitOfWork>().To<UnitOfWork>();
+            Bind<IContextManager>().To<ContextManager>();
         }
     }
 }

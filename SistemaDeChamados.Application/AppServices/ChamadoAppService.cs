@@ -8,7 +8,7 @@ using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
 {
-    public class ChamadoAppService : IChamadoAppService
+    public class ChamadoAppService : AppService, IChamadoAppService
     {
         private readonly IChamadoService chamadoService;
 
@@ -20,7 +20,9 @@ namespace SistemaDeChamados.Application.AppServices
         public void Create(ChamadoVM chamadoVM)
         {
             var chamado = Mapper.Map<Chamado>(chamadoVM);
+            BeginTransaction();
             chamadoService.Create(chamado);
+            Commit();
         }
 
         public IEnumerable<ChamadoVM> Retrieve()
@@ -32,12 +34,16 @@ namespace SistemaDeChamados.Application.AppServices
         public void Update(ChamadoVM chamadoVM)
         {
             var chamado = Mapper.Map<Chamado>(chamadoVM);
+            BeginTransaction();
             chamadoService.Update(chamado);
+            Commit();
         }
 
         public void Delete(long id)
         {
+            BeginTransaction();
             chamadoService.Delete(id);
+            Commit();
         }
 
         public ChamadoVM GetById(long id)
