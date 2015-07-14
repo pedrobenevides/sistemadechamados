@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.AutoMapper
@@ -11,6 +12,7 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<Mensagem, MensagemVM>();
             Mapper.CreateMap<Chamado, ChamadoVM>();
             Mapper.CreateMap<Usuario, UsuarioVM>();
+            Mapper.CreateMap<UsuarioDTO, UsuarioVM>();
         }
     }
 }

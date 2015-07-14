@@ -27,5 +27,19 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
 
             Assert.AreNotSame(senha, usuario.Password);
         }
+
+        [TestMethod]
+        public void PossoReativarUmUsuario()
+        {
+            usuario.AtivarUsuario();
+            Assert.AreEqual(true, usuario.EstaAtivo);
+        }
+
+        [TestMethod]
+        public void PossoDesativarUmUsuario()
+        {
+            usuario.DesativarUsuario();
+            Assert.AreEqual(false, usuario.EstaAtivo);
+        }
     }
 }

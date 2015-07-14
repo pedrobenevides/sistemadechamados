@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 
@@ -33,6 +34,25 @@ namespace SistemaDeChamados.Web.Controllers
 
             usuarioAppService.Create(model);
             return RedirectToAction("Index", "Usuarios");
+        }
+
+        [HttpGet]
+        public ActionResult Edicao(long id)
+        {
+            var model = usuarioAppService.ObterParaEdicao(id);
+            model.Id = id;
+
+            return View(model);
+        }
+        
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edicao(UsuarioVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            usuarioAppService.Update(model);
+            return RedirectToAction("Index", "Usuario");
         }
     }
 }

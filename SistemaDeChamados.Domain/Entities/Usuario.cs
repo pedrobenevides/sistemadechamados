@@ -25,5 +25,15 @@ namespace SistemaDeChamados.Domain.Entities
             Password = criptografadorDeSenha.CriptografarSenha(password);
             EstaAtivo = true;
         }
+
+        public void AtivarUsuario()
+        {
+            EstaAtivo = true;
+        }
+        
+        public void DesativarUsuario()
+        {
+            EstaAtivo = false;
+        }
     }
 }

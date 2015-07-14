@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -56,6 +57,12 @@ namespace SistemaDeChamados.Application.AppServices
         {
             var listaDeUsuario = usuarioService.ObterReadOnly();
             return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario.ToList());
+        }
+
+        public UsuarioVM ObterParaEdicao(long id)
+        {
+            var usuario = usuarioService.ObterParaEdicao(id);
+            return Mapper.Map<UsuarioDTO, UsuarioVM>(usuario); 
         }
     }
 }

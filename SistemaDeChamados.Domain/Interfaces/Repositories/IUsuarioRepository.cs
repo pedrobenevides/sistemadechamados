@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Domain.Interfaces.Repositories
@@ -7,5 +8,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
     {
         Usuario ObterPorEmail(string email);
         IEnumerable<Usuario> ObterReadOnly();
+        UsuarioDTO ObterParaEdicao(long id);
     }
 }

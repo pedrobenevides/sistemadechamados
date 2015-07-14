@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Domain.Interfaces.Services
@@ -7,5 +8,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
     {
         Usuario ValidaSenhaInformada(string login, string senha);
         IEnumerable<Usuario> ObterReadOnly();
+        UsuarioDTO ObterParaEdicao(long id);
     }
 }

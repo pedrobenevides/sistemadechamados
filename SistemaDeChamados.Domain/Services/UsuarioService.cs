@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
@@ -40,6 +41,11 @@ namespace SistemaDeChamados.Domain.Services
         public IEnumerable<Usuario> ObterReadOnly()
         {
             return usuarioRepository.ObterReadOnly();
+        }
+
+        public UsuarioDTO ObterParaEdicao(long id)
+        {
+            return usuarioRepository.ObterParaEdicao(id);
         }
     }
 }

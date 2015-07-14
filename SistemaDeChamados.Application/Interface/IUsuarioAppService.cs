@@ -11,5 +11,6 @@ namespace SistemaDeChamados.Application.Interface
         void Delete(long id);
         UsuarioVM GetById(long id);
         IEnumerable<UsuarioVM> ObterReadOnly();
+        UsuarioVM ObterParaEdicao(long id);
     }
 }
