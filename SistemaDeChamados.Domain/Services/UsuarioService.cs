@@ -20,9 +20,7 @@ namespace SistemaDeChamados.Domain.Services
 
         public override Usuario Create(Usuario entity)
         {
-            entity.EstaAtivo = true;
-            entity.Password = criptografadorDeSenha.CriptografarSenha(entity.Password);
-
+            entity.DefinirPassword(entity.Password, criptografadorDeSenha);
             return base.Create(entity);
         }
 

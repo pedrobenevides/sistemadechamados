@@ -16,14 +16,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
         protected override void Seed(Contexto.SistemaContext context)
         {
-            context.Usuarios.Add(new Usuario
-            {
-                Email = "teste@mail.com",
-                EstaAtivo = true,
-                Nome = "Pedro Benevides",
-                Password = "123456"
-            });
-
+            context.Usuarios.Add(new Usuario("teste@mail.com", "Pedro Benevides"));
             var usuario = context.Usuarios.FirstOrDefault();
 
             //context.Chamados.Add(new Chamado

@@ -1,11 +1,29 @@
-﻿namespace SistemaDeChamados.Domain.Entities
+﻿using SistemaDeChamados.Domain.Interfaces.Services;
+
+namespace SistemaDeChamados.Domain.Entities
 {
     public class Usuario
     {
-        public long Id { get; set; }
-        public string Email { get; set; }
-        public string Nome { get; set; }
-        public string Password { get; set; }
-        public bool EstaAtivo { get; set; }
+        public Usuario(string email, string nome)
+        {
+            Nome = nome;
+            Email = email;
+            EstaAtivo = true;
+        }
+
+        protected Usuario()
+        { }
+
+        public long Id { get; private set; }
+        public string Email { get; private set; }
+        public string Nome { get; private set; }
+        public string Password { get; private set; }
+        public bool EstaAtivo { get; private set; }
+
+        public void DefinirPassword(string password, ICriptografadorDeSenha criptografadorDeSenha)
+        {
+            Password = criptografadorDeSenha.CriptografarSenha(password);
+            EstaAtivo = true;
+        }
     }
 }

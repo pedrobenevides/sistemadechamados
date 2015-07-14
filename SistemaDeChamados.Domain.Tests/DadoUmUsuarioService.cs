@@ -36,7 +36,7 @@ namespace SistemaDeChamados.Domain.Tests
         public void ThrowExceptionSeASenhaInformadaNaoForAMesmaQueOUsuarioPossuiNoBanco()
         {
             const string email = "teste@mail.com";
-            usuarioRepository.ObterPorEmail(email).Returns(new Usuario{Id = 1, Email = email, Password= "asdgfg45895lhjgfurhcbdtw53647f843"});
+            usuarioRepository.ObterPorEmail(email).Returns(new Usuario(email, "Pedro"));
             usuarioService.ValidaSenhaInformada(email, "123456");
         }
     }

@@ -52,12 +52,5 @@ namespace SistemaDeChamados.Domain.Tests
             chamado.DataDeEncerramento = new DateTime(2015,06,23);
             Assert.AreEqual(2, chamado.NumeroDeDiasUteis(calculateDate));
         }
-
-        [TestMethod]
-        public void PossoVerificarONumeroDeDiasUteisDoChamadoReaberto()
-        {
-            chamado.DataDeReabertura = new DateTime(2015,07,08);
-            Assert.AreEqual(2, chamado.NumeroDeDiasUteis(calculateDate));
-        }
     }
 }
