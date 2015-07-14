@@ -4,7 +4,7 @@ using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Interfaces;
 
-namespace SistemaDeChamados.Domain.Tests
+namespace SistemaDeChamados.Domain.Tests.EntitiesTest
 {
     [TestClass]
     public class DadoUmChamado
