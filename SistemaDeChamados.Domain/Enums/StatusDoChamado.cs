@@ -5,6 +5,7 @@
         Aberto,
         Suspenso,
         Resolvido,
-        NaoReproduzido
+        NaoReproduzido,
+        Reaberto
     }
 }

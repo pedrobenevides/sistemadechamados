@@ -7,16 +7,27 @@ namespace SistemaDeChamados.Domain.Entities
 {
     public class Chamado
     {
-        public long Id { get; set; }
-        public DateTime DataDeCriacao { get; set; }
-        public DateTime? DataDeEncerramento { get; set; }
-        public DateTime? DataDeReabertura { get; set; }
-        public string Descricao { get; set; }
-        public long UsuarioCriadorId { get; set; }
-        public StatusDoChamado StatusDoChamado { get; set; }
-        public string Titulo { get; set; }
-        public virtual Usuario UsuarioCriador { get; set; }
-        public virtual IList<Mensagem> Mensagens { get; set; }
+        public Chamado(string titulo, string descricao, long usuarioCriadorId)
+        {
+            DataDeCriacao = DateTime.Now;
+            Descricao = descricao;
+            StatusDoChamado = StatusDoChamado.Aberto;
+            Titulo = titulo;
+            UsuarioCriadorId = usuarioCriadorId;
+        }
+        protected Chamado()
+        { }
+
+        public long Id { get; private set; }
+        public DateTime DataDeCriacao { get; private set; }
+        public DateTime? DataDeEncerramento { get; private set; }
+        public DateTime? DataDeReabertura { get; private set; }
+        public string Descricao { get; private set; }
+        public long UsuarioCriadorId { get; private set; }
+        public StatusDoChamado StatusDoChamado { get; private set; }
+        public string Titulo { get; private set; }
+        public virtual Usuario UsuarioCriador { get; private set; }
+        public virtual IList<Mensagem> Mensagens { get; private set; }
         public bool EstaEncerrado
         {
             get { return ((StatusDoChamado == StatusDoChamado.NaoReproduzido || StatusDoChamado == StatusDoChamado.Resolvido) && DataDeEncerramento.HasValue); }
@@ -31,6 +42,19 @@ namespace SistemaDeChamados.Domain.Entities
                 return calculateDate.CalculateBusinessDays(DataDeReabertura.Value, DateTime.Now);
 
             return calculateDate.CalculateBusinessDays(DataDeCriacao, DateTime.Now);
+        }
+
+        public void ReabrirChamado()
+        {
+            DataDeReabertura = DateTime.Now;
+            DataDeEncerramento = null;
+            StatusDoChamado = StatusDoChamado.Reaberto;
+        }
+
+        public void EncerrarChamado(StatusDoChamado statusDoChamado)
+        {
+            DataDeEncerramento = DateTime.Now;
+            StatusDoChamado = statusDoChamado;
         }
     }
 }
