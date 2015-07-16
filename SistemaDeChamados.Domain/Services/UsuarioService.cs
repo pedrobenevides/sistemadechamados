@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
@@ -38,7 +39,7 @@ namespace SistemaDeChamados.Domain.Services
             return usuario;
         }
 
-        public IEnumerable<Usuario> ObterReadOnly()
+        public IQueryable<Usuario> ObterReadOnly()
         {
             return usuarioRepository.ObterReadOnly();
         }

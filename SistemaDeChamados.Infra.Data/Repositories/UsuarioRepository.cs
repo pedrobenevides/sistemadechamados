@@ -13,9 +13,9 @@ namespace SistemaDeChamados.Infra.Data.Repositories
             return context.Usuarios.FirstOrDefault(u => u.Email == email);
         }
 
-        public IEnumerable<Usuario> ObterReadOnly()
+        public IQueryable<Usuario> ObterReadOnly()
         {
-            return context.Usuarios.AsNoTracking().ToList();
+            return context.Usuarios.AsNoTracking();
         }
 
         public UsuarioDTO ObterParaEdicao(long id)
