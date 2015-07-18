@@ -29,7 +29,7 @@ namespace SistemaDeChamados.Domain.Tests
         {
             const string email = "teste@mail.com";
             usuarioRepository.ObterPorEmail(email).ReturnsNull();
-            usuarioService.ValidaSenhaInformada(email, "123456");
+            usuarioService.ObterUsuarioComCredenciaisValidas(email, "123456");
         }
 
         [TestMethod, ExpectedException(typeof(ServiceException))]
@@ -37,7 +37,7 @@ namespace SistemaDeChamados.Domain.Tests
         {
             const string email = "teste@mail.com";
             usuarioRepository.ObterPorEmail(email).Returns(new Usuario(email, "Pedro"));
-            usuarioService.ValidaSenhaInformada(email, "123456");
+            usuarioService.ObterUsuarioComCredenciaisValidas(email, "123456");
         }
     }
 }

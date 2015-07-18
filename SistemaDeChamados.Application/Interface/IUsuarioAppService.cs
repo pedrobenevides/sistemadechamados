@@ -12,5 +12,6 @@ namespace SistemaDeChamados.Application.Interface
         UsuarioVM GetById(long id);
         IEnumerable<UsuarioVM> ObterReadOnly();
         UsuarioVM ObterParaEdicao(long id);
+        bool ValidarCredenciais(string login, string senha);
     }
 }

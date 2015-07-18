@@ -6,7 +6,7 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
 {
     public interface IUsuarioService : IServiceBase<Usuario>
     {
-        Usuario ValidaSenhaInformada(string login, string senha);
+        Usuario ObterUsuarioComCredenciaisValidas(string login, string senha);
         IQueryable<Usuario> ObterReadOnly();
         UsuarioDTO ObterParaEdicao(long id);
     }

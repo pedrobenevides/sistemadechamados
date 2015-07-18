@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
@@ -26,7 +25,7 @@ namespace SistemaDeChamados.Domain.Services
             return base.Create(entity);
         }
 
-        public Usuario ValidaSenhaInformada(string login, string senha)
+        public Usuario ObterUsuarioComCredenciaisValidas(string login, string senha)
         {
             var usuario = usuarioRepository.ObterPorEmail(login);
 

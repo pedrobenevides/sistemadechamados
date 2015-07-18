@@ -64,5 +64,11 @@ namespace SistemaDeChamados.Application.AppServices
             var usuario = usuarioService.ObterParaEdicao(id);
             return Mapper.Map<UsuarioDTO, UsuarioVM>(usuario); 
         }
+
+        public bool ValidarCredenciais(string login, string senha)
+        {
+            var usuario = usuarioService.ObterUsuarioComCredenciaisValidas(login, senha);
+            return usuario != null;
+        }
     }
 }

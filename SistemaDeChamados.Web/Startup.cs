@@ -11,7 +11,7 @@ namespace SistemaDeChamados.Web
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "ApplicationCookie",
-                LoginPath = new PathString("/Inicio/Index")
+                LoginPath = new PathString("/Seguranca/Login")
             });
         }
     }
