@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SistemaDeChamados.Infrastructure.Security")]
+[assembly: AssemblyTitle("SistemaDeChamados.Infra.CrossCuting.Identity")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SistemaDeChamados.Infrastructure.Security")]
+[assembly: AssemblyProduct("SistemaDeChamados.Infra.CrossCuting.Identity")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ed52ded7-7c60-4347-9143-51c51c0a19d4")]
+[assembly: Guid("e5fba994-b9b9-4aa1-b394-c8da5d657195")]
 
 // Version information for an assembly consists of the following four values:
 //

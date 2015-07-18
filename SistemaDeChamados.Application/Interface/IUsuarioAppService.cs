@@ -5,7 +5,7 @@ namespace SistemaDeChamados.Application.Interface
 {
     public interface IUsuarioAppService
     {
-        void Create(UsuarioVM usuarioVM);
+        long Create(UsuarioVM usuarioVM);
         IEnumerable<UsuarioVM> Retrieve();
         void Update(UsuarioVM usuarioVM);
         void Delete(long id);

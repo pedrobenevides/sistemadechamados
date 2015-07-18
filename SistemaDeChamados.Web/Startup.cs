@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using SistemaDeChamados.Infrastructure.Security;
-using SistemaDeChamados.Infrastructure.Security.Configuration;
+using SistemaDeChamados.Infra.CrossCuting.Identity.Configuration.IdentityManagers;
+using SistemaDeChamados.Infra.CrossCuting.Identity.Context;
 
 namespace SistemaDeChamados.Web
 {
@@ -10,7 +10,7 @@ namespace SistemaDeChamados.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            app.CreatePerOwinContext(IdentityContext.Create);
+            app.CreatePerOwinContext(ContextoIdentity.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
             app.UseCookieAuthentication(new CookieAuthenticationOptions

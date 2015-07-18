@@ -18,12 +18,14 @@ namespace SistemaDeChamados.Application.AppServices
             this.usuarioService = usuarioService;
         }
 
-        public void Create(UsuarioVM usuarioVM)
+        public long Create(UsuarioVM usuarioVM)
         {
             var usuario = Mapper.Map<UsuarioVM, Usuario>(usuarioVM);
             BeginTransaction();
-            usuarioService.Create(usuario);
+            usuario = usuarioService.Create(usuario);
             Commit();
+
+            return usuario.Id;
         }
 
         public IEnumerable<UsuarioVM> Retrieve()

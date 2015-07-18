@@ -226,6 +226,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdentityBaseController.cs" />
     <Compile Include="Controllers\SegurancaController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -255,19 +256,20 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\IdentityBase\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SistemaDeChamados.Application\SistemaDeChamados.Application.csproj">
       <Project>{5345f065-cb59-42c2-b9d0-38e903c107d8}</Project>
       <Name>SistemaDeChamados.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SistemaDeChamados.Infra.CrossCuting.Identity\SistemaDeChamados.Infra.CrossCuting.Identity.csproj">
+      <Project>{05999158-8405-45f5-a63c-29908e37f8cb}</Project>
+      <Name>SistemaDeChamados.Infra.CrossCuting.Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SistemaDeChamados.Infra.CrossCuting.IoC\SistemaDeChamados.Infra.CrossCuting.IoC.csproj">
       <Project>{2d41c7a2-cfb8-4848-aa7f-35ad6b259bd0}</Project>
       <Name>SistemaDeChamados.Infra.CrossCuting.IoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SistemaDeChamados.Infrastructure.Security\SistemaDeChamados.Infrastructure.Security.csproj">
-      <Project>{09ce9c57-625b-415d-94f2-903c2fe1317f}</Project>
-      <Name>SistemaDeChamados.Infrastructure.Security</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

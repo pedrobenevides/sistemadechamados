@@ -1,15 +1,15 @@
-namespace SistemaDeChamados.Infrastructure.Security.Migrations
+namespace SistemaDeChamados.Infra.CrossCuting.Identity.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<IdentityContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Context.ContextoIdentity>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(IdentityContext context)
+        protected override void Seed(Context.ContextoIdentity context)
         {
             //  This method will be called after migrating to the latest version.
 
