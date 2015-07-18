@@ -2,7 +2,6 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 using SistemaDeChamados.Application.AutoMapper;
-using SistemaDeChamados.Web.App_Start;
 
 namespace SistemaDeChamados.Web
 {
