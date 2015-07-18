@@ -29,25 +29,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="@Url.Action("Edicao","Usuarios", new {id = item.Id})" class="btn btn-primary btn-sm">Editar</a>
-            <a href="@Url.Action("Excluir","Usuarios", new {id = item.Id})" class="btn btn-danger btn-sm">Excluir</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstaAtivo)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <a href="@Url.Action("Edicao","Usuarios", new {id = item.Id})" class="btn btn-primary btn-sm">Editar</a>
+                <a href="@Url.Action("Excluir","Usuarios", new {id = item.Id})" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                <a href="@Url.Action("AlterarStatus","Usuarios", new {id = item.Id})" class="btn-status btn btn-sm">@item.StatusAtual</a>
+            </td>
+        </tr>
+    }
 
 </table>
+
+<script>
+    $(function () {
+        $('.btn-status').each(function() {
+            if (this.text === 'Ativo') {
+                $(this).removeClass('btn-default').addClass('btn-primary');
+            } else {
+                $(this).removeClass('btn-primary').addClass('btn-default');
+            }
+        });
+    });
+</script>

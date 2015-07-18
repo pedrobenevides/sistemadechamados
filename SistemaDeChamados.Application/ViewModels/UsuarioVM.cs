@@ -15,5 +15,6 @@ namespace SistemaDeChamados.Application.ViewModels
         [Required, DataType(DataType.Password), Compare("Password"), Display(Name = "Confirmação de Senha")]
         public string ConfirmacaoPassword { get; set; }
         public bool EstaAtivo { get; set; }
+        public string StatusAtual { get { return EstaAtivo ? "Ativo" : "Desativo"; } }
     }
 }
