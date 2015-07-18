@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using SistemaDeChamados.Application.Interface;
@@ -9,6 +10,10 @@ namespace SistemaDeChamados.Web.Controllers
 {
     public class SegurancaController : Controller
     {
+        public SegurancaController()
+        {
+            
+        }
         // Definindo a instancia UserManager presente no request.
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -50,15 +55,23 @@ namespace SistemaDeChamados.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Login(LoginVM model)
+        [HttpPost, AllowAnonymous]
+        public async Task<ActionResult> Login(LoginVM model)
         {
             if (!ModelState.IsValid)
                 return View();
 
-            
-            //var estaAutenticado = usuarioAppService.ValidarCredenciais(model.Login, model.Senha);
-            return RedirectToAction("Index", "Home");
+            var result = await SignInManager.PasswordSignInAsync(model.Login, model.Senha, true, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToAction("Index", "Home");
+                case SignInStatus.LockedOut:
+                    return RedirectToAction("Login", "Seguranca");
+                default:
+                    ModelState.AddModelError("","Tentativa de Login inválida");
+                    return View(model);
+            }
         }
     }
 }

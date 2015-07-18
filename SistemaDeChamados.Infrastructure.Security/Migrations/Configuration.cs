@@ -6,7 +6,7 @@ namespace SistemaDeChamados.Infrastructure.Security.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(IdentityContext context)

@@ -16,8 +16,8 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
         protected override void Seed(Contexto.SistemaContext context)
         {
-            context.Usuarios.Add(new Usuario("teste@mail.com", "Pedro Benevides"));
-            var usuario = context.Usuarios.FirstOrDefault();
+            //context.Usuarios.Add(new Usuario("teste@mail.com", "Pedro Benevides"));
+            //var usuario = context.Usuarios.FirstOrDefault();
 
             //context.Chamados.Add(new Chamado
             //{
@@ -29,7 +29,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
                 
             //});
 
-            context.SaveChanges();
+            //context.SaveChanges();
         }
     }
 }
