@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
@@ -42,6 +43,12 @@ namespace SistemaDeChamados.Application.AppServices
             Commit();
         }
 
+        public async Task UpdateAsync(UsuarioVM usuarioVM)
+        {
+            var usuario = Mapper.Map<UsuarioVM, Usuario>(usuarioVM);
+            await usuarioService.UpdateAsync(usuario);
+        }
+
         public void Delete(long id)
         {
             BeginTransaction();
@@ -65,6 +72,12 @@ namespace SistemaDeChamados.Application.AppServices
         {
             var usuario = usuarioService.ObterParaEdicao(id);
             return Mapper.Map<UsuarioDTO, UsuarioVM>(usuario); 
+        }
+
+        public async Task<IEnumerable<UsuarioVM>> ObterAsync()
+        {
+            var listaDeUsuario = await usuarioService.ObterAsync();
+            return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario);
         }
 
         public bool ValidarCredenciais(string login, string senha)

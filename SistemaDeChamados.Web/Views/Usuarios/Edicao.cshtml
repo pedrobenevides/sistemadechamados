@@ -1,5 +1,4 @@
-﻿@using System.Web.Optimization
-@model SistemaDeChamados.Application.ViewModels.UsuarioVM
+﻿@model SistemaDeChamados.Application.ViewModels.UsuarioVM
 
 @{
     ViewBag.Title = "Edição de Usuário";
@@ -9,7 +8,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    @Html.HiddenFor(h => h.EmailAntigo)
     <div class="form-horizontal">
         <h4>Editar Usuário</h4>
         <hr />

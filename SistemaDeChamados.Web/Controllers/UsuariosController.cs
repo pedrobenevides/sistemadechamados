@@ -54,13 +54,21 @@ namespace SistemaDeChamados.Web.Controllers
         }
         
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edicao(UsuarioVM model)
+        public async Task<ActionResult> Edicao(UsuarioVM model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            usuarioAppService.Update(model);
-            return RedirectToAction("Index", "Usuario");
+            var usuarioIdentity = await UserManager.FindByEmailAsync(model.EmailAntigo);
+            usuarioIdentity.Email = model.Email;
+
+            await usuarioAppService.UpdateAsync(model);
+            var result = await UserManager.UpdateAsync(usuarioIdentity);
+
+            if(result.Succeeded)
+                return RedirectToAction("Index", "Usuarios");
+
+            return View(model);
         }
     }
 }

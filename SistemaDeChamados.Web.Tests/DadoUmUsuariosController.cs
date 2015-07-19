@@ -1,11 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Principal;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.SessionState;
+using Microsoft.AspNet.Identity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Infra.CrossCuting.Identity.Configuration.IdentityManagers;
+using SistemaDeChamados.Infra.CrossCuting.Identity.Entities;
 using SistemaDeChamados.Web.Controllers;
 
 namespace SistemaDeChamados.Web.Tests
@@ -15,14 +27,49 @@ namespace SistemaDeChamados.Web.Tests
     {
         private UsuariosController usuariosController;
         private IUsuarioAppService usuarioAppService;
-
+        private IUserStore<UsuarioIdentity> userStore; 
+        private UsuarioIdentity usuarioIdentity;
+        private ApplicationUserManager userManager;
+        
         [TestInitialize]
         public void Setup()
         {
+            HttpContext.Current = CreateHttpContext(false);
+            
+
             usuarioAppService = Substitute.For<IUsuarioAppService>();
             usuariosController = new UsuariosController(usuarioAppService);
+            usuarioIdentity = new UsuarioIdentity {UserName = "teste@mail.com", Email = "teste@mail.com"};
+            userStore = Substitute.For<IUserStore<UsuarioIdentity>>();
+            userManager = Substitute.For<ApplicationUserManager>(userStore);
+
+            var request = Substitute.For<HttpRequestBase>();
+            var context = Substitute.For<HttpContextBase>();
+            context.Request.Returns(request);
+            var controllerContext = new ControllerContext(context, new RouteData(), Substitute.For<ControllerBase>());
+            usuariosController.ControllerContext = controllerContext;
+            
+            var identityBaseController = Substitute.For<IdentityBaseController>();
+            identityBaseController.UserManager.Returns(userManager);
+            identityBaseController.UserManager.FindByEmailAsync("teste@mail.com");
+
         }
 
+        private static HttpContext CreateHttpContext(bool userLoggedIn)
+        {
+            var httpContext = new HttpContext(
+                new HttpRequest(string.Empty, "http://sample.com", string.Empty),
+                new HttpResponse(new StringWriter())
+            )
+            {
+                User = userLoggedIn
+                    ? new GenericPrincipal(new GenericIdentity("userName"), new string[0])
+                    : new GenericPrincipal(new GenericIdentity(string.Empty), new string[0])
+            };
+
+            return httpContext;
+        }
+        
         [TestMethod]
         public void IndexDeveListarTodosOsUsuariosEPassarParaAView()
         {
@@ -72,15 +119,16 @@ namespace SistemaDeChamados.Web.Tests
         }
 
         [TestMethod]
-        public void AoRealizarUmPostParaAActionEdicaoDeveRetornarAViewSeModelIsNotValid()
+        public async Task AoRealizarUmPostParaAActionEdicaoDeveRetornarAViewSeModelIsNotValid()
         {
             var badModel = ObterViewModelInvalido();
-            var result = (ViewResult)usuariosController.Edicao(badModel);
+            var result = await usuariosController.Edicao(badModel) as ViewResult;
+            
             Assert.AreEqual(typeof(UsuarioVM), result.Model.GetType());
         }
 
         [TestMethod]
-        public void AoRealizarUmPostParaAActionEdicaoDeveChamarOMetodoCreateDoUsuarioAppServiceSeModelIsValid()
+        public async Task AoRealizarUmPostParaAActionEdicaoDeveChamarOMetodoCreateDoUsuarioAppServiceSeModelIsValid()
         {
             var vm = new UsuarioVM
             {
@@ -88,8 +136,9 @@ namespace SistemaDeChamados.Web.Tests
                 Email = "fulano@mail.com"
             };
 
-            usuariosController.Edicao(vm);
-            usuarioAppService.Received().Update(vm);
+            userManager.FindByEmailAsync(vm.Email).Returns(new Task<UsuarioIdentity>(() => new UsuarioIdentity()));
+            await usuariosController.Edicao(vm);
+            await usuarioAppService.Received().UpdateAsync(vm);
         }
 
         private UsuarioVM ObterViewModelInvalido()

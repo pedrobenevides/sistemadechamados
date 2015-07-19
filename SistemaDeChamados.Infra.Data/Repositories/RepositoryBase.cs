@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Infra.Data.Contexto;
@@ -35,6 +36,12 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         public void Update(T entity)
         {
             context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
 
         public void Delete(long id)

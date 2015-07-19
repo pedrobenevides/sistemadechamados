@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -26,6 +27,11 @@ namespace SistemaDeChamados.Domain.Services
         public virtual void Update(T entity)
         {
             repository.Update(entity);
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            await repository.UpdateAsync(entity);
         }
 
         public virtual void Delete(long id)

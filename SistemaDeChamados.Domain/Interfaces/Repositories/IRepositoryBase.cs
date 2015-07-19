@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaDeChamados.Domain.Interfaces.Repositories
 {
@@ -7,6 +8,7 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
         T Create(T entity);
         IQueryable<T> Retrieve();
         void Update(T entity);
+        Task UpdateAsync(T entity);
         void Delete(long id);
         T GetById(long id);
         void Dispose();
