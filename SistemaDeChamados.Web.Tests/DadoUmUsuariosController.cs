@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -65,36 +66,36 @@ namespace SistemaDeChamados.Web.Tests
         public void EdicaoComChamadaGetDevePopularOViewModelEId()
         {
             const int idProcurado = 1;
-            usuarioAppService.ObterParaEdicao(idProcurado).Returns(new UsuarioVM());
+            usuarioAppService.ObterParaEdicao(idProcurado).Returns(new UsuarioEdicaoVM());
             var result = (ViewResult)usuariosController.Edicao(idProcurado);
 
-            Assert.AreEqual(idProcurado, ((UsuarioVM)result.Model).Id);
+            Assert.AreEqual(idProcurado, ((UsuarioEdicaoVM)result.Model).Id);
         }
 
         [TestMethod]
-        public void AoRealizarUmPostParaAActionEdicaoDeveRetornarAViewSeModelIsNotValid()
+        public async Task AoRealizarUmPostParaAActionEdicaoDeveRetornarAViewSeModelIsNotValid()
         {
             var badModel = ObterViewModelInvalido();
-            var result = (ViewResult)usuariosController.Edicao(badModel);
+            var result = await usuariosController.Edicao(badModel) as ViewResult;
             Assert.AreEqual(typeof(UsuarioVM), result.Model.GetType());
         }
 
         [TestMethod]
-        public void AoRealizarUmPostParaAActionEdicaoDeveChamarOMetodoCreateDoUsuarioAppServiceSeModelIsValid()
+        public async Task AoRealizarUmPostParaAActionEdicaoDeveChamarOMetodoCreateDoUsuarioAppServiceSeModelIsValid()
         {
-            var vm = new UsuarioVM
+            var vm = new UsuarioEdicaoVM()
             {
                 Nome = "Fulano",
                 Email = "fulano@mail.com"
             };
 
-            usuariosController.Edicao(vm);
+            await usuariosController.Edicao(vm);
             usuarioAppService.Received().Update(vm);
         }
 
-        private UsuarioVM ObterViewModelInvalido()
+        private UsuarioEdicaoVM ObterViewModelInvalido()
         {
-            var badModel = new UsuarioVM();
+            var badModel = new UsuarioEdicaoVM();
             var validationContext = new ValidationContext(badModel, null, null);
             var validationResults = new List<ValidationResult>();
             Validator.TryValidateObject(badModel, validationContext, validationResults, true);

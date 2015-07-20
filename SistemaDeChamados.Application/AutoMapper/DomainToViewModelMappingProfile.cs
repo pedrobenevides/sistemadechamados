@@ -13,6 +13,8 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<Chamado, ChamadoVM>();
             Mapper.CreateMap<Usuario, UsuarioVM>();
             Mapper.CreateMap<UsuarioDTO, UsuarioVM>();
+            Mapper.CreateMap<UsuarioDTO, UsuarioEdicaoVM>()
+                .ForMember(vm => vm.EmailAntigo, exp => exp.MapFrom(u => u.Email));
         }
     }
 }

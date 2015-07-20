@@ -72,6 +72,7 @@
     <Compile Include="ViewModels\ChamadoVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MensagemVM.cs" />
+    <Compile Include="ViewModels\UsuarioEdicaoVM.cs" />
     <Compile Include="ViewModels\UsuarioVM.cs" />
   </ItemGroup>
   <ItemGroup>

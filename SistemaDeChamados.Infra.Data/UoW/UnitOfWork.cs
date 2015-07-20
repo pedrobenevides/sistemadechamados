@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Entity.Validation;
+using System.Text;
 using Microsoft.Practices.ServiceLocation;
 using SistemaDeChamados.Infra.Data.Contexto;
 using SistemaDeChamados.Infra.Data.Interfaces;
@@ -23,7 +25,29 @@ namespace SistemaDeChamados.Infra.Data.UoW
 
         public void SaveChanges()
         {
-            sistemaContext.SaveChanges();
+            try
+            {
+                sistemaContext.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var sb = new StringBuilder();
+
+                foreach (var failure in ex.EntityValidationErrors)
+                {
+                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                    foreach (var error in failure.ValidationErrors)
+                    {
+                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                        sb.AppendLine();
+                    }
+                }
+
+                throw new DbEntityValidationException(
+                    "Entity Validation Failed - errors follow:\n" +
+                    sb.ToString(), ex
+                );
+            }
         }
 
         protected virtual void Dispose(bool disposing)

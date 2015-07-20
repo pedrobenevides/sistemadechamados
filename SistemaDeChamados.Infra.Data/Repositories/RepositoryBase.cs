@@ -21,23 +21,23 @@ namespace SistemaDeChamados.Infra.Data.Repositories
             dbSet = context.Set<T>();
         }
 
-        public T Create(T entity)
+        public virtual T Create(T entity)
         {
             var obj = dbSet.Add(entity);
             return obj;
         }
 
-        public IQueryable<T> Retrieve()
+        public virtual IQueryable<T> Retrieve()
         {
             return dbSet;
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             context.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Delete(long id)
+        public virtual void Delete(long id)
         {
             var entity = dbSet.Find(id);
             dbSet.Remove(entity);

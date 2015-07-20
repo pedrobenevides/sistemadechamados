@@ -9,5 +9,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
         Usuario ObterPorEmail(string email);
         IQueryable<Usuario> ObterReadOnly();
         UsuarioDTO ObterParaEdicao(long id);
+        string ObterPasswordPorId(long id);
     }
 }

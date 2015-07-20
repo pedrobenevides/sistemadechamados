@@ -34,9 +34,9 @@ namespace SistemaDeChamados.Application.AppServices
             return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario.ToList());
         }
 
-        public void Update(UsuarioVM usuarioVM)
+        public void Update(UsuarioEdicaoVM usuarioVM)
         {
-            var usuario = Mapper.Map<UsuarioVM, Usuario>(usuarioVM);
+            var usuario = Mapper.Map<Usuario>(usuarioVM);
             BeginTransaction();
             usuarioService.Update(usuario);
             Commit();
@@ -61,10 +61,10 @@ namespace SistemaDeChamados.Application.AppServices
             return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario.ToList());
         }
 
-        public UsuarioVM ObterParaEdicao(long id)
+        public UsuarioEdicaoVM ObterParaEdicao(long id)
         {
             var usuario = usuarioService.ObterParaEdicao(id);
-            return Mapper.Map<UsuarioDTO, UsuarioVM>(usuario); 
+            return Mapper.Map<UsuarioEdicaoVM>(usuario); 
         }
 
         public bool ValidarCredenciais(string login, string senha)

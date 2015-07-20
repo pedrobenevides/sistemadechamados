@@ -47,5 +47,10 @@ namespace SistemaDeChamados.Domain.Services
         {
             return usuarioRepository.ObterParaEdicao(id);
         }
+
+        public string ObterPasswordPorId(long id)
+        {
+            return usuarioRepository.ObterPasswordPorId(id);
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         Usuario ObterUsuarioComCredenciaisValidas(string login, string senha);
         IQueryable<Usuario> ObterReadOnly();
         UsuarioDTO ObterParaEdicao(long id);
+        string ObterPasswordPorId(long id);
+
     }
 }
