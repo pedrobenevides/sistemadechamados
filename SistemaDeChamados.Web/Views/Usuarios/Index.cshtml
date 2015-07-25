@@ -1,17 +1,16 @@
 ﻿@model IEnumerable<SistemaDeChamados.Application.ViewModels.UsuarioVM>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuários";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Novo Usuário", "Novo")
-</p>
-<table class="table">
+<div class="title">
+    <h3>Listagem de Usuários</h3><hr />
+</div>
+<a href="@Url.Action("Novo")" class="btn btn-primary" style="margin-bottom: 10px; margin-top: 10px"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
+<table class="table table-condensed table-bordered">
     <tr>
-        <th>
+        <th class="table-actions">
 
         </th>
         <th>
@@ -31,29 +30,40 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                <a href="@Url.Action("Edicao","Usuarios", new {id = item.Id})" class="btn btn-primary btn-sm">Editar</a>
-                <a href="@Url.Action("Excluir","Usuarios", new {id = item.Id})" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                <button class="btn-status btn btn-sm" name="@item.Id">@item.StatusAtual</button>
-                @*<a href="@Url.Action("AlterarStatus", "Usuarios", new {id = item.Id})" class="btn-status btn btn-sm">@item.StatusAtual</a>*@
-            </td>
-        </tr>
+    <tr>
+        <td class="table-actions">
+            <a href="@Url.Action("Edicao","Usuarios", new {id = item.Id})" class="btn btn-primary btn-sm">Editar</a>
+            <a href="@Url.Action("Excluir","Usuarios", new {id = item.Id})" class="btn btn-danger btn-sm">Excluir</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            <button class="btn-status btn btn-sm" name="@item.Id">@item.StatusAtual</button>
+            @*<a href="@Url.Action("AlterarStatus", "Usuarios", new {id = item.Id})" class="btn-status btn btn-sm">@item.StatusAtual</a>*@
+        </td>
+    </tr>
     }
 
 </table>
+<style>
+    hr {
+        margin: 0;
+        border-color: darkgray;
+    }
 
+    .title {
+        width: auto;
+        margin: 0 auto;
+        text-align: center;
+    }
+</style>
 <script>
     $(function () {
         $('.btn-status').each(function () {
@@ -65,13 +75,28 @@
         });
 
         $('.btn-status').click(function () {
+            var self = this;
+            var statusAntigo = this.innerText;
             $.ajax({
-                url: 'http://localhost:6084/api/Usuarios/' + this.name,
+                url: 'http://localhost:6084/api/Usuarios/AlterarStatus/' + this.name,
                 type: 'GET',
                 success: function (result) {
-                    alert('Deu Certo');
+                    self.innerText = alterarStatus(statusAntigo);
+                    alterarCssClassStatus(statusAntigo, self);
                 }
             });
         });
+
+        var alterarStatus = function(statusAntigo) {
+            return statusAntigo === 'Ativo' ? 'Desativado' : 'Ativo';
+        };
+
+        var alterarCssClassStatus = function(statusAntigo, elemHtml) {
+            if (statusAntigo === 'Desativado') {
+                $(elemHtml).removeClass('btn-default').addClass('btn-primary');
+            } else {
+                $(elemHtml).removeClass('btn-primary').addClass('btn-default');
+            }
+        }
     });
 </script>

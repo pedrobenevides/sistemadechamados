@@ -20,7 +20,7 @@ namespace SistemaDeChamados.Application.Tests
         }
 
         
-        [TestMethod]
+        [TestMethod, Ignore]
         public void PossoAlterarStatusDoUsuario()
         {
             
