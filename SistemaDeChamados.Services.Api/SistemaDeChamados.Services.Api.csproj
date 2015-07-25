@@ -114,6 +114,10 @@
       <Project>{5345f065-cb59-42c2-b9d0-38e903c107d8}</Project>
       <Name>SistemaDeChamados.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SistemaDeChamados.Domain\SistemaDeChamados.Domain.csproj">
+      <Project>{BC845599-9683-431A-92DB-7A6B729E8614}</Project>
+      <Name>SistemaDeChamados.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SistemaDeChamados.Infra.CrossCuting.IoC\SistemaDeChamados.Infra.CrossCuting.IoC.csproj">
       <Project>{2d41c7a2-cfb8-4848-aa7f-35ad6b259bd0}</Project>
       <Name>SistemaDeChamados.Infra.CrossCuting.IoC</Name>

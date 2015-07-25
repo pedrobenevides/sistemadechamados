@@ -9,5 +9,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         Usuario ValidaSenhaInformada(string login, string senha);
         IQueryable<Usuario> ObterReadOnly();
         UsuarioDTO ObterParaEdicao(long id);
+        void AlterarStatus(long id);
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Domain.Exceptions;
 
 namespace SistemaDeChamados.Services.Api.Controllers
 {
@@ -13,9 +15,17 @@ namespace SistemaDeChamados.Services.Api.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult AlterarStatus()
+        public IHttpActionResult AlterarStatus(long id)
         {
-            return NotFound();
+            try
+            {
+                usuarioAppService.AlterarStatus(id);
+                return Ok();
+            }
+            catch (ChamadosException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

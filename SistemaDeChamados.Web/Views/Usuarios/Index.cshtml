@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -29,7 +29,8 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 <a href="@Url.Action("Edicao","Usuarios", new {id = item.Id})" class="btn btn-primary btn-sm">Editar</a>
@@ -45,7 +46,8 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                <a href="@Url.Action("AlterarStatus","Usuarios", new {id = item.Id})" class="btn-status btn btn-sm">@item.StatusAtual</a>
+                <button class="btn-status btn btn-sm" name="@item.Id">@item.StatusAtual</button>
+                @*<a href="@Url.Action("AlterarStatus", "Usuarios", new {id = item.Id})" class="btn-status btn btn-sm">@item.StatusAtual</a>*@
             </td>
         </tr>
     }
@@ -54,12 +56,25 @@
 
 <script>
     $(function () {
-        $('.btn-status').each(function() {
-            if (this.text === 'Ativo') {
+        $('.btn-status').each(function () {
+            if (this.innerText === 'Ativo') {
                 $(this).removeClass('btn-default').addClass('btn-primary');
             } else {
                 $(this).removeClass('btn-primary').addClass('btn-default');
             }
+        });
+
+        $('.btn-status').click(function () {
+            debugger;
+            $.ajax({
+                url: 'localhost:6084/Usuarios/AlterarStatus/' + this.name,
+                contentType: 'application/json',
+                type: 'PUT',
+                accept: 'application/json',
+                success: function (result) {
+                    alert('Deu Certo');
+                }
+            });
         });
     });
 </script>

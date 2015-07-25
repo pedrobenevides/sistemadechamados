@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
+using SistemaDeChamados.Domain.Exceptions.Usuario;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -47,6 +47,21 @@ namespace SistemaDeChamados.Domain.Services
         public UsuarioDTO ObterParaEdicao(long id)
         {
             return usuarioRepository.ObterParaEdicao(id);
+        }
+
+        public void AlterarStatus(long id)
+        {
+            var usuario = usuarioRepository.GetById(id);
+
+            if (usuario == null)
+                throw new UsuarioNaoEncontradoException();
+
+            if (usuario.EstaAtivo)
+                usuario.DesativarUsuario();
+            else
+                usuario.AtivarUsuario();
+
+            usuarioRepository.Update(usuario);
         }
     }
 }

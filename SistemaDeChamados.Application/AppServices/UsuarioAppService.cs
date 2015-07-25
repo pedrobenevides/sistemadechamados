@@ -5,6 +5,7 @@ using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Exceptions.Usuario;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
@@ -69,6 +70,11 @@ namespace SistemaDeChamados.Application.AppServices
         {
             var usuario = usuarioService.ValidaSenhaInformada(loginVM.Login, loginVM.Senha);
             return Mapper.Map<UsuarioLogadoVM>(usuario);
+        }
+
+        public void AlterarStatus(long id)
+        {
+            usuarioService.AlterarStatus(1);
         }
     }
 }
