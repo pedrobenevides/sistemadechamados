@@ -65,12 +65,9 @@
         });
 
         $('.btn-status').click(function () {
-            debugger;
             $.ajax({
-                url: 'localhost:6084/Usuarios/AlterarStatus/' + this.name,
-                contentType: 'application/json',
-                type: 'PUT',
-                accept: 'application/json',
+                url: 'http://localhost:6084/api/Usuarios/' + this.name,
+                type: 'GET',
                 success: function (result) {
                     alert('Deu Certo');
                 }

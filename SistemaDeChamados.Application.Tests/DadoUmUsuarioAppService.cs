@@ -2,9 +2,6 @@
 using NSubstitute;
 using SistemaDeChamados.Application.AppServices;
 using SistemaDeChamados.Application.Interface;
-using SistemaDeChamados.Domain.DTO;
-using SistemaDeChamados.Domain.Entities;
-using SistemaDeChamados.Domain.Exceptions.Usuario;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.Tests
@@ -26,6 +23,7 @@ namespace SistemaDeChamados.Application.Tests
         [TestMethod]
         public void PossoAlterarStatusDoUsuario()
         {
+            
             usuarioAppService.AlterarStatus(1);
             usuarioService.Received().AlterarStatus(1);
         }
