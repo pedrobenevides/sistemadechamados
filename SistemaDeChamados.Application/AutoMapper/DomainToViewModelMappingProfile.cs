@@ -13,6 +13,7 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<Chamado, ChamadoVM>();
             Mapper.CreateMap<Usuario, UsuarioVM>();
             Mapper.CreateMap<UsuarioDTO, UsuarioVM>();
+            Mapper.CreateMap<Usuario, UsuarioLogadoVM>();
         }
     }
 }

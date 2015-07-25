@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 
@@ -20,7 +19,7 @@ namespace SistemaDeChamados.Web.Controllers
             return View(usuarioAppService.ObterReadOnly());
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public ActionResult Novo()
         {
             return View(new UsuarioVM());

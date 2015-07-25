@@ -17,4 +17,11 @@ namespace SistemaDeChamados.Application.ViewModels
         public bool EstaAtivo { get; set; }
         public string StatusAtual { get { return EstaAtivo ? "Ativo" : "Desativo"; } }
     }
+
+    public class UsuarioLogadoVM
+    {
+        public long Id { get; set; }
+        public string Email { get; set; }
+        public string Nome { get; set; }
+    }
 }
