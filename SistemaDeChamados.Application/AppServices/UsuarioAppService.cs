@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
-using SistemaDeChamados.Domain.Exceptions.Usuario;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
@@ -76,6 +76,13 @@ namespace SistemaDeChamados.Application.AppServices
         {
             BeginTransaction();
             usuarioService.AlterarStatus(1);
+            Commit();
+        }
+
+        public void AtualizarSenha(UsuarioVM usuario)
+        {
+            BeginTransaction();
+            usuarioService.AtualizarSenha(Mapper.Map<UsuarioSenhaDTO>(usuario));
             Commit();
         }
     }

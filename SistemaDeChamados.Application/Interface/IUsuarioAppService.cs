@@ -13,7 +13,7 @@ namespace SistemaDeChamados.Application.Interface
         IEnumerable<UsuarioVM> ObterReadOnly();
         UsuarioVM ObterParaEdicao(long id);
         UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM);
-
         void AlterarStatus(long id);
+        void AtualizarSenha(UsuarioVM usuario);
     }
 }

@@ -63,5 +63,13 @@ namespace SistemaDeChamados.Domain.Services
 
             usuarioRepository.Update(usuario);
         }
+
+        public void AtualizarSenha(UsuarioSenhaDTO usuario)
+        {
+            var usuarioAntigo = usuarioRepository.GetById(usuario.Id);
+
+            usuarioAntigo.DefinirPassword(usuario.Password, criptografadorDeSenha);
+            usuarioRepository.Update(usuarioAntigo);
+        }
     }
 }

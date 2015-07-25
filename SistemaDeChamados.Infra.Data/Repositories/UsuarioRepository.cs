@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;

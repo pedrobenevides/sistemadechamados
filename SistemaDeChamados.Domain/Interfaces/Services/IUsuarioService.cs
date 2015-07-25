@@ -10,5 +10,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         IQueryable<Usuario> ObterReadOnly();
         UsuarioDTO ObterParaEdicao(long id);
         void AlterarStatus(long id);
+        void AtualizarSenha(UsuarioSenhaDTO usuario);
     }
 }

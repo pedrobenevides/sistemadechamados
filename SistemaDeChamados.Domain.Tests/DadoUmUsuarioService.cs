@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Exceptions.Usuario;
@@ -69,6 +70,15 @@ namespace SistemaDeChamados.Domain.Tests
             usuarioService.AlterarStatus(1);
 
             usuarioRepository.Received().Update(usuario);
+        }
+
+        [TestMethod]
+        public void ConsigoAtualizarSenha()
+        {
+            var usuario = new UsuarioSenhaDTO{Id = 1, Password = "123456"};
+            usuarioRepository.GetById(1).Returns(new Usuario("teste@mail.com","Fulano"));
+
+            usuarioService.AtualizarSenha(usuario);
         }
     }
 }

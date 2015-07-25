@@ -51,7 +51,21 @@ namespace SistemaDeChamados.Web.Controllers
                 return View(model);
 
             usuarioAppService.Update(model);
-            return RedirectToAction("Index", "Usuario");
+            return RedirectToAction("Index", "Usuarios");
         }
+
+        [HttpGet]
+        public ActionResult AlterarSenha(long id)
+        {
+            return View(usuarioAppService.ObterParaEdicao(id));
+        }
+        
+        [HttpPost]
+        public ActionResult AlterarSenha(UsuarioVM model)
+        {
+            usuarioAppService.AtualizarSenha(model);
+            return RedirectToAction("Index");
+        }
+
     }
 }
