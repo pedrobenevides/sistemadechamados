@@ -19,7 +19,7 @@ namespace SistemaDeChamados.Web.Controllers
             return View(usuarioAppService.ObterReadOnly());
         }
 
-        [HttpGet, Authorize]
+        [HttpGet]
         public ActionResult Novo()
         {
             return View(new UsuarioVM());

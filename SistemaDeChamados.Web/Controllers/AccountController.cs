@@ -27,7 +27,7 @@ namespace SistemaDeChamados.Web.Controllers
             if (usuario == null)
             {
                 ModelState.AddModelError("Login Invalido","Login e/ou Senha inválidos.");
-                return View();
+                return View(model);
             }
             
             IdentitySignin(usuario);
