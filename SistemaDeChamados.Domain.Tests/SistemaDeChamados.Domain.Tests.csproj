@@ -57,6 +57,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DadoUmCalculateDate.cs" />
+    <Compile Include="DadoUmSetorService.cs" />
+    <Compile Include="EntitiesTest\DadoUmSetor.cs" />
     <Compile Include="EntitiesTest\DadoUmChamado.cs" />
     <Compile Include="DadoUmCriptografadorDeSenha.cs" />
     <Compile Include="DadoUmUsuarioService.cs" />

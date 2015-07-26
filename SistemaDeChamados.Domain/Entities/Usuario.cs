@@ -19,6 +19,8 @@ namespace SistemaDeChamados.Domain.Entities
         public string Nome { get; private set; }
         public string Password { get; private set; }
         public bool EstaAtivo { get; private set; }
+        public long SetorId { get; set; }
+        public virtual Setor Setor { get; set; }
 
         public void DefinirPassword(string password, ICriptografadorDeSenha criptografadorDeSenha)
         {

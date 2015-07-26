@@ -37,6 +37,7 @@
     <Compile Include="DTO\UsuarioDTO.cs" />
     <Compile Include="Entities\Chamado.cs" />
     <Compile Include="Entities\Mensagem.cs" />
+    <Compile Include="Entities\Setor.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Exceptions\ChamadosException.cs" />
     <Compile Include="Exceptions\CriptografadorException.cs" />
@@ -47,17 +48,20 @@
     <Compile Include="Interfaces\Repositories\IChamadoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMensagemRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repositories\ISetorRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />
     <Compile Include="Interfaces\Services\IChamadoService.cs" />
     <Compile Include="Interfaces\Services\ICriptografadorDeSenha.cs" />
     <Compile Include="Interfaces\Services\IMensagemService.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
+    <Compile Include="Interfaces\Services\ISetorService.cs" />
     <Compile Include="Interfaces\Services\IUsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ChamadoService.cs" />
     <Compile Include="Services\CriptografadorDeSenhaMD5.cs" />
     <Compile Include="Services\MensagemService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\SetorService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup />

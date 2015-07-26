@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Configuration\ChamadoConfiguration.cs" />
     <Compile Include="Configuration\MensagemConfiguration.cs" />
+    <Compile Include="Configuration\SetorConfiguration.cs" />
     <Compile Include="Configuration\UsuarioConfiguration.cs" />
     <Compile Include="Contexto\ContextManager.cs" />
     <Compile Include="Contexto\SistemaContext.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Repositories\ChamadoRepository.cs" />
     <Compile Include="Repositories\MensagemRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\SetorRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
