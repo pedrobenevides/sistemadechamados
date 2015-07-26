@@ -32,12 +32,19 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
         }
     </div>
-    <style>
-        .form-signin {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-    </style>
+<style>
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+</style>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs" type="text/javascript"></script>
+<script>
+    $(function() {
+        $.connection.hub.start();
+    });
+</script>
 </body>
 </html>

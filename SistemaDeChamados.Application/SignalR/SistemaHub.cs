@@ -17,7 +17,7 @@ namespace SistemaDeChamados.Application.SignalR
         public void Comunicar(string nome, string menssagem)
         {
             var contextoHub = GlobalHost.ConnectionManager.GetHubContext<SistemaHub>();
-            contextoHub.Clients.All.addNewMessage(nome, menssagem);
+            contextoHub.Clients.Group(nome).All.addNewMessage(nome, menssagem);
         }
 
         public Task AdicionarAoGrupo(string nomeDoGrupo)
