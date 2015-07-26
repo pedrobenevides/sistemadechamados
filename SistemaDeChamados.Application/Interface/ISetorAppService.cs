@@ -7,5 +7,6 @@ namespace SistemaDeChamados.Application.Interface
     {
         IEnumerable<SetorVM> ObterTodosOsSetores();
         SetorVM ObterPorUsuarioId(long usuarioId);
+        string ObterNomeDoSetorPorId(long setorId);
     }
 }

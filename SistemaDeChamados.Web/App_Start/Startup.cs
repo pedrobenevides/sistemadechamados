@@ -11,8 +11,8 @@ namespace SistemaDeChamados.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            app.MapSignalR();
             ConfigureAuth(app);
+            app.MapSignalR(); //Signalr deve ser chamado apos o ConfigureAuth, para conseguirmos pegar as Claims no hub.
         }
 
         public void ConfigureAuth(IAppBuilder app)

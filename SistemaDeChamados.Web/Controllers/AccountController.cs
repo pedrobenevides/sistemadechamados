@@ -13,13 +13,13 @@ namespace SistemaDeChamados.Web.Controllers
             this.usuarioAppService = usuarioAppService;
         }
 
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public ActionResult Login(LoginVM model, string returnUrl)
         {
             var usuario = usuarioAppService.ObterUsuarioLogado(model);
@@ -32,7 +32,7 @@ namespace SistemaDeChamados.Web.Controllers
             
             IdentitySignin(usuario);
 
-            if (string.IsNullOrEmpty(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl))
                 return Redirect(returnUrl);
 
             return RedirectToAction("Index", "Home");

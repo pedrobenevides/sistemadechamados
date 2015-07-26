@@ -21,7 +21,6 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            sistemaHub.Comunicar("Teste", "Usuário adicionado ao sistema");
             return View(usuarioAppService.ObterReadOnly());
         }
 
@@ -42,7 +41,7 @@ namespace SistemaDeChamados.Web.Controllers
             }
 
             usuarioAppService.Create(model);
-            sistemaHub.Comunicar("Teste", "Usuário adicionado ao sistema");
+            sistemaHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), "Usuário adicionado ao sistema");
 
             return RedirectToAction("Index", "Usuarios");
         }
