@@ -16,7 +16,8 @@ namespace SistemaDeChamados.Web.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, appUserState.Email),
-                new Claim(ClaimTypes.Name, appUserState.Nome)
+                new Claim(ClaimTypes.Name, appUserState.Nome),
+                new Claim(ClaimTypes.System, appUserState.Setor),
             };
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
