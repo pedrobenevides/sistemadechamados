@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Web.Controllers;
 
@@ -15,12 +16,14 @@ namespace SistemaDeChamados.Web.Tests
     {
         private UsuariosController usuariosController;
         private IUsuarioAppService usuarioAppService;
+        private ISistemaHub sistemaHub;
 
         [TestInitialize]
         public void Setup()
         {
+            sistemaHub = Substitute.For<ISistemaHub>();
             usuarioAppService = Substitute.For<IUsuarioAppService>();
-            usuariosController = new UsuariosController(usuarioAppService);
+            usuariosController = new UsuariosController(usuarioAppService, sistemaHub);
         }
 
         [TestMethod]

@@ -15,47 +15,64 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryValidate")
 </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Chamados</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">Chamados</a></li>
-                        <li><a href="#contact">Categorias</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configurações <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Index", "Usuarios")">Usuários</a></li>
-                                <li><a href="#">Analistas</a></li>
-                                <li><a href="#">Setores da Empresa</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a href="@Url.Action("Logoff","Account")">LogOff</a></li>
-                        }
-                    </ul>
-                </div><!--/.nav-collapse -->
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Chamados</a>
             </div>
-        </nav>
-        <div class="container-fluid" style="margin-top: 50px;">
-            <div class="row">
-                @RenderBody()
-            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">Chamados</a></li>
+                    <li><a href="#contact">Categorias</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configurações <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index", "Usuarios")">Usuários</a></li>
+                            <li><a href="#">Analistas</a></li>
+                            <li><a href="#">Setores da Empresa</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="@Url.Action("Logoff", "Account")">LogOff</a></li>
+                    }
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-    </body>
+    </nav>
+    <div class="container-fluid" style="margin-top: 50px;">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+    @RenderSection("Scripts", false)
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs" type="text/javascript"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            var sistemaHub = $.connection.sistemaHub;
+
+            sistemaHub.client.addNewMessage = function (nome, mensagem) {
+                toastr.success(mensagem, 'Teste');
+            };
+
+            $.connection.hub.start();
+        });
+    </script>
+</body>
+
 </html>

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
 
 namespace SistemaDeChamados.Web.Controllers
@@ -7,15 +8,18 @@ namespace SistemaDeChamados.Web.Controllers
     public class UsuariosController : Controller
     {
         private readonly IUsuarioAppService usuarioAppService;
+        private readonly ISistemaHub sistemaHub;
 
-        public UsuariosController(IUsuarioAppService usuarioAppService)
+        public UsuariosController(IUsuarioAppService usuarioAppService, ISistemaHub sistemaHub)
         {
             this.usuarioAppService = usuarioAppService;
+            this.sistemaHub = sistemaHub;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
+            sistemaHub.Comunicar("Teste", "Usuário adicionado ao sistema");
             return View(usuarioAppService.ObterReadOnly());
         }
 
@@ -32,6 +36,8 @@ namespace SistemaDeChamados.Web.Controllers
                 return View(model);
 
             usuarioAppService.Create(model);
+            sistemaHub.Comunicar("Teste", "Usuário adicionado ao sistema");
+
             return RedirectToAction("Index", "Usuarios");
         }
 

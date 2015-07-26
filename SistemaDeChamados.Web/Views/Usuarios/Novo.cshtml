@@ -4,14 +4,14 @@
     ViewBag.Title = "Novo";
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <h4>Criação de Usuário</h4>
     <hr />
     <div class="form-horizontal" style="width: 900px">
-        
+
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -30,17 +30,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.PasswordFor(model => model.Password, new { @class = "form-control" } )
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ConfirmacaoPassword, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.PasswordFor(model => model.ConfirmacaoPassword, new { @class = "form-control" } )
+                @Html.PasswordFor(model => model.ConfirmacaoPassword, new { @class = "form-control" })
             </div>
         </div>
-        
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Criar" class="btn btn-default" />
@@ -63,3 +63,4 @@
         color: #2788C3;
     }
 </style>
+

@@ -66,6 +66,11 @@
 </style>
 <script>
     $(function () {
+
+        //$.connection.hub.start().done(function () {
+        //    toastr.success('Testando', 'Teste');
+        //});
+
         $('.btn-status').each(function () {
             if (this.innerText === 'Ativo') {
                 $(this).removeClass('btn-default').addClass('btn-primary');
