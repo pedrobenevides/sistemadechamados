@@ -28,6 +28,13 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.SetorId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.SetorId, (SelectList)ViewBag.Setores, "Selecione...", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.PasswordFor(model => model.Password, new { @class = "form-control" })

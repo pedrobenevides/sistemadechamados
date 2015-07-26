@@ -13,6 +13,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<IChamadoAppService>().To<ChamadoAppService>();
             Bind<IMensagemAppService>().To<MensagemAppService>();
             Bind<IUsuarioAppService>().To<UsuarioAppService>();
+            Bind<ISetorAppService>().To<SetorAppService>();
             Bind<ISistemaHub>().To<SistemaHub>();
         }
     }

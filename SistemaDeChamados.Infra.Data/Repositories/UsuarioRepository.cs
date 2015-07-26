@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
@@ -21,7 +19,7 @@ namespace SistemaDeChamados.Infra.Data.Repositories
 
         public UsuarioDTO ObterParaEdicao(long id)
         {
-            return context.Usuarios.Where(u => u.Id == id).Select(u => new UsuarioDTO{Email = u.Email, Nome = u.Nome}).FirstOrDefault();
+            return context.Usuarios.Where(u => u.Id == id).Select(u => new UsuarioDTO{Email = u.Email, Nome = u.Nome, SetorId = u.SetorId}).FirstOrDefault();
         }
     }
 }

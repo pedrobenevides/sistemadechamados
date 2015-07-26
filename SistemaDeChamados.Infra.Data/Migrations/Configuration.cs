@@ -16,9 +16,9 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
         protected override void Seed(SistemaContext context)
         {
-            var usuario = new Usuario("teste@mail.com", "Pedro Benevides");
-            usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
-            context.Usuarios.Add(usuario);
+            //var usuario = new Usuario("teste@mail.com", "Pedro Benevides");
+            //usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            //context.Usuarios.Add(usuario);
             //var usuario = context.Usuarios.FirstOrDefault();
 
             //context.Chamados.Add(new Chamado

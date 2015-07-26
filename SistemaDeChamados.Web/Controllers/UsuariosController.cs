@@ -9,11 +9,13 @@ namespace SistemaDeChamados.Web.Controllers
     {
         private readonly IUsuarioAppService usuarioAppService;
         private readonly ISistemaHub sistemaHub;
+        private readonly ISetorAppService setorAppService;
 
-        public UsuariosController(IUsuarioAppService usuarioAppService, ISistemaHub sistemaHub)
+        public UsuariosController(IUsuarioAppService usuarioAppService, ISistemaHub sistemaHub, ISetorAppService setorAppService)
         {
             this.usuarioAppService = usuarioAppService;
             this.sistemaHub = sistemaHub;
+            this.setorAppService = setorAppService;
         }
 
         [HttpGet]
@@ -26,14 +28,18 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet]
         public ActionResult Novo()
         {
+            PreencherSetoresNoViewBag();
             return View(new UsuarioVM());
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Novo(UsuarioVM model)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
+            {
+                PreencherSetoresNoViewBag();
                 return View(model);
+            }
 
             usuarioAppService.Create(model);
             sistemaHub.Comunicar("Teste", "Usuário adicionado ao sistema");
@@ -46,6 +52,7 @@ namespace SistemaDeChamados.Web.Controllers
         {
             var model = usuarioAppService.ObterParaEdicao(id);
             model.Id = id;
+            PreencherSetoresNoViewBag(model.SetorId);
 
             return View(model);
         }
@@ -54,7 +61,10 @@ namespace SistemaDeChamados.Web.Controllers
         public ActionResult Edicao(UsuarioVM model)
         {
             if (!ModelState.IsValid)
+            {
+                PreencherSetoresNoViewBag();
                 return View(model);
+            }
 
             usuarioAppService.Update(model);
             return RedirectToAction("Index", "Usuarios");
@@ -71,6 +81,14 @@ namespace SistemaDeChamados.Web.Controllers
         {
             usuarioAppService.AtualizarSenha(model);
             return RedirectToAction("Index");
+        }
+
+        private void PreencherSetoresNoViewBag(long? selectedValue = null)
+        {
+            ViewBag.Setores = new SelectList(
+                    setorAppService.ObterTodosOsSetores(),
+                    "Id", "Nome",  selectedValue
+                );
         }
 
     }
