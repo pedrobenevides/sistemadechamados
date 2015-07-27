@@ -1,6 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.Exceptions;
 
 namespace SistemaDeChamados.Web.Controllers
 {
@@ -22,20 +24,22 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpPost, AllowAnonymous]
         public ActionResult Login(LoginVM model, string returnUrl)
         {
-            var usuario = usuarioAppService.ObterUsuarioLogado(model);
-            
-            if (usuario == null)
+            try
             {
-                ModelState.AddModelError("Login Invalido","Login e/ou Senha inválidos.");
+                var usuario = usuarioAppService.ObterUsuarioLogado(model);
+                
+                IdentitySignin(usuario);
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                    return Redirect(returnUrl);
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch (ServiceException ex)
+            {
+                ModelState.AddModelError("ErroLogin", ex.Message);
                 return View(model);
             }
-            
-            IdentitySignin(usuario);
-
-            if (!string.IsNullOrEmpty(returnUrl))
-                return Redirect(returnUrl);
-
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

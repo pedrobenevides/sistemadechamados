@@ -28,7 +28,7 @@ namespace SistemaDeChamados.Domain.Services
 
         public Usuario ValidaSenhaInformada(string login, string senha)
         {
-            var usuario = usuarioRepository.ObterPorEmail(login);
+            var usuario = usuarioRepository.ObterAtivoPorEmail(login);
 
             if(usuario == null)
                 throw new ServiceException("Não existe Usuário com o login informado.");

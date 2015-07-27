@@ -7,9 +7,9 @@ namespace SistemaDeChamados.Infra.Data.Repositories
 {
     public class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
     {
-        public Usuario ObterPorEmail(string email)
+        public Usuario ObterAtivoPorEmail(string email)
         {
-            return context.Usuarios.FirstOrDefault(u => u.Email == email);
+            return context.Usuarios.FirstOrDefault(u => u.Email == email && u.EstaAtivo);
         }
 
         public IQueryable<Usuario> ObterReadOnly()

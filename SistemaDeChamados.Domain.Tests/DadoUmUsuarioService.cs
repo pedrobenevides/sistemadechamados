@@ -30,7 +30,7 @@ namespace SistemaDeChamados.Domain.Tests
         public void ThrowExceptionSeOLoginInformadoNaoPertencerANenhumUsuario()
         {
             const string email = "teste@mail.com";
-            usuarioRepository.ObterPorEmail(email).ReturnsNull();
+            usuarioRepository.ObterAtivoPorEmail(email).ReturnsNull();
             usuarioService.ValidaSenhaInformada(email, "123456");
         }
 
@@ -38,7 +38,7 @@ namespace SistemaDeChamados.Domain.Tests
         public void ThrowExceptionSeASenhaInformadaNaoForAMesmaQueOUsuarioPossuiNoBanco()
         {
             const string email = "teste@mail.com";
-            usuarioRepository.ObterPorEmail(email).Returns(new Usuario(email, "Pedro"));
+            usuarioRepository.ObterAtivoPorEmail(email).Returns(new Usuario(email, "Pedro"));
             usuarioService.ValidaSenhaInformada(email, "123456");
         }
 
