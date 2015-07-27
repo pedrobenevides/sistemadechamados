@@ -46,7 +46,7 @@
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@User.Identity.Name</li>
+                        <li><a href="#">@User.Identity.Name</a></li>
                         <li><a href="@Url.Action("Logoff", "Account")">LogOff</a></li>
                     }
                 </ul>

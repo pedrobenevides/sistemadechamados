@@ -89,6 +89,5 @@ namespace SistemaDeChamados.Web.Controllers
                     "Id", "Nome",  selectedValue
                 );
         }
-
     }
 }
