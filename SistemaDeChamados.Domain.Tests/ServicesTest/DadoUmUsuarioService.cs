@@ -9,7 +9,7 @@ using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 using SistemaDeChamados.Domain.Services;
 
-namespace SistemaDeChamados.Domain.Tests
+namespace SistemaDeChamados.Domain.Tests.ServicesTest
 {
     [TestClass]
     public class DadoUmUsuarioService

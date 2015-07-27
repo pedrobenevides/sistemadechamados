@@ -87,6 +87,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DadoUmPerfilAppService.cs" />
     <Compile Include="DadoUmSetorAppService.cs" />
     <Compile Include="DadoUmSistemaHub.cs" />
     <Compile Include="DadoUmUsuarioAppService.cs" />

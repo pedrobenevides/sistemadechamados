@@ -16,20 +16,34 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
         protected override void Seed(SistemaContext context)
         {
-            //var usuario = new Usuario("teste@mail.com", "Pedro Benevides");
-            //usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
-            //context.Usuarios.Add(usuario);
-            //var usuario = context.Usuarios.FirstOrDefault();
+            var setorFinanceiro = new Setor("Financeiro");
+            var setorComercial = new Setor("Comercial");
+            var setorTI = new Setor("TI");
+            context.Setores.Add(setorFinanceiro);
+            context.Setores.Add(setorComercial);
+            context.Setores.Add(setorTI);
+            context.SaveChanges();
 
-            //context.Chamados.Add(new Chamado
-            //{
-            //    DataDeCriacao = DateTime.Now,
-            //    StatusDoChamado = StatusDoChamado.Aberto,
-            //    Titulo = "Sem Rede",
-            //    Descricao = "blablabla",
-            //    UsuarioCriadorId = 1, 
-                
-            //});
+            var usuario = new Usuario("teste@mail.com", "Pedro Benevides");
+            usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            usuario.AssociarAoSetor(setorTI.Id);
+            
+            var usuario2 = new Usuario("josilva@mail.com", "Joao Silva");
+            usuario2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            usuario2.AssociarAoSetor(setorFinanceiro.Id);
+            
+            var usuario3 = new Usuario("chicomatos@mail.com", "Francisco Matos");
+            usuario3.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            usuario3.AssociarAoSetor(setorFinanceiro.Id);
+            
+            context.Usuarios.Add(usuario);
+            context.Usuarios.Add(usuario2);
+            context.Usuarios.Add(usuario3);
+
+            var perfilAdmin = new Perfil("Administrador");
+            perfilAdmin.AdicionarAcao("*;");
+
+            context.Perfis.Add(perfilAdmin);
 
             try
             {

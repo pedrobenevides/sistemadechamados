@@ -242,6 +242,7 @@
     <Compile Include="Controllers\AccountBaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -260,6 +261,7 @@
     <Content Include="Views\Usuarios\Edicao.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Usuarios\AlterarSenha.cshtml" />
+    <Content Include="Views\Perfil\Novo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

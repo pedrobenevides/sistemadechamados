@@ -1,4 +1,5 @@
-﻿using SistemaDeChamados.Domain.Interfaces.Services;
+﻿using System.Collections.Generic;
+using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Domain.Entities
 {
@@ -21,6 +22,7 @@ namespace SistemaDeChamados.Domain.Entities
         public bool EstaAtivo { get; private set; }
         public long SetorId { get; private set; }
         public virtual Setor Setor { get; private set; }
+        public long? PerfilId { get; private set; }
 
         public void DefinirPassword(string password, ICriptografadorDeSenha criptografadorDeSenha)
         {
