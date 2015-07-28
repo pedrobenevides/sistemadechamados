@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
@@ -18,30 +17,30 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
         }
 
         [TestMethod, ExpectedException(typeof(ChamadosException))]
-        public void AoAdicionarPermissaoSemFormatacaoCorretaLancaChamadoException()
+        public void AoAdicionarAcessoSemFormatacaoCorretaLancaChamadoException()
         {
-            perfil.AdicionarAcao("nomeDaAcao");
+            perfil.AdicionarAcesso("nomeDaAcao");
         }
 
         [TestMethod]
-        public void PossoAdicionarPermissaoComFormatacaoCorreta()
+        public void PossoAdicionarAcessoComFormatacaoCorreta()
         {
-            perfil.AdicionarAcao("nomeDaAcao;");
-            Assert.AreNotEqual(string.Empty, perfil.Acoes);
+            perfil.AdicionarAcesso("nomeDaAcao;");
+            Assert.AreNotEqual(string.Empty, perfil.Acessos);
         }
 
         [TestMethod]
-        public void AoSolicitarAcoesFormatadasDeveRetornarUmaListaVaziaSePerfilNaoPossuiAcao()
+        public void AoSolicitarAcessosFormatadasDeveRetornarUmaListaVaziaSePerfilNaoPossuiAcesso()
         {
-            var acoesFormatadas = perfil.ObterAcoesFormatadas();
+            var acoesFormatadas = perfil.ObterAcessosFormatados();
             Assert.AreEqual(0, acoesFormatadas.Count());
         }
 
         [TestMethod]
-        public void AoSolicitarAcoesFormatadasDeveRetornarUmaListaComAsAcoesSePossuir()
+        public void AoSolicitarAcessosFormatadasDeveRetornarUmaListaComAsAcoesSePossuir()
         {
-            perfil.AdicionarAcao("testeAcao;");
-            var acoesFormatadas = perfil.ObterAcoesFormatadas();
+            perfil.AdicionarAcesso("testeAcao;");
+            var acoesFormatadas = perfil.ObterAcessosFormatados();
 
             Assert.AreEqual(1, acoesFormatadas.Count());
         }

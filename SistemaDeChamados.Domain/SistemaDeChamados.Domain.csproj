@@ -67,6 +67,7 @@
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\SetorService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
+    <Compile Include="VO\AcessoVO.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

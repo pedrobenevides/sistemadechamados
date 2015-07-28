@@ -41,7 +41,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             context.Usuarios.Add(usuario3);
 
             var perfilAdmin = new Perfil("Administrador");
-            perfilAdmin.AdicionarAcao("*;");
+            perfilAdmin.AdicionarAcesso("*;");
 
             context.Perfis.Add(perfilAdmin);
 

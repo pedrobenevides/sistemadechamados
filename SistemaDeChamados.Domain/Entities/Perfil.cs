@@ -16,20 +16,20 @@ namespace SistemaDeChamados.Domain.Entities
 
         public long Id { get; private set; }
         public string Nome { get; private set; }
-        public string Acoes { get; private set; }
+        public string Acessos { get; private set; }
         public IList<Usuario> Usuarios { get; private set; }
 
-        public void AdicionarAcao(string acao)
+        public void AdicionarAcesso(string acesso)
         {
-            if (!acao.EndsWith(";"))
+            if (!acesso.EndsWith(";"))
                 throw new ChamadosException("Ação está formatada incorretamente.");
                 
-            Acoes += acao;
+            Acessos += acesso;
         }
 
-        public IEnumerable<string> ObterAcoesFormatadas()
+        public IEnumerable<string> ObterAcessosFormatados()
         {
-            return string.IsNullOrEmpty(Acoes) ? new List<string>() : Acoes.Split(';').Where(a => a != "").ToList();
+            return string.IsNullOrEmpty(Acessos) ? new List<string>() : Acessos.Split(';').Where(a => a != "").ToList();
         }
     }
 }
