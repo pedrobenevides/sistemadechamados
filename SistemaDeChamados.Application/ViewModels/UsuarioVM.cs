@@ -17,6 +17,8 @@ namespace SistemaDeChamados.Application.ViewModels
         public bool EstaAtivo { get; set; }
         [Display(Name = "Setor")]
         public long SetorId { get; set; }
+        [Display(Name = "Perfil")]
+        public long PerfilId { get; set; }
         public string StatusAtual { get { return EstaAtivo ? "Ativo" : "Desativo"; } }
     }
 

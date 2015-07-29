@@ -18,14 +18,17 @@ namespace SistemaDeChamados.Web.Tests
         private IUsuarioAppService usuarioAppService;
         private ISistemaHub sistemaHub;
         private ISetorAppService setorAppService;
+        private IPerfilAppService perfilAppService;
 
         [TestInitialize]
         public void Setup()
         {
             sistemaHub = Substitute.For<ISistemaHub>();
             setorAppService = Substitute.For<ISetorAppService>();
+            perfilAppService = Substitute.For<IPerfilAppService>();
             usuarioAppService = Substitute.For<IUsuarioAppService>();
-            usuariosController = new UsuariosController(usuarioAppService, sistemaHub, setorAppService);
+
+            usuariosController = new UsuariosController(usuarioAppService, sistemaHub, setorAppService, perfilAppService);
         }
 
         [TestMethod]

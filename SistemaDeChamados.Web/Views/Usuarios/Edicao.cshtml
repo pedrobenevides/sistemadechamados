@@ -31,9 +31,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SetorId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SetorId, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.SetorId, (SelectList)ViewBag.Setores, "Selecione...", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.SetorId, (SelectList) ViewBag.Setores, "Selecione...", new {@class = "form-control"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PerfilId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.PerfilId, (SelectList)ViewBag.Perfis, "Selecione...", new { @class = "form-control" })
             </div>
         </div>
 

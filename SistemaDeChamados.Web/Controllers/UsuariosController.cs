@@ -10,12 +10,15 @@ namespace SistemaDeChamados.Web.Controllers
         private readonly IUsuarioAppService usuarioAppService;
         private readonly ISistemaHub sistemaHub;
         private readonly ISetorAppService setorAppService;
+        private readonly IPerfilAppService perfilAppService;
 
-        public UsuariosController(IUsuarioAppService usuarioAppService, ISistemaHub sistemaHub, ISetorAppService setorAppService)
+        public UsuariosController(IUsuarioAppService usuarioAppService, ISistemaHub sistemaHub, ISetorAppService setorAppService, 
+            IPerfilAppService perfilAppService)
         {
             this.usuarioAppService = usuarioAppService;
             this.sistemaHub = sistemaHub;
             this.setorAppService = setorAppService;
+            this.perfilAppService = perfilAppService;
         }
 
         [HttpGet]
@@ -27,7 +30,7 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet]
         public ActionResult Novo()
         {
-            PreencherSetoresNoViewBag();
+            PreencherTodosOsViewBags();
             return View(new UsuarioVM());
         }
 
@@ -36,7 +39,7 @@ namespace SistemaDeChamados.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                PreencherSetoresNoViewBag();
+                PreencherTodosOsViewBags();
                 return View(model);
             }
 
@@ -51,7 +54,8 @@ namespace SistemaDeChamados.Web.Controllers
         {
             var model = usuarioAppService.ObterParaEdicao(id);
             model.Id = id;
-            PreencherSetoresNoViewBag(model.SetorId);
+
+            PreencherTodosOsViewBags(model.SetorId, model.PerfilId);
 
             return View(model);
         }
@@ -61,7 +65,7 @@ namespace SistemaDeChamados.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                PreencherSetoresNoViewBag();
+                PreencherTodosOsViewBags(model.SetorId, model.PerfilId);
                 return View(model);
             }
 
@@ -88,6 +92,19 @@ namespace SistemaDeChamados.Web.Controllers
                     setorAppService.ObterTodosOsSetores(),
                     "Id", "Nome",  selectedValue
                 );
+        }
+        private void PreencherPerfisNoViewBag(long? selectedValue = null)
+        {
+            ViewBag.Perfis = new SelectList(
+                    perfilAppService.Listar(),
+                    "Id", "Nome",  selectedValue
+                );
+        }
+
+        private void PreencherTodosOsViewBags(long?  setorSelecionado = null, long? perfilSelecionado = null)
+        {
+            PreencherSetoresNoViewBag();
+            PreencherPerfisNoViewBag();
         }
     }
 }
