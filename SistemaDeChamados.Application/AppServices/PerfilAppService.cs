@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
+using SistemaDeChamados.Domain.VO;
 
 namespace SistemaDeChamados.Application.AppServices
 {
@@ -30,6 +32,11 @@ namespace SistemaDeChamados.Application.AppServices
         public IEnumerable<PerfilVM> Listar()
         {
             return Mapper.Map<IEnumerable<PerfilVM>>(perfilService.Retrieve());
+        }
+
+        public IList<AcessoVM> ListarAcoesDoSistema()
+        {
+            return perfilService.TodosAcessosDePerfil().Select(a => new AcessoVM{ Chave = a.Chave, Descricao = a.Descricao}).ToList();
         }
     }
 }

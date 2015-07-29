@@ -13,9 +13,26 @@ namespace SistemaDeChamados.Web.Controllers
             this.perfilAppService = perfilAppService;
         }
 
+        [HttpGet]
         public ActionResult Novo()
         {
-            return View(new PerfilVM());
+            var model = new PerfilVM
+            {
+                Acoes = perfilAppService.ListarAcoesDoSistema()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Novo(PerfilVM model)
+        {
+            if(!ModelState.IsValid)
+                return View(model);
+
+            perfilAppService.Create(model);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.VO;
 
 namespace SistemaDeChamados.Application.Interface
 {
@@ -8,5 +9,6 @@ namespace SistemaDeChamados.Application.Interface
         void Create(PerfilVM model);
         void Editar(PerfilVM perfil);
         IEnumerable<PerfilVM> Listar();
+        IList<AcessoVM> ListarAcoesDoSistema();
     }
 }

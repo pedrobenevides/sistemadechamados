@@ -24,11 +24,7 @@ namespace SistemaDeChamados.Application.Tests
             perfilAppService = new PerfilAppService(perfilService);
             perfilVM = new PerfilVM
             {
-                Nome = "Novo Perfil",
-                Acoes = new List<string>
-                {
-                    "Acao1", "Acao2"
-                }
+                Nome = "Novo Perfil"
             };
 
             Mapper.CreateMap<PerfilVM, Perfil>();
