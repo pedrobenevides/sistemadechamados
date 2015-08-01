@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
+using SistemaDeChamados.Domain.Exceptions.Usuario;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -27,7 +28,7 @@ namespace SistemaDeChamados.Domain.Services
 
         public Usuario ValidaSenhaInformada(string login, string senha)
         {
-            var usuario = usuarioRepository.ObterPorEmail(login);
+            var usuario = usuarioRepository.ObterAtivoPorEmail(login);
 
             if(usuario == null)
                 throw new ServiceException("Não existe Usuário com o login informado.");
@@ -38,7 +39,7 @@ namespace SistemaDeChamados.Domain.Services
             return usuario;
         }
 
-        public IEnumerable<Usuario> ObterReadOnly()
+        public IQueryable<Usuario> ObterReadOnly()
         {
             return usuarioRepository.ObterReadOnly();
         }
@@ -46,6 +47,29 @@ namespace SistemaDeChamados.Domain.Services
         public UsuarioDTO ObterParaEdicao(long id)
         {
             return usuarioRepository.ObterParaEdicao(id);
+        }
+
+        public void AlterarStatus(long id)
+        {
+            var usuario = usuarioRepository.GetById(id);
+
+            if (usuario == null)
+                throw new UsuarioNaoEncontradoException();
+
+            if (usuario.EstaAtivo)
+                usuario.DesativarUsuario();
+            else
+                usuario.AtivarUsuario();
+
+            usuarioRepository.Update(usuario);
+        }
+
+        public void AtualizarSenha(UsuarioSenhaDTO usuario)
+        {
+            var usuarioAntigo = usuarioRepository.GetById(usuario.Id);
+
+            usuarioAntigo.DefinirPassword(usuario.Password, criptografadorDeSenha);
+            usuarioRepository.Update(usuarioAntigo);
         }
     }
 }

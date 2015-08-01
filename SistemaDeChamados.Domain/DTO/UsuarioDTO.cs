@@ -4,5 +4,12 @@
     {
         public string Nome { get; set; }
         public string Email { get; set; }
+        public long SetorId { get; set; }
+    }
+
+    public class UsuarioSenhaDTO
+    {
+        public long Id { get; set; }
+        public string Password { get; set; }
     }
 }

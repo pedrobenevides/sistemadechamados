@@ -44,8 +44,23 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -60,16 +75,27 @@
     <Compile Include="AppService.cs" />
     <Compile Include="AppServices\ChamadoAppService.cs" />
     <Compile Include="AppServices\MensagemAppService.cs" />
+    <Compile Include="AppServices\PerfilAppService.cs" />
+    <Compile Include="AppServices\SetorAppService.cs" />
     <Compile Include="AppServices\UsuarioAppService.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Identity\CustomClaimTypes.cs" />
+    <Compile Include="Identity\CustomRoles.cs" />
     <Compile Include="Interface\IAppService.cs" />
     <Compile Include="Interface\IChamadoAppService.cs" />
     <Compile Include="Interface\IMensagemAppService.cs" />
+    <Compile Include="Interface\IPerfilAppService.cs" />
+    <Compile Include="Interface\ISetorAppService.cs" />
     <Compile Include="Interface\IUsuarioAppService.cs" />
+    <Compile Include="ViewModels\PerfilVM.cs" />
+    <Compile Include="ViewModels\SetorVM.cs" />
+    <Compile Include="Interface\Socket\ISistemaHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalR\SistemaHub.cs" />
     <Compile Include="ViewModels\ChamadoVM.cs" />
+    <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MensagemVM.cs" />
     <Compile Include="ViewModels\UsuarioVM.cs" />
   </ItemGroup>

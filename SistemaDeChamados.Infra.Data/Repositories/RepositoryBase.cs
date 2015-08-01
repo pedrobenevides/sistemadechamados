@@ -52,7 +52,8 @@ namespace SistemaDeChamados.Infra.Data.Repositories
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+            context.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

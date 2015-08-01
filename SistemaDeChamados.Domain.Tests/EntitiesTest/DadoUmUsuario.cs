@@ -41,5 +41,12 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
             usuario.DesativarUsuario();
             Assert.AreEqual(false, usuario.EstaAtivo);
         }
+
+        [TestMethod]
+        public void PossoAssociarUmSetorAoUsuario()
+        {
+            usuario.AssociarAoSetor(1);
+            Assert.AreEqual(1, usuario.SetorId);
+        }
     }
 }

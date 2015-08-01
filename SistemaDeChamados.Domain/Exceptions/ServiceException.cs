@@ -2,7 +2,7 @@
 
 namespace SistemaDeChamados.Domain.Exceptions
 {
-    public class ServiceException : Exception
+    public class ServiceException : ChamadosException
     {
         public ServiceException(string message)
             :base(message)

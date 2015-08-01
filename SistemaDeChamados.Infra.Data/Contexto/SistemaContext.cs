@@ -13,7 +13,9 @@ namespace SistemaDeChamados.Infra.Data.Contexto
 
         public DbSet<Chamado> Chamados { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Setor> Setores { get; set; }
         public DbSet<Mensagem> Mensagens { get; set; }
+        public DbSet<Perfil> Perfis { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

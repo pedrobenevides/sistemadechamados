@@ -12,5 +12,8 @@ namespace SistemaDeChamados.Application.Interface
         UsuarioVM GetById(long id);
         IEnumerable<UsuarioVM> ObterReadOnly();
         UsuarioVM ObterParaEdicao(long id);
+        UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM);
+        void AlterarStatus(long id);
+        void AtualizarSenha(UsuarioVM usuario);
     }
 }

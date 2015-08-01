@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
@@ -15,5 +16,19 @@ namespace SistemaDeChamados.Application.ViewModels
         [Required, DataType(DataType.Password), Compare("Password"), Display(Name = "Confirmação de Senha")]
         public string ConfirmacaoPassword { get; set; }
         public bool EstaAtivo { get; set; }
+        [Display(Name = "Setor")]
+        public long SetorId { get; set; }
+        [Display(Name = "Perfil")]
+        public long PerfilId { get; set; }
+        public string StatusAtual { get { return EstaAtivo ? "Ativo" : "Desativo"; } }
+    }
+
+    public class UsuarioLogadoVM
+    {
+        public long Id { get; set; }
+        public string Email { get; set; }
+        public string Nome { get; set; }
+        public string Setor { get; set; }
+        public Perfil Perfil { get; set; }
     }
 }

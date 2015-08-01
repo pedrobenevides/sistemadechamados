@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Web.Controllers;
 
@@ -15,12 +16,19 @@ namespace SistemaDeChamados.Web.Tests
     {
         private UsuariosController usuariosController;
         private IUsuarioAppService usuarioAppService;
+        private ISistemaHub sistemaHub;
+        private ISetorAppService setorAppService;
+        private IPerfilAppService perfilAppService;
 
         [TestInitialize]
         public void Setup()
         {
+            sistemaHub = Substitute.For<ISistemaHub>();
+            setorAppService = Substitute.For<ISetorAppService>();
+            perfilAppService = Substitute.For<IPerfilAppService>();
             usuarioAppService = Substitute.For<IUsuarioAppService>();
-            usuariosController = new UsuariosController(usuarioAppService);
+
+            usuariosController = new UsuariosController(usuarioAppService, sistemaHub, setorAppService, perfilAppService);
         }
 
         [TestMethod]
@@ -90,6 +98,35 @@ namespace SistemaDeChamados.Web.Tests
 
             usuariosController.Edicao(vm);
             usuarioAppService.Received().Update(vm);
+        }
+
+        [TestMethod]
+        public void AoSolicitarAlteracaoDeSenhaDeveRetornarUmUsuarioVMParaAView()
+        {
+            var vm = new UsuarioVM
+            {
+                Nome = "Fulano",
+                Email = "fulano@mail.com"
+            };
+            usuarioAppService.ObterParaEdicao(1).Returns(vm);
+            var result = (ViewResult)usuariosController.AlterarSenha(1);
+
+            Assert.AreEqual(typeof(UsuarioVM), result.Model.GetType());
+        }
+
+        [TestMethod]
+        public void AoAlterarASenhaDeveChamarOMetodoAtualizarSenhaDoAppService()
+        {
+            var vm = new UsuarioVM
+            {
+                Nome = "Fulano",
+                Email = "fulano@mail.com",
+                Password = "123456",
+                ConfirmacaoPassword = "123456"
+            };
+
+            usuariosController.AlterarSenha(vm);
+            usuarioAppService.Received().AtualizarSenha(vm);
         }
 
         private UsuarioVM ObterViewModelInvalido()

@@ -9,6 +9,8 @@ namespace SistemaDeChamados.Infra.Data.Configuration
         {
             Property(u => u.Nome).HasMaxLength(100).IsRequired();
             Property(u => u.Password).HasMaxLength(100).IsRequired();
+            Property(u => u.SetorId).IsRequired();
+            Property(u => u.PerfilId).IsOptional();
         }
     }
 }
