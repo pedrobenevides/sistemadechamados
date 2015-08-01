@@ -244,6 +244,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Filters\AutorizacaoFilter.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
