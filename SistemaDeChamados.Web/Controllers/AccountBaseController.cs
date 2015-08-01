@@ -5,20 +5,27 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using SistemaDeChamados.Application.Identity;
 using SistemaDeChamados.Application.ViewModels;
 
 namespace SistemaDeChamados.Web.Controllers
 {
     public class AccountBaseController : Controller
     {
-        public void IdentitySignin(UsuarioLogadoVM appUserState, string providerKey = null, bool isPersistent = false)
+        public void IdentitySignin(UsuarioLogadoVM usuarioLogado, string providerKey = null, bool isPersistent = false)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, appUserState.Email),
-                new Claim(ClaimTypes.Name, appUserState.Nome),
-                new Claim(ClaimTypes.System, appUserState.Setor),
+                new Claim(ClaimTypes.NameIdentifier, usuarioLogado.Email),
+                new Claim(ClaimTypes.Name, usuarioLogado.Nome),
+                new Claim(CustomClaimTypes.Setor, usuarioLogado.Setor)
             };
+
+            if (usuarioLogado.Perfil != null)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, usuarioLogado.Perfil.Nome));
+                claims.Add(new Claim(CustomClaimTypes.Acoes, usuarioLogado.Perfil.Acessos));
+            }
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
             

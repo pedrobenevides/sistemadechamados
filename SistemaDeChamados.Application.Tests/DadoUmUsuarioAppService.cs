@@ -11,19 +11,19 @@ namespace SistemaDeChamados.Application.Tests
     {
         private IUsuarioAppService usuarioAppService;
         private IUsuarioService usuarioService;
+        private IPerfilService perfilService;
 
         [TestInitialize]
         public void Inicio()
         {
             usuarioService = Substitute.For<IUsuarioService>();
-            usuarioAppService = new UsuarioAppService(usuarioService);
+            perfilService = Substitute.For<IPerfilService>();
+            usuarioAppService = new UsuarioAppService(usuarioService, perfilService);
         }
-
         
         [TestMethod, Ignore]
         public void PossoAlterarStatusDoUsuario()
         {
-            
             usuarioAppService.AlterarStatus(1);
             usuarioService.Received().AlterarStatus(1);
         }

@@ -44,5 +44,10 @@ namespace SistemaDeChamados.Domain.Entities
         {
             SetorId = setorId;
         }
+
+        public void AssociarPerfil(long perfilId)
+        {
+            PerfilId = perfilId;
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace SistemaDeChamados.Web.Tests
         //    var result = (RedirectResult)accountController.Login(loginVM, null);
         //}
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void AoTentarLogarSeLoginOuSenhaInvalidosRetornaParaAViewComModel()
         {
             usuarioAppService.ObterUsuarioLogado(loginVM);

@@ -5,7 +5,6 @@ using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
-using SistemaDeChamados.Domain.VO;
 
 namespace SistemaDeChamados.Application.AppServices
 {

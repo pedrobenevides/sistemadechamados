@@ -1,11 +1,12 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Exceptions;
+using SistemaDeChamados.Web.Filters;
 
 namespace SistemaDeChamados.Web.Controllers
 {
+    [PermissaoLivre]
     public class AccountController : AccountBaseController
     {
         private readonly IUsuarioAppService usuarioAppService;

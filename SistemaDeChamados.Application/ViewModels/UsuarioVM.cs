@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
@@ -28,5 +29,6 @@ namespace SistemaDeChamados.Application.ViewModels
         public string Email { get; set; }
         public string Nome { get; set; }
         public string Setor { get; set; }
+        public Perfil Perfil { get; set; }
     }
 }

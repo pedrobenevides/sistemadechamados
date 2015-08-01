@@ -22,11 +22,18 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             context.Setores.Add(setorFinanceiro);
             context.Setores.Add(setorComercial);
             context.Setores.Add(setorTI);
+
+            var perfilAdmin = new Perfil("Administrador");
+            perfilAdmin.AdicionarAcesso("*;");
+            
+            context.Perfis.Add(perfilAdmin);
+
             context.SaveChanges();
 
             var usuario = new Usuario("teste@mail.com", "Pedro Benevides");
             usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             usuario.AssociarAoSetor(setorTI.Id);
+            usuario.AssociarPerfil(perfilAdmin.Id);
             
             var usuario2 = new Usuario("josilva@mail.com", "Joao Silva");
             usuario2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
@@ -39,11 +46,6 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             context.Usuarios.Add(usuario);
             context.Usuarios.Add(usuario2);
             context.Usuarios.Add(usuario3);
-
-            var perfilAdmin = new Perfil("Administrador");
-            perfilAdmin.AdicionarAcesso("*;");
-
-            context.Perfis.Add(perfilAdmin);
 
             try
             {

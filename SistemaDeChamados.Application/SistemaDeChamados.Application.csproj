@@ -81,6 +81,8 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Identity\CustomClaimTypes.cs" />
+    <Compile Include="Identity\CustomRoles.cs" />
     <Compile Include="Interface\IAppService.cs" />
     <Compile Include="Interface\IChamadoAppService.cs" />
     <Compile Include="Interface\IMensagemAppService.cs" />

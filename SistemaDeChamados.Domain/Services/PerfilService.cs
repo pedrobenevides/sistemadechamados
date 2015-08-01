@@ -22,7 +22,8 @@ namespace SistemaDeChamados.Domain.Services
                 new AcessoVO("usercrud", "Acesso ao controle de usuários", "Usuarios", "*"),
                 new AcessoVO("setcrud", "Acesso ao controle de setor", "Setores", "*"),
                 new AcessoVO("setperf", "Acesso ao controle de perfil", "Perfil", "*"),
-                new AcessoVO("all", "Todos os acessos", "*", "*")
+                new AcessoVO("all", "Todos os acessos", "*", "*"),
+                //new AcessoVO("chamadosbasico", "Acesso básico aos chamados", "Chamados", "Novo|Editar|Excluir")
             };
         }
     }

@@ -12,10 +12,12 @@ namespace SistemaDeChamados.Application.AppServices
     public class UsuarioAppService : AppService, IUsuarioAppService
     {
         private readonly IUsuarioService usuarioService;
+        private readonly IPerfilService perfilService;
 
-        public UsuarioAppService(IUsuarioService usuarioService)
+        public UsuarioAppService(IUsuarioService usuarioService, IPerfilService perfilService)
         {
             this.usuarioService = usuarioService;
+            this.perfilService = perfilService;
         }
 
         public void Create(UsuarioVM usuarioVM)
@@ -68,7 +70,12 @@ namespace SistemaDeChamados.Application.AppServices
         public UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM)
         {
             var usuario = usuarioService.ValidaSenhaInformada(loginVM.Login, loginVM.Senha);
-            return Mapper.Map<UsuarioLogadoVM>(usuario);
+            var usuarioLogadoVM = Mapper.Map<UsuarioLogadoVM>(usuario);
+
+            if(usuario.PerfilId.HasValue)
+                usuarioLogadoVM.Perfil = perfilService.GetById(usuario.PerfilId.Value);
+
+            return usuarioLogadoVM;
         }
 
         public void AlterarStatus(long id)
