@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace SistemaDeChamados.Web
@@ -12,6 +8,11 @@ namespace SistemaDeChamados.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "NotFound",
+                url: "NotFound/{action}",
+                defaults: new { controller = "Home", action = "NaoEncontrado"});
 
             routes.MapRoute(
                 name: "Default",

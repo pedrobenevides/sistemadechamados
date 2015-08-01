@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Web.Filters;
 
 namespace SistemaDeChamados.Web.Controllers
 {
@@ -12,8 +13,14 @@ namespace SistemaDeChamados.Web.Controllers
             this.chamadoAppService = chamadoAppService;
         }
 
-        [HttpGet]
+        [HttpGet, PermissaoLivre]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult NaoEncontrado()
         {
             return View();
         }

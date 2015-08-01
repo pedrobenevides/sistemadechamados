@@ -264,6 +264,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Usuarios\AlterarSenha.cshtml" />
     <Content Include="Views\Perfil\Novo.cshtml" />
+    <Content Include="Views\Home\NaoEncontrado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
