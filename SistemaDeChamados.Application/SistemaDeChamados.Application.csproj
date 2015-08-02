@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppService.cs" />
+    <Compile Include="AppServices\CategoriaAppService.cs" />
     <Compile Include="AppServices\ChamadoAppService.cs" />
     <Compile Include="AppServices\MensagemAppService.cs" />
     <Compile Include="AppServices\PerfilAppService.cs" />
@@ -84,11 +85,13 @@
     <Compile Include="Identity\CustomClaimTypes.cs" />
     <Compile Include="Identity\CustomRoles.cs" />
     <Compile Include="Interface\IAppService.cs" />
+    <Compile Include="Interface\ICategoriaAppService.cs" />
     <Compile Include="Interface\IChamadoAppService.cs" />
     <Compile Include="Interface\IMensagemAppService.cs" />
     <Compile Include="Interface\IPerfilAppService.cs" />
     <Compile Include="Interface\ISetorAppService.cs" />
     <Compile Include="Interface\IUsuarioAppService.cs" />
+    <Compile Include="ViewModels\CategoriaVM.cs" />
     <Compile Include="ViewModels\PerfilVM.cs" />
     <Compile Include="ViewModels\SetorVM.cs" />
     <Compile Include="Interface\Socket\ISistemaHub.cs" />

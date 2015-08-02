@@ -6,9 +6,9 @@ namespace SistemaDeChamados.Domain.Services
 {
     public class MensagemService : ServiceBase<Mensagem>, IMensagemService
     {
-        private readonly IRepositoryBase<Mensagem> mensagemRepository;
+        private readonly IMensagemRepository mensagemRepository;
 
-        public MensagemService(IRepositoryBase<Mensagem> mensagemRepository)
+        public MensagemService(IMensagemRepository mensagemRepository)
             :base(mensagemRepository)
         {
             this.mensagemRepository = mensagemRepository;

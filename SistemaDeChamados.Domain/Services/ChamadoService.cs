@@ -6,9 +6,9 @@ namespace SistemaDeChamados.Domain.Services
 {
     public class ChamadoService : ServiceBase<Chamado>,  IChamadoService
     {
-        private readonly IRepositoryBase<Chamado> chamadoRepository;
+        private readonly IChamadoRepository chamadoRepository;
 
-        public ChamadoService(IRepositoryBase<Chamado> chamadoRepository) 
+        public ChamadoService(IChamadoRepository chamadoRepository) 
             : base(chamadoRepository)
         {
             this.chamadoRepository = chamadoRepository;

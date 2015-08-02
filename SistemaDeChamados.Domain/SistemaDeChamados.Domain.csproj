@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="CalculateDate.cs" />
     <Compile Include="DTO\UsuarioDTO.cs" />
+    <Compile Include="Entities\Categoria.cs" />
     <Compile Include="Entities\Chamado.cs" />
     <Compile Include="Entities\Mensagem.cs" />
     <Compile Include="Entities\Perfil.cs" />
@@ -46,12 +47,14 @@
     <Compile Include="Exceptions\Usuario\UsuarioNaoEncontradoException.cs" />
     <Compile Include="Interfaces\ICalculateDate.cs" />
     <Compile Include="Enums\StatusDoChamado.cs" />
+    <Compile Include="Interfaces\Repositories\ICategoriaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IChamadoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMensagemRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPerfilRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\ISetorRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />
+    <Compile Include="Interfaces\Services\ICategoriaService.cs" />
     <Compile Include="Interfaces\Services\IChamadoService.cs" />
     <Compile Include="Interfaces\Services\ICriptografadorDeSenha.cs" />
     <Compile Include="Interfaces\Services\IMensagemService.cs" />
@@ -60,6 +63,7 @@
     <Compile Include="Interfaces\Services\ISetorService.cs" />
     <Compile Include="Interfaces\Services\IUsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CategoriaService.cs" />
     <Compile Include="Services\ChamadoService.cs" />
     <Compile Include="Services\CriptografadorDeSenhaMD5.cs" />
     <Compile Include="Services\MensagemService.cs" />

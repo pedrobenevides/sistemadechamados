@@ -14,6 +14,7 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<UsuarioVM, Usuario>();
             Mapper.CreateMap<UsuarioVM, UsuarioSenhaDTO>();
             Mapper.CreateMap<PerfilVM, Perfil>();
+            Mapper.CreateMap<CategoriaVM, Categoria>();
         }
     }
 }

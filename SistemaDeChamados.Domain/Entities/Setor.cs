@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SistemaDeChamados.Domain.Exceptions.Usuario;
 
@@ -20,6 +18,7 @@ namespace SistemaDeChamados.Domain.Entities
         public long Id { get; private set; }
         public string Nome { get; private set; }
         public virtual IList<Usuario> Usuarios { get; private set; }
+        public virtual IList<Categoria> Categorias { get; private set; }
 
         public void AdicionarUsuario(Usuario usuario)
         {
