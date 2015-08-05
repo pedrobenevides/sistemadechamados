@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
+using System.Web.Http.Controllers;
+//using System.Web .Http.Controllers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,12 +35,29 @@ namespace SistemaDeChamados.Web.Tests.Filters
                 RouteData = new RouteData()
             };
 
+            var actionDescriptor = Substitute.For<ActionDescriptor>();
+            context.ActionDescriptor = actionDescriptor;
+            context.ActionDescriptor.GetCustomAttributes(typeof (PermissaoLivre), false).Returns(new object[1]{ new PermissaoLivre()});
             permissaoAcessoFilter = new PermissaoAcesso();
+        }
+
+        [TestMethod]
+        public void AoTentarAcessarRecursoQueTenhaPermissaoLivreOResultDeveSerNulo()
+        {
+            context.RouteData.Values.Add("controller", "Account");
+            context.RouteData.Values.Add("action", "Login");
+
+            permissaoAcessoFilter.OnActionExecuting(context);
+            var resultado = (RedirectToRouteResult)context.Result;
+
+            Assert.AreEqual(resultado, null);
         }
 
         [TestMethod]
         public void AoTentarAcessarRecursoQueNaoTemPermissaoDeveRedirecionarParaNaoPermitido()
         {
+            context.ActionDescriptor.GetCustomAttributes(typeof(PermissaoLivre), false).Returns(new object[0]);
+
             context.RouteData.Values.Add("controller","Usuario");
             context.RouteData.Values.Add("action","Index");
 
@@ -64,24 +84,7 @@ namespace SistemaDeChamados.Web.Tests.Filters
 
             Assert.AreEqual(resultado, null);
         }
-
-        [TestMethod]
-        public void AoTentarAcessarRecursoENaoExistaUsuarioLogadoNaAplicacaoDeveRetornarParaOLogin()
-        {
-            context.RouteData.Values.Add("controller", "Usuario");
-            context.RouteData.Values.Add("action", "Index");
-
-            var claim = new ClaimsIdentity(new List<Claim> { new Claim(CustomClaimTypes.Acoes, "*;") });
-            requestContext.HttpContext.User.Identity.Returns(claim);
-
-            requestContext.HttpContext.User.Returns((IPrincipal)null);
-
-            permissaoAcessoFilter.OnActionExecuting(context);
-            var resultado = (RedirectToRouteResult)context.Result;
-
-            Assert.AreEqual(resultado.RouteValues.Values.ElementAt(1), "Login");
-        }
-
+        
         private HttpContextBase GetMockedHttpContext()
         {
             var httpContext = Substitute.For<HttpContextBase>();
