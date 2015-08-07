@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SistemaDeChamados.Application.ViewModels;
 
 namespace SistemaDeChamados.Application.Interface
@@ -15,5 +16,7 @@ namespace SistemaDeChamados.Application.Interface
         UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM);
         void AlterarStatus(long id);
         void AtualizarSenha(UsuarioVM usuario);
+        Task<IList<UsuarioVM>> ObterAtivosAsync();
+
     }
 }

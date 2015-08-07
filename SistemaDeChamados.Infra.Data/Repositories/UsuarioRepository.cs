@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
@@ -15,6 +18,11 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         public IQueryable<Usuario> ObterReadOnly()
         {
             return context.Usuarios.AsNoTracking();
+        }
+
+        public async Task<IList<Usuario>> ObterAtivosAsync()
+        {
+            return await context.Usuarios.Where(u => u.EstaAtivo).ToListAsync();
         }
 
         public UsuarioDTO ObterParaEdicao(long id)

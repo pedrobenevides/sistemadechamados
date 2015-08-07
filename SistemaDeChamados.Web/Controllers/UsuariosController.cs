@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
@@ -22,9 +23,9 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(usuarioAppService.ObterReadOnly());
+            return View(await usuarioAppService.ObterAtivosAsync());
         }
 
         [HttpGet]

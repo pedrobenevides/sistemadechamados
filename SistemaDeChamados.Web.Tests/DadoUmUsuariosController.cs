@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -32,10 +33,10 @@ namespace SistemaDeChamados.Web.Tests
         }
 
         [TestMethod]
-        public void IndexDeveListarTodosOsUsuariosEPassarParaAView()
+        public async Task IndexDeveListarTodosOsUsuariosEPassarParaAView()
         {
-            usuariosController.Index();
-            usuarioAppService.Received().ObterReadOnly();
+            await usuariosController.Index();
+            usuarioAppService.Received().ObterAtivosAsync();
         }
 
         [TestMethod]
