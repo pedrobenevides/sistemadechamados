@@ -20,6 +20,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             var setorFinanceiro = new Setor("Financeiro");
             var setorComercial = new Setor("Comercial");
             var setorTI = new Setor("TI");
+
             context.Setores.Add(setorFinanceiro);
             context.Setores.Add(setorComercial);
             context.Setores.Add(setorTI);
@@ -30,6 +31,12 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             context.Perfis.Add(perfilAdmin);
 
             context.SaveChanges();
+
+            var categoria = new Categoria("Instalação de Software", setorTI.Id);
+            var categoria2 = new Categoria("Cotação de Mercadoria", setorComercial.Id);
+
+            context.Categorias.Add(categoria);
+            context.Categorias.Add(categoria2);
 
             var usuario = new Usuario("teste@mail.com", "Pedro Benevides", TipoUsuario.Comum);
             usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());

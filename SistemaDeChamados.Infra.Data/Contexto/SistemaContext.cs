@@ -16,6 +16,7 @@ namespace SistemaDeChamados.Infra.Data.Contexto
         public DbSet<Setor> Setores { get; set; }
         public DbSet<Mensagem> Mensagens { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,6 +25,7 @@ namespace SistemaDeChamados.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new ChamadoConfiguration());
             modelBuilder.Configurations.Add(new MensagemConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
+            modelBuilder.Configurations.Add(new PerfilConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

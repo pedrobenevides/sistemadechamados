@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
@@ -11,5 +13,14 @@ namespace SistemaDeChamados.Application.ViewModels
         public string Descricao { get; set; }
         public long UsuarioCriadorId { get; set; }
         public string Titulo { get; set; }
+    }
+
+    public class CriacaoChamadoVM
+    {
+        public string Titulo { get; set; }
+        public string Descricao { get; set; }
+        public long UsuarioId { get; set; }
+        public long CategoriaId { get; set; }
+        public long SetorId { get; set; }
     }
 }

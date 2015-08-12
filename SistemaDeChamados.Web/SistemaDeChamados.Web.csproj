@@ -271,6 +271,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountBaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChamadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Views\Usuarios\AlterarSenha.cshtml" />
     <Content Include="Views\Perfil\Novo.cshtml" />
     <Content Include="Views\Home\NaoEncontrado.cshtml" />
+    <Content Include="Views\Chamados\Novo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

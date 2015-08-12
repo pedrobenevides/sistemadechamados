@@ -2,6 +2,7 @@
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -16,9 +17,9 @@ namespace SistemaDeChamados.Application.AppServices
             this.setorService = setorService;
         }
 
-        public IEnumerable<SetorVM> ObterTodosOsSetores()
+        public IEnumerable<Setor> ObterTodosOsSetores()
         {
-            return Mapper.Map<IEnumerable<SetorVM>>(setorService.Retrieve());
+            return setorService.Retrieve();
         }
 
         public SetorVM ObterPorUsuarioId(long usuarioId)
