@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Domain.Tests.EntitiesTest
@@ -12,9 +13,9 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
         private ICriptografadorDeSenha criptografadorDeSenha;
 
         [TestInitialize]
-        public void Setup()
+        public void Cenario()
         {
-            usuario = new Usuario("pedro@mail.com", "Pedro");
+            usuario = new Usuario("pedro@mail.com", "Pedro", TipoUsuario.Comum);
             criptografadorDeSenha = Substitute.For<ICriptografadorDeSenha>();
         }
 
@@ -47,6 +48,27 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
         {
             usuario.AssociarAoSetor(1);
             Assert.AreEqual(1, usuario.SetorId);
+        }
+
+        [TestMethod]
+        public void PossoAssociarUmPerfil()
+        {
+            usuario.AssociarPerfil(1);
+            Assert.AreEqual(1, usuario.PerfilId);
+        }
+
+        [TestMethod]
+        public void PossoInformarUmTipoComum()
+        {
+            usuario.InformarTipo(TipoUsuario.Comum);
+            Assert.AreEqual(TipoUsuario.Comum, usuario.Tipo);
+        }
+
+        [TestMethod]
+        public void PossoInformarUmTipoAnalista()
+        {
+            usuario.InformarTipo(TipoUsuario.Analista);
+            Assert.AreEqual(TipoUsuario.Analista, usuario.Tipo);
         }
     }
 }

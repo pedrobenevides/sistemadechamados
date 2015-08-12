@@ -2,6 +2,7 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Text;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Services;
 using SistemaDeChamados.Infra.Data.Contexto;
 
@@ -30,16 +31,16 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
             context.SaveChanges();
 
-            var usuario = new Usuario("teste@mail.com", "Pedro Benevides");
+            var usuario = new Usuario("teste@mail.com", "Pedro Benevides", TipoUsuario.Comum);
             usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             usuario.AssociarAoSetor(setorTI.Id);
             usuario.AssociarPerfil(perfilAdmin.Id);
             
-            var usuario2 = new Usuario("josilva@mail.com", "Joao Silva");
+            var usuario2 = new Usuario("josilva@mail.com", "Joao Silva", TipoUsuario.Comum);
             usuario2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             usuario2.AssociarAoSetor(setorFinanceiro.Id);
             
-            var usuario3 = new Usuario("chicomatos@mail.com", "Francisco Matos");
+            var usuario3 = new Usuario("chicomatos@mail.com", "Francisco Matos", TipoUsuario.Analista);
             usuario3.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             usuario3.AssociarAoSetor(setorFinanceiro.Id);
             

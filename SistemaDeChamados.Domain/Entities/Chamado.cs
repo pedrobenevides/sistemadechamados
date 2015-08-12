@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using SistemaDeChamados.Domain.Enums;
+using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces;
 
 namespace SistemaDeChamados.Domain.Entities
 {
     public class Chamado
     {
-        public Chamado(string titulo, string descricao, long usuarioCriadorId)
+        public Chamado(string titulo, string descricao, long usuarioCriadorId, long usuarioAnalistaId, long categoriaId)
         {
             DataDeCriacao = DateTime.Now;
             Descricao = descricao;
             StatusDoChamado = StatusDoChamado.Aberto;
             Titulo = titulo;
             UsuarioCriadorId = usuarioCriadorId;
+            UsuarioAnalistaId = usuarioAnalistaId;
+            CategoriaId = categoriaId;
         }
         protected Chamado()
         { }
@@ -24,6 +27,8 @@ namespace SistemaDeChamados.Domain.Entities
         public DateTime? DataDeReabertura { get; private set; }
         public string Descricao { get; private set; }
         public long UsuarioCriadorId { get; private set; }
+        public long UsuarioAnalistaId { get; private set; }
+        public long CategoriaId { get; private set; }
         public StatusDoChamado StatusDoChamado { get; private set; }
         public string Titulo { get; private set; }
         public virtual Usuario UsuarioCriador { get; private set; }
@@ -55,6 +60,14 @@ namespace SistemaDeChamados.Domain.Entities
         {
             DataDeEncerramento = DateTime.Now;
             StatusDoChamado = statusDoChamado;
+        }
+
+        public void AssociarAnalista(Usuario usuarioAnalista)
+        {
+            if(usuarioAnalista.Tipo != TipoUsuario.Analista)
+                throw new ChamadosException("O usuário informado não é analista.");
+
+            UsuarioAnalistaId = usuarioAnalista.Id;
         }
     }
 }

@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Domain.Entities
 {
     public class Usuario
     {
-        public Usuario(string email, string nome)
+        public Usuario(string email, string nome, TipoUsuario tipo)
         {
             Nome = nome;
             Email = email;
             EstaAtivo = true;
+            Tipo = tipo;
         }
 
         protected Usuario()
@@ -20,6 +21,7 @@ namespace SistemaDeChamados.Domain.Entities
         public string Nome { get; private set; }
         public string Password { get; private set; }
         public bool EstaAtivo { get; private set; }
+        public TipoUsuario Tipo { get; private set; }
         public long SetorId { get; private set; }
         public virtual Setor Setor { get; private set; }
         public long? PerfilId { get; private set; }
@@ -48,6 +50,11 @@ namespace SistemaDeChamados.Domain.Entities
         public void AssociarPerfil(long perfilId)
         {
             PerfilId = perfilId;
+        }
+
+        public void InformarTipo(TipoUsuario tipo)
+        {
+            Tipo = tipo;
         }
     }
 }

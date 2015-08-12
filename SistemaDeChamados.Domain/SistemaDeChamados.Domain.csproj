@@ -41,6 +41,7 @@
     <Compile Include="Entities\Perfil.cs" />
     <Compile Include="Entities\Setor.cs" />
     <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Enums\TipoUsuario.cs" />
     <Compile Include="Exceptions\ChamadosException.cs" />
     <Compile Include="Exceptions\CriptografadorException.cs" />
     <Compile Include="Exceptions\ServiceException.cs" />

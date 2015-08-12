@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Exceptions.Usuario;
 
 namespace SistemaDeChamados.Domain.Tests.EntitiesTest
@@ -25,14 +26,14 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
         [TestMethod]
         public void PossoAdicionarUmUsuarioDaListaDeUsuariosDoSetor()
         {
-            setor.AdicionarUsuario(new Usuario("fin@mail.com", "Joao Silva"));
+            setor.AdicionarUsuario(new Usuario("fin@mail.com", "Joao Silva", TipoUsuario.Comum));
             Assert.AreEqual(1, setor.Usuarios.Count);
         }
 
         [TestMethod]
         public void PossoRemoverUmUsuarioDaListaDeUsuariosDoSetor()
         {
-            setor.AdicionarUsuario(new Usuario("fin@mail.com", "Joao Silva"));
+            setor.AdicionarUsuario(new Usuario("fin@mail.com", "Joao Silva", TipoUsuario.Comum));
             setor.RemoverUsuario(0);
             Assert.AreEqual(0, setor.Usuarios.Count);
         }

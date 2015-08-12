@@ -3,6 +3,7 @@ using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Exceptions.Usuario;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
@@ -38,7 +39,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         public void ThrowExceptionSeASenhaInformadaNaoForAMesmaQueOUsuarioPossuiNoBanco()
         {
             const string email = "teste@mail.com";
-            usuarioRepository.ObterAtivoPorEmail(email).Returns(new Usuario(email, "Pedro"));
+            usuarioRepository.ObterAtivoPorEmail(email).Returns(new Usuario(email, "Pedro", TipoUsuario.Comum));
             usuarioService.ValidaSenhaInformada(email, "123456");
         }
 
@@ -51,7 +52,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         [TestMethod]
         public void AlteraStatusParaTrueSeStatusEstiverFalse()
         {
-            var usuario = new Usuario("teste@mail.com", "Fulano");
+            var usuario = new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum);
             usuario.DesativarUsuario();
 
             usuarioRepository.GetById(1).Returns(usuario);
@@ -63,7 +64,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         [TestMethod]
         public void AlteraStatusParaFalseSeStatusEstiverTrue()
         {
-            var usuario = new Usuario("teste@mail.com", "Fulano");
+            var usuario = new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum);
             usuario.AtivarUsuario();
 
             usuarioRepository.GetById(1).Returns(usuario);
@@ -76,7 +77,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         public void ConsigoAtualizarSenha()
         {
             var usuario = new UsuarioSenhaDTO{Id = 1, Password = "123456"};
-            usuarioRepository.GetById(1).Returns(new Usuario("teste@mail.com","Fulano"));
+            usuarioRepository.GetById(1).Returns(new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum));
 
             usuarioService.AtualizarSenha(usuario);
         }
