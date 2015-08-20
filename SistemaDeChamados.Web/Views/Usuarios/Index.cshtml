@@ -82,6 +82,7 @@
         $('.btn-status').click(function () {
             var self = this;
             var statusAntigo = this.innerText;
+            jQuery.support.cors = true;
             $.ajax({
                 url: 'http://localhost:6084/api/Usuarios/AlterarStatus/' + this.name,
                 type: 'GET',

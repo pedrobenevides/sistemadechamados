@@ -14,6 +14,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<ISetorService>().To<SetorService>();
             Bind<IPerfilService>().To<PerfilService>();
             Bind<ICriptografadorDeSenha>().To<CriptografadorDeSenhaMD5>();
+            Bind<ICategoriaService>().To<CategoriaService>();
         }
     }
 }

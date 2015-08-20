@@ -1,9 +1,12 @@
-﻿using SistemaDeChamados.Domain.Entities;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
+using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Domain.Services
 {
-    public class CategoriaService : ServiceBase<Categoria>, ICategoriaRepository
+    public class CategoriaService : ServiceBase<Categoria>, ICategoriaService
     {
         private readonly ICategoriaRepository repository;
 
@@ -12,9 +15,14 @@ namespace SistemaDeChamados.Domain.Services
             this.repository = repository;
         }
 
-        public void Dispose()
+        public IEnumerable<Categoria> ObterPorSetor(long setorId)
         {
-            throw new System.NotImplementedException();
+            return repository.ObterPorSetor(setorId);
+        }
+
+        public async Task<IEnumerable<Categoria>> ObterPorSetorAsync(long setorId)
+        {
+            return await repository.ObterPorSetorAsync(setorId);
         }
     }
 }

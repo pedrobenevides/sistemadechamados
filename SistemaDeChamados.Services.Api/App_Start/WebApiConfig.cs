@@ -11,7 +11,7 @@ namespace SistemaDeChamados.Services.Api
             config.EnableCors();
 
             // Web API routes
-            config.MapHttpAttributeRoutes();
+            //config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

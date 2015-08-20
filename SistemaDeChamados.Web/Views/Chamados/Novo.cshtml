@@ -31,7 +31,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SetorId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.SetorId, (SelectList)ViewBag.Setores, "Selecione...", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.SetorId, (SelectList)ViewBag.Setores, "Selecione...", new { @class = "form-control ddl-setores" })
             </div>
         </div>
 
@@ -46,3 +46,24 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script>
+    $(function() {
+        $('.ddl-setores').change(function () {
+            var location = document.location.origin;
+            jQuery.support.cors = true;
+            $.ajax({
+                url: location + '/Chamados/PreencherCategorias/' + this.value,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function(key, value) {
+                        alert(value);
+                    });
+                }
+            });
+        });
+
+        
+    })
+</script>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -17,6 +18,16 @@ namespace SistemaDeChamados.Application.AppServices
         public IEnumerable<Categoria> ObterTodasCategorias()
         {
             return categoriaService.Retrieve();
+        }
+
+        public IEnumerable<Categoria> ObterPorSetor(long setorId)
+        {
+            return categoriaService.ObterPorSetor(setorId);
+        }
+
+        public async Task<IEnumerable<Categoria>> ObterPorSetorAsync(long setorId)
+        {
+            return await categoriaService.ObterPorSetorAsync(setorId);
         }
     }
 }

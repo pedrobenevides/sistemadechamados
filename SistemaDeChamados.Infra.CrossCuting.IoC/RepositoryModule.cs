@@ -16,6 +16,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<IUsuarioRepository>().To<UsuarioRepository>();
             Bind<ISetorRepository>().To<SetorRepository>();
             Bind<IPerfilRepository>().To<PerfilRepository>();
+            Bind<ICategoriaRepository>().To<CategoriaRepository>();
             Bind(typeof (IRepositoryBase<>)).To(typeof (RepositoryBase<>));
             Bind<IUnitOfWork>().To<UnitOfWork>();
             Bind<IContextManager>().To<ContextManager>();
