@@ -50,10 +50,8 @@
 <script>
     $(function() {
         $('.ddl-setores').change(function () {
-            var location = document.location.origin;
-            jQuery.support.cors = true;
             $.ajax({
-                url: location + '/Chamados/PreencherCategorias/' + this.value,
+                url:'http://localhost:6084/api/Categorias/Listar?setorId=' + this.value,
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {

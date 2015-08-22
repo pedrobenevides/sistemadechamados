@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Headers;
+using System.Web.Http;
+using System.Web.Http.Cors;
 using SistemaDeChamados.Infra.CrossCuting.IoC;
 
 namespace SistemaDeChamados.Services.Api
@@ -7,8 +9,7 @@ namespace SistemaDeChamados.Services.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-            config.EnableCors();
+            EnableCrossSiteRequests(config);
 
             // Web API routes
             //config.MapHttpAttributeRoutes();
@@ -19,7 +20,18 @@ namespace SistemaDeChamados.Services.Api
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(new Container().GetModules());
+        }
+
+        private static void EnableCrossSiteRequests(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute(
+                origins: "*",
+                headers: "*",
+                methods: "*");
+
+            config.EnableCors(cors);
         }
     }
 }
