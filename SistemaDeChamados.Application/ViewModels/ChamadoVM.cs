@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.ViewModels
@@ -20,7 +21,9 @@ namespace SistemaDeChamados.Application.ViewModels
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public long UsuarioId { get; set; }
+        [DisplayName("Categorias")]
         public long CategoriaId { get; set; }
+        [DisplayName("Setores")]
         public long SetorId { get; set; }
     }
 }

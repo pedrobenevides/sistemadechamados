@@ -1,13 +1,14 @@
-﻿@model SistemaDeChamados.Application.ViewModels.CriacaoChamadoVM
+﻿@using System.Web.Optimization
+@model SistemaDeChamados.Application.ViewModels.CriacaoChamadoVM
 
 @{
     ViewBag.Title = "Novo";
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal" style="width: 900px">
         <h4>Criação de Chamado</h4>
         <hr />
@@ -21,14 +22,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Descricao, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Descricao, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.SetorId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.SetorId, (SelectList)ViewBag.Setores, "Selecione...", new { @class = "form-control ddl-setores" })
@@ -36,32 +29,36 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.CategoriaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 categoria-label-listagem">
+                Selecione um setor para listar as categorias
+            </div>
+            <div class="col-md-10 categorias-div" style="display: none">
+                @Html.DropDownListFor(m => m.CategoriaId, new List<SelectListItem>(), "Selecione...", new { @class = "form-control ddl-categorias" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control textarea-descriptor" } })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@Scripts.Render("~/bundles/sistema")
 
-<script>
-    $(function() {
-        $('.ddl-setores').change(function () {
-            $.ajax({
-                url:'http://localhost:6084/api/Categorias/Listar?setorId=' + this.value,
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    $.each(data, function(key, value) {
-                        alert(value);
-                    });
-                }
-            });
-        });
 
-        
-    })
-</script>
+<style>
+    .textarea-descriptor {
+        width: 400px !important;
+    }
+</style>
