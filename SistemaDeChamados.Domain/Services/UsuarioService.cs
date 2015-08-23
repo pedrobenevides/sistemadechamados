@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
@@ -44,11 +42,6 @@ namespace SistemaDeChamados.Domain.Services
         public IQueryable<Usuario> ObterReadOnly()
         {
             return usuarioRepository.ObterReadOnly();
-        }
-
-        public async Task<IList<Usuario>> ObterAtivosAsync()
-        {
-            return await usuarioRepository.ObterAtivosAsync();
         }
 
         public UsuarioDTO ObterParaEdicao(long id)

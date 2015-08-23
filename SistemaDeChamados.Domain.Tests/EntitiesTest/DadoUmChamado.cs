@@ -60,18 +60,18 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
             Assert.AreEqual(null, chamado.DataDeEncerramento);
         }
 
-        [TestMethod, ExpectedException(typeof(ChamadosException))]
-        public void AoAssociarAnalistaAoChamadoSeOUsuarioInformadoNaoForAnalistaGeraException()
-        {
-            var usuarioNaoAnalista = new Usuario("teste@naoanalista.com", "Nao Analista", TipoUsuario.Comum);
-            chamado.AssociarAnalista(usuarioNaoAnalista);
-        }
+        //[TestMethod, ExpectedException(typeof(ChamadosException))]
+        //public void AoAssociarAnalistaAoChamadoSeOUsuarioInformadoNaoForAnalistaGeraException()
+        //{
+        //    var usuarioNaoAnalista = new Usuario("teste@naoanalista.com", "Nao Analista", TipoUsuario.Comum);
+        //    chamado.AssociarAnalista(usuarioNaoAnalista);
+        //}
 
-        [TestMethod]
-        public void AssociarAnalistaAoChamadoSeOTipoDeleForAnalista()
-        {
-            var usuarioAnalista = new Usuario("teste@analista.com", "Analista", TipoUsuario.Analista);
-            chamado.AssociarAnalista(usuarioAnalista);
-        }
+        //[TestMethod]
+        //public void AssociarAnalistaAoChamadoSeOTipoDeleForAnalista()
+        //{
+        //    var usuarioAnalista = new Usuario("teste@analista.com", "Analista", TipoUsuario.Analista);
+        //    chamado.AssociarAnalista(usuarioAnalista);
+        //}
     }
 }

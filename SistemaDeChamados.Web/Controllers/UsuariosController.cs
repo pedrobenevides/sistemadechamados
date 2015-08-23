@@ -8,12 +8,12 @@ namespace SistemaDeChamados.Web.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly IUsuarioAppService usuarioAppService;
+        private readonly IColaboradorAppService usuarioAppService;
         private readonly ISistemaHub sistemaHub;
         private readonly ISetorAppService setorAppService;
         private readonly IPerfilAppService perfilAppService;
 
-        public UsuariosController(IUsuarioAppService usuarioAppService, ISistemaHub sistemaHub, ISetorAppService setorAppService, 
+        public UsuariosController(IColaboradorAppService usuarioAppService, ISistemaHub sistemaHub, ISetorAppService setorAppService, 
             IPerfilAppService perfilAppService)
         {
             this.usuarioAppService = usuarioAppService;

@@ -8,7 +8,7 @@ namespace SistemaDeChamados.Infra.Data.Configuration
         public PerfilConfiguration()
         {
             Property(p => p.Nome).IsRequired();
-            HasMany(p => p.Usuarios).WithOptional();
+            HasMany(p => p.Colaboradores).WithOptional();
         }
     }
 }

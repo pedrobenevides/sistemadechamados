@@ -11,7 +11,7 @@ namespace SistemaDeChamados.Infra.Data.Repositories
 
         public Perfil ObterPeloIdDoUsuario(long id)
         {
-            return Perfis.FirstOrDefault(p => p.Usuarios.Any(u => u.Id == id));
+            return Perfis.FirstOrDefault(p => p.Colaboradores.Any(u => u.Id == id));
         }
     }
 }

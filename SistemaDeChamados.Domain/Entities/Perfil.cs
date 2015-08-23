@@ -17,7 +17,7 @@ namespace SistemaDeChamados.Domain.Entities
         public long Id { get; private set; }
         public string Nome { get; private set; }
         public string Acessos { get; private set; }
-        public IList<Usuario> Usuarios { get; private set; }
+        public IList<Colaborador> Colaboradores { get; private set; }
 
         public void AdicionarAcesso(string acesso)
         {

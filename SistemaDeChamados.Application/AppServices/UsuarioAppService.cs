@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
@@ -68,13 +67,14 @@ namespace SistemaDeChamados.Application.AppServices
             return Mapper.Map<UsuarioDTO, UsuarioVM>(usuario); 
         }
 
-        public UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM)
+        public virtual UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM)
         {
             var usuario = usuarioService.ValidaSenhaInformada(loginVM.Login, loginVM.Senha);
             var usuarioLogadoVM = Mapper.Map<UsuarioLogadoVM>(usuario);
-
-            if(usuario.PerfilId.HasValue)
-                usuarioLogadoVM.Perfil = perfilService.GetById(usuario.PerfilId.Value);
+            var colaborador = usuario as Colaborador;
+            
+            if (colaborador != null && colaborador.PerfilId.HasValue)
+                usuarioLogadoVM.Perfil = perfilService.GetById(colaborador.PerfilId.Value);
 
             return usuarioLogadoVM;
         }
@@ -91,12 +91,6 @@ namespace SistemaDeChamados.Application.AppServices
             BeginTransaction();
             usuarioService.AtualizarSenha(Mapper.Map<UsuarioSenhaDTO>(usuario));
             Commit();
-        }
-
-        public async Task<IList<UsuarioVM>> ObterAtivosAsync()
-        {
-            var usuarios = await usuarioService.ObterAtivosAsync();
-            return await Task.Run(() => Mapper.Map<IList<UsuarioVM>>(usuarios));
         }
     }
 }

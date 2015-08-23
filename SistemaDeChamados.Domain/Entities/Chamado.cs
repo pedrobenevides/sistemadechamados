@@ -62,11 +62,8 @@ namespace SistemaDeChamados.Domain.Entities
             StatusDoChamado = statusDoChamado;
         }
 
-        public void AssociarAnalista(Usuario usuarioAnalista)
+        public void AssociarAnalista(Analista usuarioAnalista)
         {
-            if(usuarioAnalista.Tipo != TipoUsuario.Analista)
-                throw new ChamadosException("O usuário informado não é analista.");
-
             UsuarioAnalistaId = usuarioAnalista.Id;
         }
     }

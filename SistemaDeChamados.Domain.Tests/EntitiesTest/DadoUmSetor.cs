@@ -20,28 +20,28 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
         public void AoInstanciarUmSetorListaDeUsuarioNaoEhNula()
         {
             var setorNovo = new Setor("Setor de Teste");
-            Assert.AreNotEqual(null, setorNovo.Usuarios);
+            Assert.AreNotEqual(null, setorNovo.Colaboradores);
         }
 
-        [TestMethod]
-        public void PossoAdicionarUmUsuarioDaListaDeUsuariosDoSetor()
-        {
-            setor.AdicionarUsuario(new Usuario("fin@mail.com", "Joao Silva", TipoUsuario.Comum));
-            Assert.AreEqual(1, setor.Usuarios.Count);
-        }
+        //[TestMethod]
+        //public void PossoAdicionarUmUsuarioDaListaDeUsuariosDoSetor()
+        //{
+        //    setor.AdicionarColaborador(new Usuario("fin@mail.com", "Joao Silva", TipoUsuario.Comum));
+        //    Assert.AreEqual(1, setor.Usuarios.Count);
+        //}
 
-        [TestMethod]
-        public void PossoRemoverUmUsuarioDaListaDeUsuariosDoSetor()
-        {
-            setor.AdicionarUsuario(new Usuario("fin@mail.com", "Joao Silva", TipoUsuario.Comum));
-            setor.RemoverUsuario(0);
-            Assert.AreEqual(0, setor.Usuarios.Count);
-        }
+        //[TestMethod]
+        //public void PossoRemoverUmUsuarioDaListaDeUsuariosDoSetor()
+        //{
+        //    setor.AdicionarColaborador(new Usuario("fin@mail.com", "Joao Silva", TipoUsuario.Comum));
+        //    setor.RemoverColaborador(0);
+        //    Assert.AreEqual(0, setor.Usuarios.Count);
+        //}
 
         [TestMethod, ExpectedException(typeof(UsuarioNaoEncontradoException))]
         public void LancaExceptionAoTentarRemoverUsuarioComIdQueNaoEstaNaLista()
         {
-            setor.RemoverUsuario(11);
+            setor.RemoverColaborador(11);
         }
 
     }

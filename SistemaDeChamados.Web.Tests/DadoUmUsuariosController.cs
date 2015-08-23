@@ -16,7 +16,7 @@ namespace SistemaDeChamados.Web.Tests
     public class DadoUmUsuariosController
     {
         private UsuariosController usuariosController;
-        private IUsuarioAppService usuarioAppService;
+        private IColaboradorAppService usuarioAppService;
         private ISistemaHub sistemaHub;
         private ISetorAppService setorAppService;
         private IPerfilAppService perfilAppService;
@@ -27,7 +27,7 @@ namespace SistemaDeChamados.Web.Tests
             sistemaHub = Substitute.For<ISistemaHub>();
             setorAppService = Substitute.For<ISetorAppService>();
             perfilAppService = Substitute.For<IPerfilAppService>();
-            usuarioAppService = Substitute.For<IUsuarioAppService>();
+            usuarioAppService = Substitute.For<IColaboradorAppService>();
 
             usuariosController = new UsuariosController(usuarioAppService, sistemaHub, setorAppService, perfilAppService);
         }

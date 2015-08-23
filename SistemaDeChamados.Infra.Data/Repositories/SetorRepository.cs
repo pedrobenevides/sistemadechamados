@@ -8,7 +8,7 @@ namespace SistemaDeChamados.Infra.Data.Repositories
     {
         public Setor ObterPorUsuarioId(long usuarioId)
         {
-            return context.Setores.FirstOrDefault(s => s.Usuarios.Any(u => u.Id == usuarioId));
+            return context.Setores.FirstOrDefault(s => s.Colaboradores.Any(u => u.Id == usuarioId));
         }
     }
 }

@@ -35,51 +35,51 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
             usuarioService.ValidaSenhaInformada(email, "123456");
         }
 
-        [TestMethod, ExpectedException(typeof(ServiceException))]
-        public void ThrowExceptionSeASenhaInformadaNaoForAMesmaQueOUsuarioPossuiNoBanco()
-        {
-            const string email = "teste@mail.com";
-            usuarioRepository.ObterAtivoPorEmail(email).Returns(new Usuario(email, "Pedro", TipoUsuario.Comum));
-            usuarioService.ValidaSenhaInformada(email, "123456");
-        }
+        //[TestMethod, ExpectedException(typeof(ServiceException))]
+        //public void ThrowExceptionSeASenhaInformadaNaoForAMesmaQueOUsuarioPossuiNoBanco()
+        //{
+        //    const string email = "teste@mail.com";
+        //    usuarioRepository.ObterAtivoPorEmail(email).Returns(new Usuario(email, "Pedro", TipoUsuario.Comum));
+        //    usuarioService.ValidaSenhaInformada(email, "123456");
+        //}
 
-        [TestMethod, ExpectedException(typeof(UsuarioNaoEncontradoException))]
-        public void AoAlterarStatusDoUsuarioSeNaoExistirUsuarioComEsseIdLancaUsuarioNaoEncontradoException()
-        {
-            usuarioService.AlterarStatus(1);
-        }
+        //[TestMethod, ExpectedException(typeof(UsuarioNaoEncontradoException))]
+        //public void AoAlterarStatusDoUsuarioSeNaoExistirUsuarioComEsseIdLancaUsuarioNaoEncontradoException()
+        //{
+        //    usuarioService.AlterarStatus(1);
+        //}
 
-        [TestMethod]
-        public void AlteraStatusParaTrueSeStatusEstiverFalse()
-        {
-            var usuario = new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum);
-            usuario.DesativarUsuario();
+        //[TestMethod]
+        //public void AlteraStatusParaTrueSeStatusEstiverFalse()
+        //{
+        //    var usuario = new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum);
+        //    usuario.DesativarUsuario();
 
-            usuarioRepository.GetById(1).Returns(usuario);
-            usuarioService.AlterarStatus(1);
+        //    usuarioRepository.GetById(1).Returns(usuario);
+        //    usuarioService.AlterarStatus(1);
 
-            usuarioRepository.Received().Update(usuario);
-        }
+        //    usuarioRepository.Received().Update(usuario);
+        //}
 
-        [TestMethod]
-        public void AlteraStatusParaFalseSeStatusEstiverTrue()
-        {
-            var usuario = new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum);
-            usuario.AtivarUsuario();
+        //[TestMethod]
+        //public void AlteraStatusParaFalseSeStatusEstiverTrue()
+        //{
+        //    var usuario = new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum);
+        //    usuario.AtivarUsuario();
 
-            usuarioRepository.GetById(1).Returns(usuario);
-            usuarioService.AlterarStatus(1);
+        //    usuarioRepository.GetById(1).Returns(usuario);
+        //    usuarioService.AlterarStatus(1);
 
-            usuarioRepository.Received().Update(usuario);
-        }
+        //    usuarioRepository.Received().Update(usuario);
+        //}
 
-        [TestMethod]
-        public void ConsigoAtualizarSenha()
-        {
-            var usuario = new UsuarioSenhaDTO{Id = 1, Password = "123456"};
-            usuarioRepository.GetById(1).Returns(new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum));
+        //[TestMethod]
+        //public void ConsigoAtualizarSenha()
+        //{
+        //    var usuario = new UsuarioSenhaDTO{Id = 1, Password = "123456"};
+        //    usuarioRepository.GetById(1).Returns(new Usuario("teste@mail.com", "Fulano", TipoUsuario.Comum));
 
-            usuarioService.AtualizarSenha(usuario);
-        }
+        //    usuarioService.AtualizarSenha(usuario);
+        //}
     }
 }

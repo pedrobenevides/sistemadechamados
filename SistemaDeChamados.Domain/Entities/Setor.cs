@@ -12,27 +12,27 @@ namespace SistemaDeChamados.Domain.Entities
         public Setor(string nome)
         {
             Nome = nome;
-            Usuarios = new List<Usuario>();
+            Colaboradores = new List<Colaborador>();
         }
 
         public long Id { get; private set; }
         public string Nome { get; private set; }
-        public virtual IList<Usuario> Usuarios { get; private set; }
+        public virtual IList<Colaborador> Colaboradores { get; private set; }
         public virtual IList<Categoria> Categorias { get; private set; }
 
-        public void AdicionarUsuario(Usuario usuario)
+        public void AdicionarColaborador(Colaborador colaborador)
         {
-            Usuarios.Add(usuario);
+            Colaboradores.Add(colaborador);
         }
 
-        public void RemoverUsuario(long usuarioId)
+        public void RemoverColaborador(long usuarioId)
         {
-            var usuario = Usuarios.FirstOrDefault(u => u.Id == usuarioId);
+            var colaborador = Colaboradores.FirstOrDefault(u => u.Id == usuarioId);
 
-            if (usuario == null)
+            if (colaborador == null)
                 throw new UsuarioNaoEncontradoException();
 
-            Usuarios.Remove(usuario);
+            Colaboradores.Remove(colaborador);
         }
     }
 }

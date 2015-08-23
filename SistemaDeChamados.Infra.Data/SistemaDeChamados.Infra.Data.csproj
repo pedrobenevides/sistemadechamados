@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\AnalistaConfiguration.cs" />
     <Compile Include="Configuration\ChamadoConfiguration.cs" />
+    <Compile Include="Configuration\ColaboradorConfiguration.cs" />
     <Compile Include="Configuration\MensagemConfiguration.cs" />
     <Compile Include="Configuration\PerfilConfiguration.cs" />
     <Compile Include="Configuration\SetorConfiguration.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Interfaces\IContextManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ColaboradorRepository.cs" />
     <Compile Include="Repositories\CategoriaRepository.cs" />
     <Compile Include="Repositories\ChamadoRepository.cs" />
     <Compile Include="Repositories\MensagemRepository.cs" />

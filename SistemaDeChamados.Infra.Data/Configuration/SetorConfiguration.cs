@@ -8,7 +8,7 @@ namespace SistemaDeChamados.Infra.Data.Configuration
         public SetorConfiguration()
         {
             HasRequired(p => p.Nome);
-            HasMany(p => p.Usuarios);
+            HasMany(p => p.Colaboradores);
         }
     }
 }

@@ -2,7 +2,6 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Text;
 using SistemaDeChamados.Domain.Entities;
-using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Services;
 using SistemaDeChamados.Infra.Data.Contexto;
 
@@ -38,22 +37,22 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             context.Categorias.Add(categoria);
             context.Categorias.Add(categoria2);
 
-            var usuario = new Usuario("teste@mail.com", "Pedro Benevides", TipoUsuario.Comum);
-            usuario.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
-            usuario.AssociarAoSetor(setorTI.Id);
-            usuario.AssociarPerfil(perfilAdmin.Id);
-            
-            var usuario2 = new Usuario("josilva@mail.com", "Joao Silva", TipoUsuario.Comum);
-            usuario2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
-            usuario2.AssociarAoSetor(setorFinanceiro.Id);
-            
-            var usuario3 = new Usuario("chicomatos@mail.com", "Francisco Matos", TipoUsuario.Analista);
-            usuario3.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
-            usuario3.AssociarAoSetor(setorFinanceiro.Id);
-            
-            context.Usuarios.Add(usuario);
-            context.Usuarios.Add(usuario2);
-            context.Usuarios.Add(usuario3);
+            var colaborador1 = new Colaborador("teste@mail.com", "Pedro Benevides");
+            colaborador1.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            colaborador1.AssociarAoSetor(setorTI.Id);
+            colaborador1.AssociarPerfil(perfilAdmin.Id);
+
+            var analista = new Analista("josilva@mail.com", "Joao Silva");
+            analista.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            analista.AssociarCategoria(categoria.Id);
+
+            var colaborador2 = new Colaborador("chicomatos@mail.com", "Francisco Matos");
+            colaborador2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            colaborador2.AssociarAoSetor(setorFinanceiro.Id);
+                 
+            context.Usuarios.Add(colaborador1);
+            context.Usuarios.Add(colaborador2);
+            context.Usuarios.Add(analista);
 
             try
             {
