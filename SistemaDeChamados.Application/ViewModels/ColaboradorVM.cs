@@ -3,7 +3,7 @@ using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
-    public class UsuarioVM
+    public class ColaboradorVM
     {
         [ScaffoldColumn(false)]
         public long Id { get; set; }
@@ -21,6 +21,20 @@ namespace SistemaDeChamados.Application.ViewModels
         [Display(Name = "Perfil")]
         public long PerfilId { get; set; }
         public string StatusAtual { get { return EstaAtivo ? "Ativo" : "Desativo"; } }
+    }
+
+    public class ColaboradorEdicaoVM
+    {
+        public long Id { get; set; }
+        [Required(ErrorMessage = "O e-mail do Usuário é obrigatório"), StringLength(50), DataType(DataType.EmailAddress), Display(Name = "E-mail")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "O nome do Usuário é obrigatório"), StringLength(100)]
+        public string Nome { get; set; }
+        public bool EstaAtivo { get; set; }
+        [Display(Name = "Setor")]
+        public long SetorId { get; set; }
+        [Display(Name = "Perfil")]
+        public long PerfilId { get; set; }
     }
 
     public class UsuarioLogadoVM

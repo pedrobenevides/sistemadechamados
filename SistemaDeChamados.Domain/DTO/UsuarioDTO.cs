@@ -5,6 +5,8 @@
         public string Nome { get; set; }
         public string Email { get; set; }
         public long SetorId { get; set; }
+        public long? PerfilId { get; set; }
+        public bool EstaAtivo { get; set; }
     }
 
     public class UsuarioSenhaDTO

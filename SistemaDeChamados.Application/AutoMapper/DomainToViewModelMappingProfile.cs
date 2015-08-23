@@ -12,10 +12,10 @@ namespace SistemaDeChamados.Application.AutoMapper
         {
             Mapper.CreateMap<Mensagem, MensagemVM>();
             Mapper.CreateMap<Chamado, ChamadoVM>();
-            Mapper.CreateMap<Usuario, UsuarioVM>();
-            Mapper.CreateMap<Colaborador, UsuarioVM>();
-            Mapper.CreateMap<UsuarioDTO, UsuarioVM>();
-            Mapper.CreateMap<UsuarioSenhaDTO, UsuarioVM>();
+            Mapper.CreateMap<Usuario, ColaboradorVM>();
+            Mapper.CreateMap<Colaborador, ColaboradorVM>();
+            Mapper.CreateMap<UsuarioDTO, ColaboradorEdicaoVM>();
+            Mapper.CreateMap<UsuarioSenhaDTO, ColaboradorVM>();
             Mapper.CreateMap<Colaborador, UsuarioLogadoVM>().ForMember(vm => vm.Setor, expr => expr.MapFrom(u => u.Setor.Nome));
             Mapper.CreateMap<Setor, SetorVM>();
             Mapper.CreateMap<Perfil, PerfilVM>();

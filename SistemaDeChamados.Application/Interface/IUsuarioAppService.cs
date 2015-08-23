@@ -5,16 +5,13 @@ namespace SistemaDeChamados.Application.Interface
 {
     public interface IUsuarioAppService
     {
-        void Create(UsuarioVM usuarioVM);
-        IEnumerable<UsuarioVM> Retrieve();
-        void Update(UsuarioVM usuarioVM);
+        IEnumerable<ColaboradorVM> Retrieve();
         void Delete(long id);
-        UsuarioVM GetById(long id);
-        IEnumerable<UsuarioVM> ObterReadOnly();
-        UsuarioVM ObterParaEdicao(long id);
+        ColaboradorVM GetById(long id);
+        IEnumerable<ColaboradorVM> ObterReadOnly();
         UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM);
         void AlterarStatus(long id);
-        void AtualizarSenha(UsuarioVM usuario);
+        void AtualizarSenha(ColaboradorVM colaborador);
 
     }
 }

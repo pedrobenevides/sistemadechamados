@@ -102,7 +102,7 @@
     <Compile Include="ViewModels\ChamadoVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MensagemVM.cs" />
-    <Compile Include="ViewModels\UsuarioVM.cs" />
+    <Compile Include="ViewModels\ColaboradorVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SistemaDeChamados.Domain\SistemaDeChamados.Domain.csproj">

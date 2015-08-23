@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -19,5 +20,16 @@ namespace SistemaDeChamados.Domain.Services
         {
             return await colaboradorRepository.ObterAtivosAsync();
         }
+        
+        public async Task<IList<Colaborador>> ObterAsync()
+        {
+            return await colaboradorRepository.ObterAsync();
+        }
+        
+        public UsuarioDTO ObterParaEdicao(long id)
+        {
+            return colaboradorRepository.ObterParaEdicao(id);
+        }
+
     }
 }

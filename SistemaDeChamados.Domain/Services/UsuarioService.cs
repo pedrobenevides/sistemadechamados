@@ -44,10 +44,6 @@ namespace SistemaDeChamados.Domain.Services
             return usuarioRepository.ObterReadOnly();
         }
 
-        public UsuarioDTO ObterParaEdicao(long id)
-        {
-            return usuarioRepository.ObterParaEdicao(id);
-        }
 
         public void AlterarStatus(long id)
         {

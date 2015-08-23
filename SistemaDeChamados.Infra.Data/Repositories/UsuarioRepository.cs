@@ -16,11 +16,5 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         {
             return context.Usuarios.AsNoTracking();
         }
-        
-        public UsuarioDTO ObterParaEdicao(long id)
-        {
-            //return context.Usuarios.Where(u => u.Id == id).Select(u => new UsuarioDTO{Email = u.Email, Nome = u.Nome, SetorId = u.SetorId}).FirstOrDefault();
-            return context.Usuarios.Where(u => u.Id == id).Select(u => new UsuarioDTO{Email = u.Email, Nome = u.Nome}).FirstOrDefault();
-        }
     }
 }

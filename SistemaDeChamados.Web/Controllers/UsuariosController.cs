@@ -25,18 +25,18 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            return View(await usuarioAppService.ObterAtivosAsync());
+            return View(await usuarioAppService.ObterAsync());
         }
 
         [HttpGet]
         public ActionResult Novo()
         {
             PreencherTodosOsViewBags();
-            return View(new UsuarioVM());
+            return View(new ColaboradorVM());
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Novo(UsuarioVM model)
+        public ActionResult Novo(ColaboradorVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace SistemaDeChamados.Web.Controllers
         }
         
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edicao(UsuarioVM model)
+        public ActionResult Edicao(ColaboradorEdicaoVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace SistemaDeChamados.Web.Controllers
         }
         
         [HttpPost]
-        public ActionResult AlterarSenha(UsuarioVM model)
+        public ActionResult AlterarSenha(ColaboradorVM model)
         {
             usuarioAppService.AtualizarSenha(model);
             return RedirectToAction("Index");

@@ -19,29 +19,13 @@ namespace SistemaDeChamados.Application.AppServices
             this.usuarioService = usuarioService;
             this.perfilService = perfilService;
         }
-
-        public void Create(UsuarioVM usuarioVM)
-        {
-            var usuario = Mapper.Map<UsuarioVM, Usuario>(usuarioVM);
-            BeginTransaction();
-            usuarioService.Create(usuario);
-            Commit();
-        }
-
-        public IEnumerable<UsuarioVM> Retrieve()
+        
+        public IEnumerable<ColaboradorVM> Retrieve()
         {
             var listaDeUsuario = usuarioService.Retrieve();
-            return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario.ToList());
+            return Mapper.Map<IEnumerable<Usuario>, IEnumerable<ColaboradorVM>>(listaDeUsuario.ToList());
         }
-
-        public void Update(UsuarioVM usuarioVM)
-        {
-            var usuario = Mapper.Map<UsuarioVM, Usuario>(usuarioVM);
-            BeginTransaction();
-            usuarioService.Update(usuario);
-            Commit();
-        }
-
+        
         public void Delete(long id)
         {
             BeginTransaction();
@@ -49,24 +33,18 @@ namespace SistemaDeChamados.Application.AppServices
             Commit();
         }
 
-        public UsuarioVM GetById(long id)
+        public ColaboradorVM GetById(long id)
         {
             var usuario = usuarioService.GetById(id);
-            return Mapper.Map<Usuario, UsuarioVM>(usuario); 
+            return Mapper.Map<Usuario, ColaboradorVM>(usuario); 
         }
 
-        public IEnumerable<UsuarioVM> ObterReadOnly()
+        public IEnumerable<ColaboradorVM> ObterReadOnly()
         {
             var listaDeUsuario = usuarioService.ObterReadOnly();
-            return Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioVM>>(listaDeUsuario.ToList());
+            return Mapper.Map<IEnumerable<Usuario>, IEnumerable<ColaboradorVM>>(listaDeUsuario.ToList());
         }
-
-        public UsuarioVM ObterParaEdicao(long id)
-        {
-            var usuario = usuarioService.ObterParaEdicao(id);
-            return Mapper.Map<UsuarioDTO, UsuarioVM>(usuario); 
-        }
-
+        
         public virtual UsuarioLogadoVM ObterUsuarioLogado(LoginVM loginVM)
         {
             var usuario = usuarioService.ValidaSenhaInformada(loginVM.Login, loginVM.Senha);
@@ -86,10 +64,10 @@ namespace SistemaDeChamados.Application.AppServices
             Commit();
         }
 
-        public void AtualizarSenha(UsuarioVM usuario)
+        public void AtualizarSenha(ColaboradorVM colaborador)
         {
             BeginTransaction();
-            usuarioService.AtualizarSenha(Mapper.Map<UsuarioSenhaDTO>(usuario));
+            usuarioService.AtualizarSenha(Mapper.Map<UsuarioSenhaDTO>(colaborador));
             Commit();
         }
     }
