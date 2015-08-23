@@ -35,7 +35,7 @@ namespace SistemaDeChamados.Web.Tests
         [TestMethod]
         public async Task IndexDeveListarTodosOsUsuariosEPassarParaAView()
         {
-            await usuariosController.Index();
+            await usuariosController.IndexAsync();
             usuarioAppService.Received().ObterAsync();
         }
 

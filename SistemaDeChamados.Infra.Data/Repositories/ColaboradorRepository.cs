@@ -10,13 +10,27 @@ namespace SistemaDeChamados.Infra.Data.Repositories
 {
     public class ColaboradorRepository : UsuarioRepository, IColaboradorRepository
     {
-        public async Task<IList<Colaborador>> ObterAtivosAsync()
+        public async Task<IList<ColaboradorDTO>> ObterAtivosAsync()
         {
-            return await context.Colaboradores.Where(c => c.EstaAtivo).ToListAsync();
+            return await context.Colaboradores.Where(c => c.EstaAtivo).Select(c => new ColaboradorDTO
+            {
+                Email = c.Email,
+                EstaAtivo = c.EstaAtivo,
+                Id = c.Id,
+                Nome = c.Nome,
+                Senha = c.Password
+            }).ToListAsync();
         }
-        public async Task<IList<Colaborador>> ObterAsync()
+        public async Task<IList<ColaboradorDTO>> ObterAsync()
         {
-            return await context.Colaboradores.ToListAsync();
+            return await context.Colaboradores.Select(c => new ColaboradorDTO
+            {
+                Email = c.Email,
+                EstaAtivo = c.EstaAtivo,
+                Id = c.Id,
+                Nome = c.Nome,
+                Senha = c.Password
+            }).ToListAsync();
         }
         
         public UsuarioDTO ObterParaEdicao(long id)

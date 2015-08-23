@@ -7,8 +7,8 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
 {
     public interface IColaboradorRepository : IUsuarioRepository
     {
-        Task<IList<Colaborador>> ObterAsync();
-        Task<IList<Colaborador>> ObterAtivosAsync();
+        Task<IList<ColaboradorDTO>> ObterAsync();
+        Task<IList<ColaboradorDTO>> ObterAtivosAsync();
         UsuarioDTO ObterParaEdicao(long id);
     }
 }

@@ -54,6 +54,8 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             context.Usuarios.Add(colaborador2);
             context.Usuarios.Add(analista);
 
+            CreateHundredOfUsers(context, setorComercial.Id);
+
             try
             {
                 context.SaveChanges();
@@ -73,6 +75,18 @@ namespace SistemaDeChamados.Infra.Data.Migrations
                 }
 
                 throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" + sb.ToString(), ex); 
+            }
+        }
+
+        private void CreateHundredOfUsers(SistemaContext context, long setorId)
+        {
+            for (var i = 0; i < 200; i++)
+            {
+                var colaborador2 = new Colaborador(string.Format("chicomatos{0}@mail.com", i), string.Format("Francisco Matos {0}", i));
+                colaborador2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+                colaborador2.AssociarAoSetor(setorId);
+
+                context.Usuarios.Add(colaborador2);
             }
         }
     }

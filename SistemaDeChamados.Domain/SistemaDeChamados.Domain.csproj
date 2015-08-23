@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculateDate.cs" />
+    <Compile Include="DTO\ColaboradorDTO.cs" />
     <Compile Include="DTO\UsuarioDTO.cs" />
     <Compile Include="Entities\Analista.cs" />
     <Compile Include="Entities\Categoria.cs" />

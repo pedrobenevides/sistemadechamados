@@ -6,6 +6,7 @@ namespace SistemaDeChamados.Application.Interface
 {
     public interface IColaboradorAppService : IUsuarioAppService
     {
+        IList<ColaboradorVM> Obter();
         Task<IList<ColaboradorVM>> ObterAsync();
         Task<IList<ColaboradorVM>> ObterAtivosAsync();
         void Create(ColaboradorVM colaboradorVM);

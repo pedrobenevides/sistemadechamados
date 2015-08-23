@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.DTO;
-using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -16,12 +15,12 @@ namespace SistemaDeChamados.Domain.Services
             this.colaboradorRepository = colaboradorRepository;
         }
 
-        public async Task<IList<Colaborador>> ObterAtivosAsync()
+        public async Task<IList<ColaboradorDTO>> ObterAtivosAsync()
         {
             return await colaboradorRepository.ObterAtivosAsync();
         }
         
-        public async Task<IList<Colaborador>> ObterAsync()
+        public async Task<IList<ColaboradorDTO>> ObterAsync()
         {
             return await colaboradorRepository.ObterAsync();
         }

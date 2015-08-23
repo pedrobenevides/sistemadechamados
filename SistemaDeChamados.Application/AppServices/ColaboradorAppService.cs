@@ -30,6 +30,11 @@ namespace SistemaDeChamados.Application.AppServices
             var colaboradores = await colaboradorService.ObterAsync();
             return await Task.Run(() => Mapper.Map<IList<ColaboradorVM>>(colaboradores));
         }
+        public IList<ColaboradorVM> Obter()
+        {
+            var colaboradores = colaboradorService.Retrieve();
+            return Mapper.Map<IList<ColaboradorVM>>(colaboradores);
+        }
 
         public void Create(ColaboradorVM colaboradorVM)
         {

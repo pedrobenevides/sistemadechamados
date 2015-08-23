@@ -23,9 +23,15 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> IndexAsync()
         {
-            return View(await usuarioAppService.ObterAsync());
+            return View("Index", await usuarioAppService.ObterAsync());
+        }
+
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View(usuarioAppService.Obter());
         }
 
         [HttpGet]
