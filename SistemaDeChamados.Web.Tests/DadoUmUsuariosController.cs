@@ -102,7 +102,7 @@ namespace SistemaDeChamados.Web.Tests
         }
 
         [TestMethod]
-        public void AoSolicitarAlteracaoDeSenhaDeveRetornarUmUsuarioVMParaAView()
+        public void AoSolicitarAlteracaoDeSenhaDeveRetornarUmColaboradorEdicaoVMParaAView()
         {
             var vm = new ColaboradorEdicaoVM
             {
@@ -112,7 +112,7 @@ namespace SistemaDeChamados.Web.Tests
             usuarioAppService.ObterParaEdicao(1).Returns(vm);
             var result = (ViewResult)usuariosController.AlterarSenha(1);
 
-            Assert.AreEqual(typeof(ColaboradorVM), result.Model.GetType());
+            Assert.AreEqual(typeof(ColaboradorEdicaoVM), result.Model.GetType());
         }
 
         [TestMethod]

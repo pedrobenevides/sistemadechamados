@@ -64,7 +64,7 @@
     <Compile Include="EntitiesTest\DadoUmChamado.cs" />
     <Compile Include="DadoUmCriptografadorDeSenha.cs" />
     <Compile Include="ServicesTest\DadoUmUsuarioService.cs" />
-    <Compile Include="EntitiesTest\DadoUmUsuario.cs" />
+    <Compile Include="EntitiesTest\DadoUmColaborador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

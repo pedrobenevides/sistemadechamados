@@ -1,21 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Domain.Entities;
-using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Domain.Tests.EntitiesTest
 {
     [TestClass]
-    public class DadoUmUsuario
+    public class DadoUmColaborador
     {
-        private Usuario usuario;
+        private Colaborador usuario;
         private ICriptografadorDeSenha criptografadorDeSenha;
 
         [TestInitialize]
         public void Cenario()
         {
-            //usuario = new Usuario("pedro@mail.com", "Pedro", TipoUsuario.Comum);
+            usuario = new Colaborador("pedro@mail.com", "Pedro");
             criptografadorDeSenha = Substitute.For<ICriptografadorDeSenha>();
         }
 
@@ -43,19 +42,19 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
             Assert.AreEqual(false, usuario.EstaAtivo);
         }
 
-        //[TestMethod]
-        //public void PossoAssociarUmSetorAoUsuario()
-        //{
-        //    usuario.AssociarAoSetor(1);
-        //    Assert.AreEqual(1, usuario.SetorId);
-        //}
+        [TestMethod]
+        public void PossoAssociarUmSetorAoUsuario()
+        {
+            usuario.AssociarAoSetor(1);
+            Assert.AreEqual(1, usuario.SetorId);
+        }
 
-        //[TestMethod]
-        //public void PossoAssociarUmPerfil()
-        //{
-        //    usuario.AssociarPerfil(1);
-        //    Assert.AreEqual(1, usuario.PerfilId);
-        //}
+        [TestMethod]
+        public void PossoAssociarUmPerfil()
+        {
+            usuario.AssociarPerfil(1);
+            Assert.AreEqual(1, usuario.PerfilId);
+        }
 
         //[TestMethod]
         //public void PossoInformarUmTipoComum()
