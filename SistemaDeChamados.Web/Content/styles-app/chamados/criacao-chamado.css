@@ -1,0 +1,12 @@
+﻿.textarea-descriptor {
+        width: 600px;
+        height: 300px;
+    }
+
+.ddl-setores {
+    width: 400px;
+}
+
+input[type="text"] {
+    width: 400px;
+}

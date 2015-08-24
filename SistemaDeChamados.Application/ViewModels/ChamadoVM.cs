@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
@@ -19,6 +17,7 @@ namespace SistemaDeChamados.Application.ViewModels
     public class CriacaoChamadoVM
     {
         public string Titulo { get; set; }
+        [DisplayName("Descrição")]
         public string Descricao { get; set; }
         public long UsuarioId { get; set; }
         [DisplayName("Categorias")]
