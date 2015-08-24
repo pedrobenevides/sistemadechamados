@@ -17,7 +17,7 @@ namespace SistemaDeChamados.Application.AppServices
 
         public IEnumerable<Categoria> ObterTodasCategorias()
         {
-            return categoriaService.Retrieve();
+            return categoriaService.Obter();
         }
 
         public IEnumerable<Categoria> ObterPorSetor(long setorId)

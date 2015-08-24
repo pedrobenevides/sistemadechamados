@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -10,7 +9,7 @@ using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Web.Controllers;
 
-namespace SistemaDeChamados.Web.Tests
+namespace SistemaDeChamados.Web.Tests.Controllers
 {
     [TestClass]
     public class DadoUmAccountController
@@ -30,22 +29,24 @@ namespace SistemaDeChamados.Web.Tests
                 Login = "teste@mail.com",
                 Senha = "sdfsdjdjgf86fgdg7d6786875sdfsdfsdf"
             };
+
+
         }
 
-        //[TestMethod]
-        //public void ConsigoRealizarOLogin()
-        //{
-        //    HttpContextFactory.SetCurrentContext(GetMockedHttpContext());
-            
-        //    var httpContextBase = Substitute.For<HttpContextBase>();
-        //    var controllerContext = new ControllerContext {HttpContext = httpContextBase};
-        //    accountController.ControllerContext = controllerContext;
-            
-        //    usuarioAppService.ObterUsuarioLogado(loginVM).Returns(new UsuarioLogadoVM{Id = 1, Email = "teste@mail.com", Nome = "Pedro"});
-        //    var result = (RedirectResult)accountController.Login(loginVM, null);
-        //}
+        [TestMethod, Ignore] //TODO: Ajustar o OWIN para conseguir testar
+        public void ConsigoRealizarOLogin()
+        {
+            HttpContextFactory.SetCurrentContext(GetMockedHttpContext());
 
-        [TestMethod, Ignore]
+            var httpContextBase = Substitute.For<HttpContextBase>();
+            var controllerContext = new ControllerContext { HttpContext = httpContextBase };
+            accountController.ControllerContext = controllerContext;
+
+            usuarioAppService.ObterUsuarioLogado(loginVM).Returns(new UsuarioLogadoVM { Id = 1, Email = "teste@mail.com", Nome = "Pedro" });
+            var result = (RedirectResult)accountController.Login(loginVM, null);
+        }
+
+        [TestMethod, Ignore] //TODO: Ajustar o OWIN para conseguir testar
         public void AoTentarLogarSeLoginOuSenhaInvalidosRetornaParaAViewComModel()
         {
             usuarioAppService.ObterUsuarioLogado(loginVM);

@@ -27,7 +27,7 @@ namespace SistemaDeChamados.Application.AppServices
 
         public IEnumerable<ChamadoVM> Retrieve()
         {
-            var listaDeChamados = chamadoService.Retrieve();
+            var listaDeChamados = chamadoService.Obter();
             return Mapper.Map<IList<ChamadoVM>>(listaDeChamados.ToList());
         }
 

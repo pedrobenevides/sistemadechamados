@@ -36,6 +36,8 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
             context.Categorias.Add(categoria);
             context.Categorias.Add(categoria2);
+            
+            context.SaveChanges();
 
             var colaborador1 = new Colaborador("teste@mail.com", "Pedro Benevides");
             colaborador1.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
@@ -78,7 +80,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             }
         }
 
-        private void CreateHundredOfUsers(SistemaContext context, long setorId)
+        private static void CreateHundredOfUsers(SistemaContext context, long setorId)
         {
             for (var i = 0; i < 200; i++)
             {

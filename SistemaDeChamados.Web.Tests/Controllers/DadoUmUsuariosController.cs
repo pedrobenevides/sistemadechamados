@@ -10,7 +10,7 @@ using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Web.Controllers;
 
-namespace SistemaDeChamados.Web.Tests
+namespace SistemaDeChamados.Web.Tests.Controllers
 {
     [TestClass]
     public class DadoUmUsuariosController

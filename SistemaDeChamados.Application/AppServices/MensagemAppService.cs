@@ -27,7 +27,7 @@ namespace SistemaDeChamados.Application.AppServices
 
         public IEnumerable<MensagemVM> Retrieve()
         {
-            var listaDeMensagens = mensagemService.Retrieve();
+            var listaDeMensagens = mensagemService.Obter();
             return Mapper.Map<IList<Mensagem>, IList<MensagemVM>>(listaDeMensagens.ToList());
         }
 

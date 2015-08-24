@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.DTO;
-using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 
 namespace SistemaDeChamados.Infra.Data.Repositories

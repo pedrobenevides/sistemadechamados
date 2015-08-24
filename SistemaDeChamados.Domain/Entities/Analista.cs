@@ -1,6 +1,4 @@
-﻿using SistemaDeChamados.Domain.Enums;
-
-namespace SistemaDeChamados.Domain.Entities
+﻿namespace SistemaDeChamados.Domain.Entities
 {
     public class Analista : Usuario
     {

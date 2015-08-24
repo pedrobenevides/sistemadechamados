@@ -5,6 +5,7 @@ using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
@@ -32,7 +33,7 @@ namespace SistemaDeChamados.Application.AppServices
         }
         public IList<ColaboradorVM> Obter()
         {
-            var colaboradores = colaboradorService.Retrieve();
+            var colaboradores = colaboradorService.Obter();
             return Mapper.Map<IList<ColaboradorVM>>(colaboradores);
         }
 
@@ -46,9 +47,15 @@ namespace SistemaDeChamados.Application.AppServices
         
         public void Update(ColaboradorEdicaoVM colaboradorVM)
         {
-            var usuario = Mapper.Map<ColaboradorEdicaoVM, Colaborador>(colaboradorVM);
+            var colaboradoExistenteNoBanco = colaboradorService.GetById(colaboradorVM.Id) as Colaborador;
+
+            if(colaboradoExistenteNoBanco == null)
+                throw new ChamadosException("Usuário inexistente, ou inválido.");
+
+            var colaborador = Mapper.Map(colaboradorVM, colaboradoExistenteNoBanco);
+
             BeginTransaction();
-            colaboradorService.Update(usuario);
+            colaboradorService.Update(colaborador);
             Commit();
         }
 

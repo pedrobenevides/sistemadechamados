@@ -19,7 +19,7 @@ namespace SistemaDeChamados.Application.AppServices
 
         public IEnumerable<Setor> ObterTodosOsSetores()
         {
-            return setorService.Retrieve();
+            return setorService.Obter();
         }
 
         public SetorVM ObterPorUsuarioId(long usuarioId)

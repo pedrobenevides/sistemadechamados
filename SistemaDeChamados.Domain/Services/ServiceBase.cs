@@ -18,9 +18,14 @@ namespace SistemaDeChamados.Domain.Services
             return repository.Create(entity);
         }
 
-        public virtual IQueryable<T> Retrieve()
+        public virtual IQueryable<T> Obter()
         {
-            return repository.Retrieve();
+            return repository.Obter();
+        }
+
+        public IQueryable<T> ObterAsNoTracking()
+        {
+            return repository.ObterAsNoTracking();
         }
 
         public virtual void Update(T entity)

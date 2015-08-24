@@ -22,7 +22,7 @@ namespace SistemaDeChamados.Application.AppServices
         
         public IEnumerable<ColaboradorVM> Retrieve()
         {
-            var listaDeUsuario = usuarioService.Retrieve();
+            var listaDeUsuario = usuarioService.Obter();
             return Mapper.Map<IEnumerable<Usuario>, IEnumerable<ColaboradorVM>>(listaDeUsuario.ToList());
         }
         

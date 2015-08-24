@@ -55,19 +55,5 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
             usuario.AssociarPerfil(1);
             Assert.AreEqual(1, usuario.PerfilId);
         }
-
-        //[TestMethod]
-        //public void PossoInformarUmTipoComum()
-        //{
-        //    usuario.InformarTipo(TipoUsuario.Comum);
-        //    Assert.AreEqual(TipoUsuario.Comum, usuario.Tipo);
-        //}
-
-        //[TestMethod]
-        //public void PossoInformarUmTipoAnalista()
-        //{
-        //    usuario.InformarTipo(TipoUsuario.Analista);
-        //    Assert.AreEqual(TipoUsuario.Analista, usuario.Tipo);
-        //}
     }
 }

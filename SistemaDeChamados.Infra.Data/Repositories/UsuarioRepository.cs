@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 

@@ -30,7 +30,7 @@ namespace SistemaDeChamados.Application.AppServices
 
         public IEnumerable<PerfilVM> Listar()
         {
-            return Mapper.Map<IEnumerable<PerfilVM>>(perfilService.Retrieve());
+            return Mapper.Map<IEnumerable<PerfilVM>>(perfilService.Obter());
         }
 
         public IList<AcessoVM> ListarAcoesDoSistema()

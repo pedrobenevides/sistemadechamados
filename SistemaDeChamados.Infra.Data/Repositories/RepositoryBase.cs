@@ -26,10 +26,15 @@ namespace SistemaDeChamados.Infra.Data.Repositories
             var obj = dbSet.Add(entity);
             return obj;
         }
-
-        public IQueryable<T> Retrieve()
+        //TODO: Devolver o retorno paginado
+        public IQueryable<T> Obter()
         {
             return dbSet;
+        }
+        //TODO: Devolver o retorno paginado
+        public IQueryable<T> ObterAsNoTracking()
+        {
+            return dbSet.AsNoTracking();
         }
 
         public void Update(T entity)
