@@ -4,9 +4,11 @@ namespace SistemaDeChamados.Domain.Entities
 {
     public class Colaborador : Usuario
     {
-        public Colaborador(string email, string nome)
+        public Colaborador(string email, string nome, long setorId)
             : base(email, nome)
-        { }
+        {
+            SetorId = setorId;
+        }
 
         protected Colaborador()
         { }

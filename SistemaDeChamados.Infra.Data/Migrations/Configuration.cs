@@ -39,7 +39,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             
             context.SaveChanges();
 
-            var colaborador1 = new Colaborador("teste@mail.com", "Pedro Benevides");
+            var colaborador1 = new Colaborador("teste@mail.com", "Pedro Benevides", setorTI.Id);
             colaborador1.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             colaborador1.AssociarAoSetor(setorTI.Id);
             colaborador1.AssociarPerfil(perfilAdmin.Id);
@@ -48,7 +48,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             analista.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             analista.AssociarCategoria(categoria);
 
-            var colaborador2 = new Colaborador("chicomatos@mail.com", "Francisco Matos");
+            var colaborador2 = new Colaborador("chicomatos@mail.com", "Francisco Matos", setorComercial.Id);
             colaborador2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             colaborador2.AssociarAoSetor(setorFinanceiro.Id);
 
@@ -89,9 +89,8 @@ namespace SistemaDeChamados.Infra.Data.Migrations
         {
             for (var i = 0; i < 200; i++)
             {
-                var colaborador2 = new Colaborador(string.Format("chicomatos{0}@mail.com", i), string.Format("Francisco Matos {0}", i));
+                var colaborador2 = new Colaborador(string.Format("chicomatos{0}@mail.com", i), string.Format("Francisco Matos {0}", i), setorId);
                 colaborador2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
-                colaborador2.AssociarAoSetor(setorId);
 
                 context.Usuarios.Add(colaborador2);
             }

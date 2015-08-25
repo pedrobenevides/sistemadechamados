@@ -39,7 +39,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         public void ThrowExceptionSeASenhaInformadaNaoForAMesmaQueOUsuarioPossuiNoBanco()
         {
             const string email = "teste@mail.com";
-            usuarioRepository.ObterAtivoPorEmail(email).Returns(new Colaborador(email, "Pedro"));
+            usuarioRepository.ObterAtivoPorEmail(email).Returns(new Colaborador(email, "Pedro", 1));
             usuarioService.ValidaSenhaInformada(email, "123456");
         }
 
@@ -52,7 +52,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         [TestMethod]
         public void AlteraStatusParaTrueSeStatusEstiverFalse()
         {
-            var usuario = new Colaborador("teste@mail.com", "Fulano");
+            var usuario = new Colaborador("teste@mail.com", "Fulano", 1);
             usuario.DesativarUsuario();
 
             usuarioRepository.GetById(1).Returns(usuario);
@@ -64,7 +64,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         [TestMethod]
         public void AlteraStatusParaFalseSeStatusEstiverTrue()
         {
-            var usuario = new Colaborador("teste@mail.com", "Fulano");
+            var usuario = new Colaborador("teste@mail.com", "Fulano", 1);
             usuario.AtivarUsuario();
 
             usuarioRepository.GetById(1).Returns(usuario);
@@ -77,7 +77,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         public void ConsigoAtualizarSenha()
         {
             var usuario = new UsuarioSenhaDTO { Id = 1, Password = "123456" };
-            usuarioRepository.GetById(1).Returns(new Colaborador("teste@mail.com", "Fulano"));
+            usuarioRepository.GetById(1).Returns(new Colaborador("teste@mail.com", "Fulano", 1));
 
             usuarioService.AtualizarSenha(usuario);
         }

@@ -22,6 +22,7 @@ namespace SistemaDeChamados.Infra.Data.Contexto
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Properties<string>().Configure(c => c.HasColumnType("VARCHAR"));
             modelBuilder.Configurations.Add(new ChamadoConfiguration());

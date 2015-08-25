@@ -14,7 +14,7 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
         [TestInitialize]
         public void Cenario()
         {
-            usuario = new Colaborador("pedro@mail.com", "Pedro");
+            usuario = new Colaborador("pedro@mail.com", "Pedro", 1);
             criptografadorDeSenha = Substitute.For<ICriptografadorDeSenha>();
         }
 

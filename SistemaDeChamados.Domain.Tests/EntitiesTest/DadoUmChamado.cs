@@ -15,7 +15,7 @@ namespace SistemaDeChamados.Domain.Tests.EntitiesTest
         [TestInitialize]
         public void Setup()
         {
-            chamado = new Chamado("Chamado de Teste", "Esse é um chamado de Teste", 1, 2, 1);
+            chamado = new Chamado("Chamado de Teste", "Esse é um chamado de Teste", 1, 2);
             calculateDate = new CalculateDate();
         }
 

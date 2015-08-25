@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using SistemaDeChamados.Domain.Enums;
-using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces;
 
 namespace SistemaDeChamados.Domain.Entities
 {
     public class Chamado
     {
-        public Chamado(string titulo, string descricao, long usuarioCriadorId, long categoriaId)
+        public Chamado(string titulo, string descricao, long colaboradorId, long categoriaId)
         {
             DataDeCriacao = DateTime.Now;
             Descricao = descricao;
             StatusDoChamado = StatusDoChamado.Aberto;
             Titulo = titulo;
-            UsuarioCriadorId = usuarioCriadorId;
+            ColaboradorId = colaboradorId;
             CategoriaId = categoriaId;
         }
         protected Chamado()
@@ -25,7 +24,7 @@ namespace SistemaDeChamados.Domain.Entities
         public DateTime? DataDeEncerramento { get; private set; }
         public DateTime? DataDeReabertura { get; private set; }
         public string Descricao { get; private set; }
-        public long UsuarioCriadorId { get; private set; }
+        public long ColaboradorId { get; private set; }
         public long CategoriaId { get; private set; }
         public StatusDoChamado StatusDoChamado { get; private set; }
         public string Titulo { get; private set; }
