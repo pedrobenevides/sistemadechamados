@@ -8,14 +8,13 @@ namespace SistemaDeChamados.Domain.Entities
 {
     public class Chamado
     {
-        public Chamado(string titulo, string descricao, long usuarioCriadorId, long usuarioAnalistaId, long categoriaId)
+        public Chamado(string titulo, string descricao, long usuarioCriadorId, long categoriaId)
         {
             DataDeCriacao = DateTime.Now;
             Descricao = descricao;
             StatusDoChamado = StatusDoChamado.Aberto;
             Titulo = titulo;
             UsuarioCriadorId = usuarioCriadorId;
-            UsuarioAnalistaId = usuarioAnalistaId;
             CategoriaId = categoriaId;
         }
         protected Chamado()
@@ -27,11 +26,11 @@ namespace SistemaDeChamados.Domain.Entities
         public DateTime? DataDeReabertura { get; private set; }
         public string Descricao { get; private set; }
         public long UsuarioCriadorId { get; private set; }
-        public long UsuarioAnalistaId { get; private set; }
         public long CategoriaId { get; private set; }
         public StatusDoChamado StatusDoChamado { get; private set; }
         public string Titulo { get; private set; }
-        public virtual Usuario UsuarioCriador { get; private set; }
+        public virtual Categoria Categoria { get; set; }
+        public virtual Colaborador UsuarioCriador { get; private set; }
         public virtual IList<Mensagem> Mensagens { get; private set; }
         public bool EstaEncerrado
         {
@@ -60,11 +59,6 @@ namespace SistemaDeChamados.Domain.Entities
         {
             DataDeEncerramento = DateTime.Now;
             StatusDoChamado = statusDoChamado;
-        }
-
-        public void AssociarAnalista(Analista usuarioAnalista)
-        {
-            UsuarioAnalistaId = usuarioAnalista.Id;
         }
     }
 }

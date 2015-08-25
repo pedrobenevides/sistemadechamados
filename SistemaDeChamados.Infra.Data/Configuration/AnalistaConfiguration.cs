@@ -7,9 +7,8 @@ namespace SistemaDeChamados.Infra.Data.Configuration
     {
         public AnalistaConfiguration()
         {
-            Property(a => a.CategoriaId).IsRequired();
+            HasMany(c => c.Categorias).WithOptional().WillCascadeOnDelete(false);
             Map(c => c.Requires("TipoUsuario").HasValue(1).HasColumnType("int"));
-
         }
     }
 }

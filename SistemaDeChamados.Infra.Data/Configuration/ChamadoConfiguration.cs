@@ -9,8 +9,9 @@ namespace SistemaDeChamados.Infra.Data.Configuration
         {
             Property(c => c.DataDeCriacao).IsRequired();
             Property(c => c.Descricao).IsRequired().HasMaxLength(500);
-            //HasRequired(c => c.UsuarioCriador);
-            Property(c => c.UsuarioCriadorId).IsRequired();
+            Property(c => c.UsuarioCriadorId);
+
+            //HasRequired(c => c.UsuarioCriador).WithOptional().WillCascadeOnDelete(false);
             HasMany(c => c.Mensagens);
             Property(c => c.DataDeReabertura).IsOptional();
         }

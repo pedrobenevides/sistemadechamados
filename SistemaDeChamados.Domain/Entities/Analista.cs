@@ -1,18 +1,22 @@
-﻿namespace SistemaDeChamados.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace SistemaDeChamados.Domain.Entities
 {
     public class Analista : Usuario
     {
         public Analista(string email, string nome) : base(email, nome)
-        { }
+        {
+            Categorias = new List<Categoria>();
+        }
 
         protected Analista()
         { }
 
-        public long CategoriaId { get; private set; }
+        public virtual IList<Categoria> Categorias { get; set; }
 
-        public void AssociarCategoria(long categoriaId)
+        public void AssociarCategoria(Categoria categoria)
         {
-            CategoriaId = categoriaId;
+            Categorias.Add(categoria);
         }
     }
 }

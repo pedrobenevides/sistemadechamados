@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AnalistaConfiguration.cs" />
+    <Compile Include="Configuration\CategoriaConfiguration.cs" />
     <Compile Include="Configuration\ChamadoConfiguration.cs" />
     <Compile Include="Configuration\ColaboradorConfiguration.cs" />
     <Compile Include="Configuration\MensagemConfiguration.cs" />

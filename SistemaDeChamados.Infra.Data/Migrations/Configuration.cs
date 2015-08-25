@@ -46,17 +46,22 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
             var analista = new Analista("josilva@mail.com", "Joao Silva");
             analista.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
-            analista.AssociarCategoria(categoria.Id);
+            analista.AssociarCategoria(categoria);
 
             var colaborador2 = new Colaborador("chicomatos@mail.com", "Francisco Matos");
             colaborador2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             colaborador2.AssociarAoSetor(setorFinanceiro.Id);
-                 
+
             context.Usuarios.Add(colaborador1);
             context.Usuarios.Add(colaborador2);
             context.Usuarios.Add(analista);
 
             CreateHundredOfUsers(context, setorComercial.Id);
+
+            context.SaveChanges();
+
+            var chamado1 = new Chamado("Chamado Inicial", "Esse é um chamado de teste", colaborador1.Id, categoria.Id);
+            context.Chamados.Add(chamado1);
 
             try
             {

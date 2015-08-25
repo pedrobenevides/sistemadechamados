@@ -1,4 +1,6 @@
-﻿namespace SistemaDeChamados.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace SistemaDeChamados.Domain.Entities
 {
     public class Colaborador : Usuario
     {
@@ -12,6 +14,7 @@
         public long SetorId { get; private set; }
         public virtual Setor Setor { get; private set; }
         public long? PerfilId { get; private set; }
+        public virtual IList<Chamado> Chamados { get; set; }
 
         public void AssociarAoSetor(long setorId)
         {
