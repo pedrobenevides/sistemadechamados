@@ -33,7 +33,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoriaId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10 categoria-label-listagem">
-                Selecione um setor para listar as categorias
+                <div class="div-label-info">
+                    Selecione um setor para listar as categorias
+                </div>
+                <img class="img-loading" src="~/Content/images/ajax-loader.gif" />
             </div>
             <div class="col-md-10 categorias-div" style="display: none">
                 @Html.DropDownListFor(m => m.CategoriaId, new List<SelectListItem>(), "Selecione...", new { @class = "form-control ddl-categorias" })
