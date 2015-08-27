@@ -36,7 +36,9 @@
                 <div class="div-label-info">
                     Selecione um setor para listar as categorias
                 </div>
-                <img class="img-loading" src="~/Content/images/ajax-loader.gif" />
+                <div class="div-loading-categorias">
+                    <img class="img-loading" src="~/Content/images/ajax-loader.gif" />
+                </div>
             </div>
             <div class="col-md-10 categorias-div" style="display: none">
                 @Html.DropDownListFor(m => m.CategoriaId, new List<SelectListItem>(), "Selecione...", new { @class = "form-control ddl-categorias" })

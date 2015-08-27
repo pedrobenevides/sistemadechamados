@@ -1,10 +1,11 @@
 ﻿
 $(function () {
     var self = this;
-
+    
     var dropdownCategorias = $('.ddl-categorias');
     var dropdownSetores = $('.ddl-setores');
     var divInformativa = $('.categoria-label-listagem');
+    var divLoading = $('.div-loading-categorias');
 
     function refreshDropDown(div, dropdown) {
         dropdown.empty();
@@ -20,10 +21,7 @@ $(function () {
         dropdownCategorias.hide();
     }
 
-    function showLoading(div) {
-        div.hide();
-        $('.img-loading').css('display','inline-block');
-    }
+    divLoading.hide();
     
     dropdownSetores.change(function () {
         var valorSelecionado = dropdownSetores.find(":selected").text();
@@ -33,7 +31,7 @@ $(function () {
             return;
         }
 
-        showLoading($('.div-label-info'));
+        divLoading.show();
 
         $.ajax({
             url: 'http://localhost:6084/api/Categorias/Listar?setorId=' + this.value,
@@ -41,8 +39,8 @@ $(function () {
             dataType: 'json',
             statusCode: {
                 200: function (data) {
-
-                    $('.img-loading').css('display', 'none');
+                    
+                    divLoading.hide();
 
                     var resultadoVazio = data.length === 0;
 

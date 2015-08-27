@@ -11,6 +11,10 @@ input[type="text"] {
     width: 400px;
 }
 
-.img-loading {
+/*.div-loading-categorias {
     display: none;
+}*/
+
+.div-label-info {
+    display: inline-block
 }
