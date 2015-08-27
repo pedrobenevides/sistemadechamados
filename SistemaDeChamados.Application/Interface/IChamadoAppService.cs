@@ -5,7 +5,7 @@ namespace SistemaDeChamados.Application.Interface
 {
     public interface IChamadoAppService
     {
-        void Create(ChamadoVM chamadoVM);
+        void Create(CriacaoChamadoVM chamadoVM);
         IEnumerable<ChamadoVM> Retrieve();
         void Update(ChamadoVM chamadoVM);
         void Delete(long id);

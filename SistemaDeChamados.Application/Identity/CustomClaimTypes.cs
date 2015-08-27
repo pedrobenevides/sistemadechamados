@@ -7,5 +7,6 @@
     {
         public static string Acoes { get { return "Acoes"; } }
         public static string Setor { get { return "Setor"; } }
+        public static string Id { get { return "Id"; } }
     }
 }

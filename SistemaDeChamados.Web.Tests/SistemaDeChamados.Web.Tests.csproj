@@ -35,7 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-    <Reference Include="NSubstitute">
+    <Reference Include="NSubstitute, Version=1.8.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NSubstitute.1.8.2.0\lib\net45\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DadoUmAccountController.cs" />
+    <Compile Include="Controllers\DadoUmChamadosController.cs" />
     <Compile Include="Controllers\DadoUmUsuariosController.cs" />
     <Compile Include="Filters\DadoUmPermissaoAcessoFilter.cs" />
     <Compile Include="Filters\DadoUmPermissaoLivreAttribute.cs" />

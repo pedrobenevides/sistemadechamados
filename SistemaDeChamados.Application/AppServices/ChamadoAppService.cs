@@ -17,7 +17,7 @@ namespace SistemaDeChamados.Application.AppServices
             this.chamadoService = chamadoService;
         }
 
-        public void Create(ChamadoVM chamadoVM)
+        public void Create(CriacaoChamadoVM chamadoVM)
         {
             var chamado = Mapper.Map<Chamado>(chamadoVM);
             BeginTransaction();

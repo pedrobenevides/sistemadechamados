@@ -18,7 +18,8 @@ namespace SistemaDeChamados.Web.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, usuarioLogado.Email),
                 new Claim(ClaimTypes.Name, usuarioLogado.Nome),
-                new Claim(CustomClaimTypes.Setor, usuarioLogado.Setor)
+                new Claim(CustomClaimTypes.Setor, usuarioLogado.Setor),
+                new Claim(CustomClaimTypes.Id, usuarioLogado.Id.ToString())
             };
 
             if (usuarioLogado.Perfil != null)

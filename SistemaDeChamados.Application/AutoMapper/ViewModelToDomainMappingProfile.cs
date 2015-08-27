@@ -11,6 +11,7 @@ namespace SistemaDeChamados.Application.AutoMapper
         {
             Mapper.CreateMap<MensagemVM, Mensagem>();
             Mapper.CreateMap<ChamadoVM, Chamado>();
+            Mapper.CreateMap<CriacaoChamadoVM, Chamado>().ForMember(x => x.ColaboradorId, opt => opt.MapFrom(c => c.UsuarioId));
             Mapper.CreateMap<ColaboradorVM, Usuario>();
             Mapper.CreateMap<ColaboradorVM, Colaborador>();
             Mapper.CreateMap<ColaboradorEdicaoVM, Colaborador>();
