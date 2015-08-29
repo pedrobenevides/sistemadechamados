@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.DTO;
-using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Domain.Interfaces.Repositories
 {
@@ -10,5 +9,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
         Task<IList<ColaboradorDTO>> ObterAsync();
         Task<IList<ColaboradorDTO>> ObterAtivosAsync();
         UsuarioDTO ObterParaEdicao(long id);
+        string ObterNomeDoColaboradorPorId(long id);
     }
 }

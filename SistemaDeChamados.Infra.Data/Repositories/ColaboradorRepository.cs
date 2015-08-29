@@ -31,7 +31,6 @@ namespace SistemaDeChamados.Infra.Data.Repositories
                 Senha = c.Password
             }).ToListAsync();
         }
-        
         public UsuarioDTO ObterParaEdicao(long id)
         {
             return context.Colaboradores.Where(u => u.Id == id).Select(u => new UsuarioDTO
@@ -43,6 +42,11 @@ namespace SistemaDeChamados.Infra.Data.Repositories
                 EstaAtivo = u.EstaAtivo
             
             }).FirstOrDefault();
+        }
+
+        public string ObterNomeDoColaboradorPorId(long id)
+        {
+            return context.Colaboradores.Where(c => c.Id == id).Select(c => c.Nome).FirstOrDefault();
         }
     }
 

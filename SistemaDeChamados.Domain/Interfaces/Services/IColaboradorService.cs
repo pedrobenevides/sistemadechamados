@@ -10,6 +10,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         Task<IList<ColaboradorDTO>> ObterAsync();
         Task<IList<ColaboradorDTO>> ObterAtivosAsync();
         UsuarioDTO ObterParaEdicao(long id);
-
+        string ObterNomeDoColaboradorPorId(long id);
     }
 }

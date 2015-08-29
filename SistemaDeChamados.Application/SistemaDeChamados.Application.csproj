@@ -81,6 +81,7 @@
     <Compile Include="AppServices\SetorAppService.cs" />
     <Compile Include="AppServices\UsuarioAppService.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="AutoMapper\CustomMaps\ChamadoMapper.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Identity\CustomClaimTypes.cs" />

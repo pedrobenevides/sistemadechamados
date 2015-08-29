@@ -312,6 +312,7 @@
     <Content Include="Views\Home\NaoEncontrado.cshtml" />
     <Content Include="Views\Chamados\Novo.cshtml" />
     <Content Include="Views\Chamados\NovoSegundaParte.cshtml" />
+    <Content Include="Views\Chamados\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

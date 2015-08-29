@@ -12,5 +12,7 @@ namespace SistemaDeChamados.Application.Interface
         void Create(ColaboradorVM colaboradorVM);
         void Update(ColaboradorEdicaoVM colaboradorVM);
         ColaboradorEdicaoVM ObterParaEdicao(long id);
+        string ObterNomeDoColaboradorPorId(long id);
+
     }
 }

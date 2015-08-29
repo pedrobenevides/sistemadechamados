@@ -30,5 +30,9 @@ namespace SistemaDeChamados.Domain.Services
             return colaboradorRepository.ObterParaEdicao(id);
         }
 
+        public string ObterNomeDoColaboradorPorId(long id)
+        {
+            return colaboradorRepository.ObterNomeDoColaboradorPorId(id);
+        }
     }
 }

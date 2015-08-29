@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SistemaDeChamados.Application.AutoMapper.CustomMaps;
 
 namespace SistemaDeChamados.Application.AutoMapper
 {
@@ -10,6 +11,7 @@ namespace SistemaDeChamados.Application.AutoMapper
             {
                 m.AddProfile<DomainToViewModelMappingProfile>();
                 m.AddProfile<ViewModelToDomainMappingProfile>();
+                m.AddProfile<ChamadoMapper>();
             });
         }
     }

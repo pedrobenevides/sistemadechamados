@@ -64,5 +64,10 @@ namespace SistemaDeChamados.Application.AppServices
             var usuario = colaboradorService.ObterParaEdicao(id);
             return Mapper.Map<UsuarioDTO, ColaboradorEdicaoVM>(usuario);
         }
+
+        public string ObterNomeDoColaboradorPorId(long id)
+        {
+            return colaboradorService.ObterNomeDoColaboradorPorId(id);
+        }
     }
 }

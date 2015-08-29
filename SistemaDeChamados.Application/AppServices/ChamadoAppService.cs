@@ -25,10 +25,10 @@ namespace SistemaDeChamados.Application.AppServices
             Commit();
         }
 
-        public IEnumerable<ChamadoVM> Retrieve()
+        public IEnumerable<ChamadoIndexVM> Retrieve()
         {
             var listaDeChamados = chamadoService.Obter();
-            return Mapper.Map<IList<ChamadoVM>>(listaDeChamados.ToList());
+            return Mapper.Map<IList<ChamadoIndexVM>>(listaDeChamados.ToList());
         }
 
         public void Update(ChamadoVM chamadoVM)

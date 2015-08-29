@@ -1,4 +1,6 @@
 ﻿using Ninject.Modules;
+using SistemaDeChamados.Domain;
+using SistemaDeChamados.Domain.Interfaces;
 using SistemaDeChamados.Domain.Interfaces.Services;
 using SistemaDeChamados.Domain.Services;
 
@@ -16,6 +18,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<IPerfilService>().To<PerfilService>();
             Bind<ICriptografadorDeSenha>().To<CriptografadorDeSenhaMD5>();
             Bind<ICategoriaService>().To<CategoriaService>();
+            Bind<ICalculateDate>().To<CalculateDate>();
         }
     }
 }

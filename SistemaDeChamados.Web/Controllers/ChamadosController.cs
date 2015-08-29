@@ -25,6 +25,13 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult Index()
+        {
+            var vm = ChamadoAppService.Retrieve();
+            return View(vm);
+        }
+
+        [HttpGet]
         public ActionResult Novo()
         {
             PreencherSetoresNoViewBag();
