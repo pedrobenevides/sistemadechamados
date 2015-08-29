@@ -14,6 +14,16 @@ namespace SistemaDeChamados.Application.ViewModels
         public string Titulo { get; set; }
     }
 
+    public class ChamadoIndexVM
+    {
+        public long Id { get; set; }
+        public DateTime DataDeCriacao { get; set; }
+        public string Titulo { get; set; }
+        public string NomeDoColaborador { get; set; }
+        public string NomeDoAnalista { get; set; }
+        public int DiasEmAberto { get; set; }
+    }
+
     public class CriacaoChamadoVM
     {
         public string Titulo { get; set; }
