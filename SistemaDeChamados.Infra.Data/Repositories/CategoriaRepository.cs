@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 
@@ -11,9 +12,10 @@ namespace SistemaDeChamados.Infra.Data.Repositories
     {
         private DbSet<Categoria> Categorias { get { return context.Categorias; } }
 
-        public IEnumerable<Categoria> ObterPorSetor(long setorId)
+
+        public IEnumerable<CommonDTO> ObterPorSetor(long setorId)
         {
-            return Categorias.Where(c => c.SetorId == setorId);
+            return Categorias.Where(c => c.SetorId == setorId).Select(c => new CommonDTO{ Id = c.Id, Nome = c.Nome});
         }
 
         public async Task<IEnumerable<Categoria>> ObterPorSetorAsync(long setorId)

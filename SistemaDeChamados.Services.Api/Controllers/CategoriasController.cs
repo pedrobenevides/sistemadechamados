@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Services.Api.Controllers
@@ -15,7 +16,7 @@ namespace SistemaDeChamados.Services.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Categoria> Listar(long setorId)
+        public IEnumerable<CommonDTO> Listar(long setorId)
         {
             return categoriaAppService.ObterPorSetor(setorId);
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -15,7 +16,7 @@ namespace SistemaDeChamados.Domain.Services
             this.repository = repository;
         }
 
-        public IEnumerable<Categoria> ObterPorSetor(long setorId)
+        public IEnumerable<CommonDTO> ObterPorSetor(long setorId)
         {
             return repository.ObterPorSetor(setorId);
         }
