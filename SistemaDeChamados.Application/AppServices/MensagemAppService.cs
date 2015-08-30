@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -12,7 +13,8 @@ namespace SistemaDeChamados.Application.AppServices
     {
         private readonly IMensagemService mensagemService;
 
-        public MensagemAppService(IMensagemService mensagemService)
+        public MensagemAppService(IMensagemService mensagemService, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.mensagemService = mensagemService;
         }

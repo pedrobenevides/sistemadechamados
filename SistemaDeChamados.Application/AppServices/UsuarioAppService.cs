@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
@@ -14,7 +15,8 @@ namespace SistemaDeChamados.Application.AppServices
         private readonly IUsuarioService usuarioService;
         private readonly IPerfilService perfilService;
 
-        public UsuarioAppService(IUsuarioService usuarioService, IPerfilService perfilService)
+        public UsuarioAppService(IUsuarioService usuarioService, IPerfilService perfilService, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.usuarioService = usuarioService;
             this.perfilService = perfilService;

@@ -1,7 +1,9 @@
 ﻿using Ninject.Modules;
 using SistemaDeChamados.Application.AppServices;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.Interface.Socket;
+using SistemaDeChamados.Application.Services;
 using SistemaDeChamados.Application.SignalR;
 
 namespace SistemaDeChamados.Infra.CrossCuting.IoC
@@ -18,6 +20,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<IPerfilAppService>().To<PerfilAppService>();
             Bind<ISistemaHub>().To<SistemaHub>();
             Bind<ICategoriaAppService>().To<CategoriaAppService>();
+            Bind<IServiceLocator>().To<CustomServiceLocator>();
         }
     }
 }

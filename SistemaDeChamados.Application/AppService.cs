@@ -1,16 +1,22 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using SistemaDeChamados.Application.Interface;
+﻿using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Infra.Data.Interfaces;
 
 namespace SistemaDeChamados.Application
 {
     public class AppService : IAppService
     {
+        private readonly IServiceLocator serviceLocator;
         private IUnitOfWork uow;
+
+        public AppService(IServiceLocator serviceLocator)
+        {
+            this.serviceLocator = serviceLocator;
+        }
 
         public void BeginTransaction()
         {
-            uow = ServiceLocator.Current.GetInstance<IUnitOfWork>();
+            uow = serviceLocator.GetInstance<IUnitOfWork>(); //ServiceLocator.Current.GetInstance<IUnitOfWork>();
             uow.BeginTransaction();
         }
 

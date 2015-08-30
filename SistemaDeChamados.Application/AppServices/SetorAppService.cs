@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
@@ -12,7 +13,8 @@ namespace SistemaDeChamados.Application.AppServices
     {
         private readonly ISetorService setorService;
 
-        public SetorAppService(ISetorService setorService)
+        public SetorAppService(ISetorService setorService, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.setorService = setorService;
         }

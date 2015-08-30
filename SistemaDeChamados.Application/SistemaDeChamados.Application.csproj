@@ -94,6 +94,8 @@
     <Compile Include="Interface\IPerfilAppService.cs" />
     <Compile Include="Interface\ISetorAppService.cs" />
     <Compile Include="Interface\IUsuarioAppService.cs" />
+    <Compile Include="Interface\Services\IServiceLocator.cs" />
+    <Compile Include="Services\CustomServiceLocator.cs" />
     <Compile Include="ViewModels\CategoriaVM.cs" />
     <Compile Include="ViewModels\PerfilVM.cs" />
     <Compile Include="ViewModels\SetorVM.cs" />

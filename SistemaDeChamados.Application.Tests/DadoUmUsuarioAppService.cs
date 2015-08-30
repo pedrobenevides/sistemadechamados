@@ -2,6 +2,7 @@
 using NSubstitute;
 using SistemaDeChamados.Application.AppServices;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.Tests
@@ -12,13 +13,15 @@ namespace SistemaDeChamados.Application.Tests
         private IUsuarioAppService usuarioAppService;
         private IUsuarioService usuarioService;
         private IPerfilService perfilService;
+        private IServiceLocator serviceLocator;
 
         [TestInitialize]
         public void Inicio()
         {
             usuarioService = Substitute.For<IUsuarioService>();
             perfilService = Substitute.For<IPerfilService>();
-            usuarioAppService = new UsuarioAppService(usuarioService, perfilService);
+            serviceLocator = Substitute.For<IServiceLocator>();
+            usuarioAppService = new UsuarioAppService(usuarioService, perfilService, serviceLocator);
         }
         
         [TestMethod, Ignore]

@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Application.AppServices;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -16,12 +17,14 @@ namespace SistemaDeChamados.Application.Tests
         private IPerfilAppService perfilAppService;
         private IPerfilService perfilService;
         private PerfilVM perfilVM;
+        private IServiceLocator serviceLocator;
 
         [TestInitialize]
         public void Setup()
         {
             perfilService = Substitute.For<IPerfilService>();
-            perfilAppService = new PerfilAppService(perfilService);
+            serviceLocator = Substitute.For<IServiceLocator>();
+            perfilAppService = new PerfilAppService(perfilService, serviceLocator);
             perfilVM = new PerfilVM
             {
                 Nome = "Novo Perfil"

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -11,7 +12,8 @@ namespace SistemaDeChamados.Application.AppServices
     {
         private readonly ICategoriaService categoriaService;
 
-        public CategoriaAppService(ICategoriaService categoriaService)
+        public CategoriaAppService(ICategoriaService categoriaService, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.categoriaService = categoriaService;
         }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
@@ -14,8 +15,8 @@ namespace SistemaDeChamados.Application.AppServices
     {
         private readonly IColaboradorService colaboradorService;
 
-        public ColaboradorAppService(IColaboradorService colaboradorService,IUsuarioService usuarioService, IPerfilService perfilService) 
-            : base(usuarioService, perfilService)
+        public ColaboradorAppService(IColaboradorService colaboradorService,IUsuarioService usuarioService, IPerfilService perfilService, IServiceLocator serviceLocator)
+            : base(usuarioService, perfilService, serviceLocator)
         {
             this.colaboradorService = colaboradorService;
         }

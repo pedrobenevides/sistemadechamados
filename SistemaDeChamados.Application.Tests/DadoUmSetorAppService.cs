@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Application.AppServices;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
@@ -14,12 +15,14 @@ namespace SistemaDeChamados.Application.Tests
     {
         private ISetorAppService setorAppService;
         private ISetorService setorService;
+        private IServiceLocator serviceLocator;
 
         [TestInitialize]
         public void Setup()
         {
             setorService = Substitute.For<ISetorService>();
-            setorAppService = new SetorAppService(setorService);
+            serviceLocator = Substitute.For<IServiceLocator>();
+            setorAppService = new SetorAppService(setorService, serviceLocator);
             Mapper.CreateMap<Setor, SetorVM>();
             Mapper.CreateMap<SetorVM, Setor>();
         }
