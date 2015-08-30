@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.SessionState;
 using Ninject;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
 
 namespace SistemaDeChamados.Web.Controllers
@@ -15,9 +16,10 @@ namespace SistemaDeChamados.Web.Controllers
 
         [Inject]
         public ICategoriaAppService CategoriaAppService { get; set; }
-
         [Inject]
         public IChamadoAppService ChamadoAppService { get; set; }
+        [Inject]
+        public ISistemaHub SignalRHub { get; set; }
 
         public ChamadosController(ISetorAppService setorAppService)
         {
@@ -49,6 +51,7 @@ namespace SistemaDeChamados.Web.Controllers
 
             model.UsuarioId = UsuarioId;
             ChamadoAppService.Create(model);
+            SignalRHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name));
 
             return RedirectToAction("Index");
         }

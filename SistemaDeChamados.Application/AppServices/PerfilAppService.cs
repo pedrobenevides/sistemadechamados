@@ -8,7 +8,7 @@ using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
 {
-    public class PerfilAppService : IPerfilAppService
+    public class PerfilAppService : AppService, IPerfilAppService
     {
         private readonly IPerfilService perfilService;
 
@@ -20,12 +20,16 @@ namespace SistemaDeChamados.Application.AppServices
         public void Create(PerfilVM model)
         {
             var perfil = Mapper.Map<Perfil>(model);
+            BeginTransaction();
             perfilService.Create(perfil);
+            Commit();
         }
 
         public void Editar(PerfilVM perfil)
         {
+            BeginTransaction();
             perfilService.Update(Mapper.Map<Perfil>(perfil));
+            Commit();
         }
 
         public IEnumerable<PerfilVM> Listar()

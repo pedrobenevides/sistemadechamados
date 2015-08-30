@@ -24,7 +24,7 @@ namespace SistemaDeChamados.Application.SignalR
         public override Task OnConnected()
         {
             var claims = (ClaimsIdentity)Context.User.Identity;
-            var setor = claims.Claims.FirstOrDefault(c => c.Type == CustomClaimTypes.Acoes);
+            var setor = claims.Claims.FirstOrDefault(c => c.Type == CustomClaimTypes.Setor);
 
             if (setor != null)
                 Groups.Add(Context.ConnectionId, setor.Value);
