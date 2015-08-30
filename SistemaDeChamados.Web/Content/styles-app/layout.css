@@ -1,0 +1,12 @@
+﻿.menu-esquerdo {
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+    height: 580px;
+    margin-top: 0;
+    padding-right: 0;
+}
+
+.menu-active {
+    background-color: #428bca;
+    color: white;
+}

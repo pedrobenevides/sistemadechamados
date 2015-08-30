@@ -17,10 +17,14 @@ namespace SistemaDeChamados.Application.ViewModels
     public class ChamadoIndexVM
     {
         public long Id { get; set; }
+        [DisplayName("Criado Em")]
         public DateTime DataDeCriacao { get; set; }
         public string Titulo { get; set; }
+        [DisplayName("Criado por")]
         public string NomeDoColaborador { get; set; }
+        [DisplayName("Analista")]
         public string NomeDoAnalista { get; set; }
+        [DisplayName("Dias Úteis")]
         public int DiasEmAberto { get; set; }
     }
 
