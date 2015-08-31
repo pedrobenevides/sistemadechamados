@@ -49,5 +49,33 @@ namespace SistemaDeChamados.Application.Tests
             perfilAppService.Editar(perfilVM);
             perfilService.Received().Update(Arg.Is<Perfil>(p => p.Id == perfilVM.Id && p.Nome == perfilVM.Nome));
         }
+
+        [TestMethod]
+        public void AoListarOsPerfisChamaOMetodoObterDoServico()
+        {
+            perfilAppService.Listar();
+            perfilService.Received().Obter();
+        }
+        
+        [TestMethod]
+        public void AoListarOsPerfisRetornaUmaListaDePerfilVM()
+        {
+            var resultados = perfilAppService.Listar();
+            Assert.AreEqual(typeof(List<PerfilVM>), resultados.GetType());
+        }
+
+        [TestMethod]
+        public void AoListarAcoesDoSistemaDeveChamarTodosAcessosPerfilNoServico()
+        {
+            perfilAppService.ListarAcoesDoSistema();
+            perfilService.Received().TodosAcessosDePerfil();
+        }
+
+        [TestMethod]
+        public void AoListarAcoesDoSistemaRetornaUmaListaDeAcoesVM()
+        {
+            var resultados = perfilAppService.ListarAcoesDoSistema();
+            Assert.AreEqual(typeof(List<AcessoVM>), resultados.GetType());
+        }
     }
 }

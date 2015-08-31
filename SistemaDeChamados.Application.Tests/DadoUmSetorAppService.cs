@@ -6,6 +6,7 @@ using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.Tests
@@ -34,6 +35,21 @@ namespace SistemaDeChamados.Application.Tests
             var result = setorAppService.ObterPorUsuarioId(1);
 
             Assert.AreEqual(typeof(SetorVM), result.GetType());
+        }
+
+        [TestMethod, ExpectedException(typeof(ChamadosException))]
+        public void AoObterNomeDoSetorPorIdSeOIdForInvalidoLancaChamadosException()
+        {
+            setorAppService.ObterNomeDoSetorPorId(200);
+        }
+
+        [TestMethod]
+        public void AoObterNomeDoSetorPorIdSeOIdSeIdForValidoRetornaStringComONomeDoSetor()
+        {
+            setorService.GetById(1).Returns(new Setor("Comercial"));
+            var result = setorAppService.ObterNomeDoSetorPorId(1);
+
+            Assert.AreEqual("Comercial", result);
         }
     }
 }

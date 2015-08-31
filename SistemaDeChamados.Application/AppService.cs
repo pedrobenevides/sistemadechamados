@@ -16,7 +16,7 @@ namespace SistemaDeChamados.Application
 
         public void BeginTransaction()
         {
-            uow = serviceLocator.GetInstance<IUnitOfWork>(); //ServiceLocator.Current.GetInstance<IUnitOfWork>();
+            uow = serviceLocator.GetInstance<IUnitOfWork>();
             uow.BeginTransaction();
         }
 

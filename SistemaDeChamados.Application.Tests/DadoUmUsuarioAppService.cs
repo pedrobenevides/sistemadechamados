@@ -24,7 +24,7 @@ namespace SistemaDeChamados.Application.Tests
             usuarioAppService = new UsuarioAppService(usuarioService, perfilService, serviceLocator);
         }
         
-        [TestMethod, Ignore]
+        [TestMethod]
         public void PossoAlterarStatusDoUsuario()
         {
             usuarioAppService.AlterarStatus(1);
