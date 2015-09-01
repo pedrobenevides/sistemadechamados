@@ -10,7 +10,7 @@ using SistemaDeChamados.Application.ViewModels;
 namespace SistemaDeChamados.Web.Controllers
 {
     [SessionState(SessionStateBehavior.Disabled)]
-    public class ChamadosController : Controller
+    public class ChamadosController : BaseController
     {
         private readonly ISetorAppService setorAppService;
 

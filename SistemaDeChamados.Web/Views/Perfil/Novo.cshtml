@@ -22,11 +22,13 @@
             </div>
         </div>
         <h4>Permissões do Sistema</h4>
-        @for (int i = 0; i < Model.Acoes.Count(); i++)
+        @for (var i = 0; i < Model.Acoes.Count(); i++)
         {
             <div class="checkbox">
                 <label>
-                    @Html.CheckBoxFor(m => Model.Acoes[i].Selecionado, new { id = string.Format("acao_{0}", i)})
+                    @Html.CheckBoxFor(m => m.Acoes[i].Selecionado, new { id = string.Format("acao_{0}", i)})
+                    @Html.HiddenFor(m => m.Acoes[i].Chave)
+                    @Html.HiddenFor(m => m.Acoes[i].Descricao)
                     @Model.Acoes[i].Descricao    
                 </label>
             </div>

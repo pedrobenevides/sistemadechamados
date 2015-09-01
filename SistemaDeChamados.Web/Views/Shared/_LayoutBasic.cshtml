@@ -42,7 +42,19 @@
     </nav>
     <div class="container-fluid" style="margin-top: 50px;">
         <div class="row">
-            @Html.Action("Menu","Base")
+            <div class="col-sm-3 col-md-2 sidebar menu-esquerdo">
+                <ul class="nav nav-sidebar nav-menu">
+                    <li><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                    <li>
+                        <a href="@Url.Action("Index", "Chamados")">Chamados</a>
+                        <ul class="nav-sidebar">
+                            <li><a href="#">Meus Chamados</a></li>
+                            <li><a href="#">Do Setor</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("Index","Usuarios")">Suporte</a></li>
+                </ul>
+            </div>
             <div class="col-sm-9 col-md-10 main">
                 @RenderBody()
             </div>

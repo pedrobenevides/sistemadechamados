@@ -19,12 +19,26 @@ namespace SistemaDeChamados.Domain.Services
         {
             return new List<AcessoVO>
             {
-                new AcessoVO("usercrud", "Acesso ao controle de usuários", "Usuarios", "*"),
-                new AcessoVO("setcrud", "Acesso ao controle de setor", "Setores", "*"),
-                new AcessoVO("setperf", "Acesso ao controle de perfil", "Perfil", "*"),
-                new AcessoVO("all", "Todos os acessos", "*", "*"),
-                //new AcessoVO("chamadosbasico", "Acesso básico aos chamados", "Chamados", "Novo|Editar|Excluir")
+                new AcessoVO("usercrud", "Acesso ao controle de usuários", "Usuarios", "*", "Usuários"),
+                new AcessoVO("setcrud", "Acesso ao controle de setor", "Setores", "*", "Setores"),
+                new AcessoVO("setperf", "Acesso ao controle de perfil", "Perfil", "*", "Perfis"),
+                new AcessoVO("all", "Todos os acessos", "*", "*", "*"),
+                new AcessoVO("suporte", "Acesso ao suporte do sistema", "Suporte", "*", "Suporte"),
+                new AcessoVO("relatorios", "Acesso aos relatórios do sistema", "Relatorios", "*", "Relatórios")
             };
         }
+
+        public static IEnumerable<AcessoVO> TodosAcessosDoSistema()
+        {
+            return new List<AcessoVO>
+            {
+                new AcessoVO("usercrud", "Acesso ao controle de usuários", "Usuarios", "*", "Usuários"),
+                new AcessoVO("setcrud", "Acesso ao controle de setor", "Setores", "*", "Setores"),
+                new AcessoVO("setperf", "Acesso ao controle de perfil", "Perfil", "*", "Perfis"),
+                new AcessoVO("all", "Todos os acessos", "*", "*", "*"),
+                new AcessoVO("suporte", "Acesso ao suporte do sistema", "Suporte", "*", "Suporte"),
+                new AcessoVO("relatorios", "Acesso aos relatórios do sistema", "Relatorios", "*", "Relatórios")
+            };
+        } 
     }
 }

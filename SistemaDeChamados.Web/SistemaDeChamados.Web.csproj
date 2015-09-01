@@ -276,10 +276,13 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountBaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChamadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Extensions\UsuarioExtensions.cs" />
+    <Compile Include="Filters\EscolhaLayout.cs" />
     <Compile Include="Filters\PermissaoAcesso.cs" />
     <Compile Include="Filters\PermissaoLivre.cs" />
     <Compile Include="Filters\UseStopWatch.cs" />
@@ -316,6 +319,8 @@
     <Content Include="Views\Chamados\Novo.cshtml" />
     <Content Include="Views\Chamados\NovoSegundaParte.cshtml" />
     <Content Include="Views\Chamados\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutBasic.cshtml" />
+    <Content Include="Views\Base\Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DadoUmAccountController.cs" />
+    <Compile Include="Controllers\DadoUmBaseController.cs" />
     <Compile Include="Controllers\DadoUmChamadosController.cs" />
     <Compile Include="Controllers\DadoUmUsuariosController.cs" />
     <Compile Include="Filters\DadoUmPermissaoAcessoFilter.cs" />
