@@ -64,6 +64,10 @@
       <Project>{5345F065-CB59-42C2-B9D0-38E903C107D8}</Project>
       <Name>SistemaDeChamados.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SistemaDeChamados.Domain\SistemaDeChamados.Domain.csproj">
+      <Project>{BC845599-9683-431A-92DB-7A6B729E8614}</Project>
+      <Name>SistemaDeChamados.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SistemaDeChamados.Web\SistemaDeChamados.Web.csproj">
       <Project>{F313525A-E407-450A-A7C6-697276099544}</Project>
       <Name>SistemaDeChamados.Web</Name>

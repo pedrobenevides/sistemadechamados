@@ -5,42 +5,52 @@
  using System.Web.Mvc;
  using SistemaDeChamados.Domain.Exceptions;
  using SistemaDeChamados.Domain.Services;
+ using SistemaDeChamados.Web.Filters;
 
 namespace SistemaDeChamados.Web.Controllers
 {
     public class BaseController : Controller
     {
-        [HttpGet, ChildActionOnly]
+        [HttpGet, ChildActionOnly, PermissaoLivre]
         public ActionResult Menu()
         {
             var claims = User.Identity as ClaimsIdentity;
 
             if (claims == null)
-                throw new Exception("Erro no cast das Claims do usuário");
+                throw new ChamadosException("Erro no cast das Claims do usuário");
 
-            var permissoes = claims.FindAll(x => x.Type == "Acoes").Select(c => c.Value);
+            var controllers = claims.FindAll(x => x.Type == "Acoes").SelectMany(c => c.Value.Replace(";","").Split('|')).Distinct();
             
-            return PartialView(MapearPermissoes(permissoes.ToList()));
+            var valores = DicionarioDePermissoes(controllers.ToList());
+
+            return PartialView(valores);
         }
 
-        private IDictionary<string, string> MapearPermissoes(IList<string> permissoes)
+        private static IDictionary<string, string> DicionarioDePermissoes(IList<string> controllers)
         {
-            var dicionarioDePermissoes = new Dictionary<string, string>();
+            return PossuiPermissaoParaTodoOSistema(controllers) ? 
+                PerfilService.TodosAcessosDoSistema().Where(c => c.Controller != "*").ToDictionary(x => x.Controller, x => x.NomeAmigavel) : 
+                PerfilService.TodosAcessosDoSistema().Where(c => controllers.Contains(c.Controller)).ToDictionary(x => x.Controller, x => x.NomeAmigavel);
+        }
 
-            if (permissoes.Count() == 1 && permissoes.Any(p => p == "*;"))
-                return PerfilService.TodosAcessosDoSistema().Where(c => c.Controller != "*").ToDictionary(x => x.Controller, x => x.NomeAmigavel);
+        private static bool PossuiPermissaoParaTodoOSistema(IList<string> controllers)
+        {
+            return controllers.Count() == 1 && controllers.Any(p => p == "*");
+        }
 
-            foreach (var permissao in permissoes)
+        protected long UsuarioId
+        {
+            get
             {
-                var acessoVO = PerfilService.TodosAcessosDoSistema().FirstOrDefault(a => a.Controller == permissao);
+                var claims = User.Identity as ClaimsIdentity;
 
-                if(acessoVO == null)
-                    throw new ChamadosException("Foi informado um acesso inválido no perfil do usuário logado.");
+                if (claims == null)
+                    throw new Exception("Erro no cast das Claims do usuário");
 
-                dicionarioDePermissoes.Add(acessoVO.Controller, acessoVO.NomeAmigavel);
+                var claimId = claims.FindFirst(x => x.Type == "Id");
+
+                return Convert.ToInt64(claimId.Value);
             }
-
-            return dicionarioDePermissoes;
         }
     }
 }

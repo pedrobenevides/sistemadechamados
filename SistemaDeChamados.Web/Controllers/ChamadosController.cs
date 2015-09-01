@@ -1,6 +1,4 @@
-﻿using System;
-using System.Security.Claims;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.SessionState;
 using Ninject;
 using SistemaDeChamados.Application.Interface;
@@ -62,21 +60,6 @@ namespace SistemaDeChamados.Web.Controllers
                     setorAppService.ObterTodosOsSetores(),
                     "Id", "Nome", selectedValue
                 );
-        }
-
-        public long UsuarioId
-        {
-            get
-            {
-                var claims = User.Identity as ClaimsIdentity;
-
-                if (claims == null)
-                    throw new Exception("Erro no cast das Claims do usuário");
-
-                var claimId = claims.FindFirst(x => x.Type == "Id");
-
-                return Convert.ToInt64(claimId.Value);
-            }
         }
     }
 }

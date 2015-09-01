@@ -58,8 +58,7 @@ namespace SistemaDeChamados.Web.Tests.Controllers
             requestContext.HttpContext.Server.Returns(server);
             requestContext.HttpContext.User.Returns(user);
             requestContext.HttpContext.User.Identity.Returns(new ClaimsIdentity(new List<Claim>()));
-
-
+            
             requestContext.HttpContext.Request.RequestContext.Returns(requestContext);
             
             return context;
