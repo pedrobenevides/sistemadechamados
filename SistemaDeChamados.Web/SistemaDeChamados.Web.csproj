@@ -328,7 +328,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Filters\ExceptionFilters\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SistemaDeChamados.Application\SistemaDeChamados.Application.csproj">
       <Project>{5345f065-cb59-42c2-b9d0-38e903c107d8}</Project>

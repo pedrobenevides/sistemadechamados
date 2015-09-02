@@ -11,6 +11,7 @@ namespace SistemaDeChamados.Web.Controllers
 {
     public class BaseController : Controller
     {
+        [OutputCache(Duration = 120)]
         [HttpGet, ChildActionOnly, PermissaoLivre]
         public ActionResult Menu()
         {
