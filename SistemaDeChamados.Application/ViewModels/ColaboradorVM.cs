@@ -45,4 +45,11 @@ namespace SistemaDeChamados.Application.ViewModels
         public string Setor { get; set; }
         public Perfil Perfil { get; set; }
     }
+
+    public class UsuarioEdicaoSenhaVM
+    {
+        public long Id { get; set; }
+        public string Senha { get; set; }
+        public string ConfirmacaoSenha { get; set; }
+    }
 }

@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppService.cs" />
+    <Compile Include="AppServices\AnalistaAppService.cs" />
     <Compile Include="AppServices\CategoriaAppService.cs" />
     <Compile Include="AppServices\ChamadoAppService.cs" />
     <Compile Include="AppServices\ColaboradorAppService.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Identity\CustomClaimTypes.cs" />
     <Compile Include="Identity\CustomRoles.cs" />
+    <Compile Include="Interface\IAnalistaAppService.cs" />
     <Compile Include="Interface\IAppService.cs" />
     <Compile Include="Interface\ICategoriaAppService.cs" />
     <Compile Include="Interface\IChamadoAppService.cs" />
