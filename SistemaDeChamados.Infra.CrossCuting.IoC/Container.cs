@@ -1,6 +1,7 @@
 ﻿using CommonServiceLocator.NinjectAdapter.Unofficial;
 using Microsoft.Practices.ServiceLocation;
 using Ninject;
+using SistemaDeChamados.Infra.CrossCuting.IoC.Modules;
 
 namespace SistemaDeChamados.Infra.CrossCuting.IoC
 {
