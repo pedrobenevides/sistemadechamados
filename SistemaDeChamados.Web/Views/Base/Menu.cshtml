@@ -12,9 +12,7 @@
             </ul>
         </li>
 
-        @foreach (var item in Model)
-        {
-            <li><a href="@Url.Action("Index",item.Key)">@item.Value</a></li>
-        }
+        @Html.SideBarItens(Model)
+
     </ul>
 </div>
