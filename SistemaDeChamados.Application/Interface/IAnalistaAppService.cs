@@ -2,5 +2,6 @@
 {
     public interface IAnalistaAppService : IAppService
     {
+        string ObterNomePorId(long id);
     }
 }

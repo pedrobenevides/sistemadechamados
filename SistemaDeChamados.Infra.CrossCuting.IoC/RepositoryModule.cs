@@ -12,6 +12,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
         public override void Load()
         {
             Bind<IChamadoRepository>().To<ChamadoRepository>();
+            Bind<IAnalistaRepository>().To<AnalistaRepository>();
             Bind<IMensagemRepository>().To<MensagemRepository>();
             Bind<IUsuarioRepository>().To<UsuarioRepository>();
             Bind<IColaboradorRepository>().To<ColaboradorRepository>();

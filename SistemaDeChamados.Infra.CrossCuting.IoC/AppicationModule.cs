@@ -21,6 +21,7 @@ namespace SistemaDeChamados.Infra.CrossCuting.IoC
             Bind<ISistemaHub>().To<SistemaHub>();
             Bind<ICategoriaAppService>().To<CategoriaAppService>();
             Bind<IServiceLocator>().To<CustomServiceLocator>();
+            Bind<IAnalistaAppService>().To<AnalistaAppService>();
         }
     }
 }
