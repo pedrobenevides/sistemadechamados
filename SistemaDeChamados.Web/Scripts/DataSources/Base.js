@@ -1,12 +1,12 @@
 ﻿function baseDataSource() {
-    this.get = function (url, parameter, success, error) {
+    this.getRequest = function (url, parameter, success, error) {
         $.ajax({
             url: url + parameter,
             type: 'GET',
             dataType: 'json',
             statusCode: {
-                200: success(data),
-                500: error
+                200: function (data) { success(data); },
+                500: function (erro) { error(erro); }
             }});
     }
 };

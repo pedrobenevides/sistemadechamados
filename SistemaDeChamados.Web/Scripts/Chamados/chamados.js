@@ -1,8 +1,7 @@
 ﻿
 $(function () {
     var self = this;
-    var bs = new baseDataSource();
-    debugger;
+    var dataSource = new baseDataSource();
 
     var dropdownCategorias = $('.ddl-categorias');
     var dropdownSetores = $('.ddl-setores');
@@ -25,6 +24,23 @@ $(function () {
 
     divLoading.hide();
 
+    function requestCategorySuccess(data, valorSelecionado) {
+        divLoading.hide();
+
+        var resultadoVazio = data.length === 0;
+
+        if (resultadoVazio) {
+            configuraLabelInformativa('O setor {0} não possui categoria cadastrada'.format(valorSelecionado), '#E68A00');
+            return;
+        }
+
+        $('.categoria-label-listagem').hide('slow');
+        refreshDropDown($('.categorias-div'), dropdownCategorias);
+        $.each(data, function (key, value) {
+            dropdownCategorias.append($("<option />").val(value.Id).text(value.Nome));
+        });
+    }
+
     dropdownSetores.change(function() {
         var valorSelecionado = dropdownSetores.find(":selected").text();
 
@@ -36,50 +52,13 @@ $(function () {
         $('.div-label-info').hide();
         divLoading.show();
 
-        bs.get('http://localhost:6084/api/Categorias/Listar?setorId=', this.value,
-            function(data) {
+        dataSource.getRequest('http://localhost:6084/api/Categorias/Listar?setorId=', this.value, function (data) {
+            requestCategorySuccess(data, valorSelecionado);
+        });
 
-                divLoading.hide();
-
-                var resultadoVazio = data.length === 0;
-
-                if (resultadoVazio) {
-                    configuraLabelInformativa('O setor {0} não possui categoria cadastrada'.format(valorSelecionado), '#E68A00');
-                    return;
-                }
-
-                $('.categoria-label-listagem').hide('slow');
-                refreshDropDown($('.categorias-div'), dropdownCategorias);
-                $.each(data, function(key, value) {
-                    dropdownCategorias.append($("<option />").val(value.Id).text(value.Nome));
-                });
-            });
-
-        //$.ajax({
-        //    url: 'http://localhost:6084/api/Categorias/Listar?setorId=' + this.value,
-        //    type: 'GET',
-        //    dataType: 'json',
-        //    statusCode: {
-        //        200: function (data) {
-                    
-        //            divLoading.hide();
-
-        //            var resultadoVazio = data.length === 0;
-
-        //            if (resultadoVazio) {
-        //                configuraLabelInformativa('O setor {0} não possui categoria cadastrada'.format(valorSelecionado), '#E68A00');
-        //                return;
-        //            }
-
-        //            $('.categoria-label-listagem').hide('slow');
-        //            refreshDropDown($('.categorias-div'), dropdownCategorias);
-        //            $.each(data, function (key, value) {
-        //                dropdownCategorias.append($("<option />").val(value.Id).text(value.Nome));
-        //            });
-        //        }
-        //    }
-        //});
+        
     });
+
 
     //TODO: Exportar para um arquivo a parte
     String.prototype.format = function () {
