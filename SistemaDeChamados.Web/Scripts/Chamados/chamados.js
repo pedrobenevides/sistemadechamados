@@ -31,6 +31,7 @@ $(function () {
             return;
         }
 
+        $('.div-label-info').hide();
         divLoading.show();
 
         $.ajax({
