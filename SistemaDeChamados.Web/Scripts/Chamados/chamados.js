@@ -1,7 +1,9 @@
 ﻿
 $(function () {
     var self = this;
-    
+    var bs = new baseDataSource();
+    debugger;
+
     var dropdownCategorias = $('.ddl-categorias');
     var dropdownSetores = $('.ddl-setores');
     var divInformativa = $('.categoria-label-listagem');
@@ -22,8 +24,8 @@ $(function () {
     }
 
     divLoading.hide();
-    
-    dropdownSetores.change(function () {
+
+    dropdownSetores.change(function() {
         var valorSelecionado = dropdownSetores.find(":selected").text();
 
         if (valorSelecionado === 'Selecione...') {
@@ -34,30 +36,49 @@ $(function () {
         $('.div-label-info').hide();
         divLoading.show();
 
-        $.ajax({
-            url: 'http://localhost:6084/api/Categorias/Listar?setorId=' + this.value,
-            type: 'GET',
-            dataType: 'json',
-            statusCode: {
-                200: function (data) {
-                    
-                    divLoading.hide();
+        bs.get('http://localhost:6084/api/Categorias/Listar?setorId=', this.value,
+            function(data) {
 
-                    var resultadoVazio = data.length === 0;
+                divLoading.hide();
 
-                    if (resultadoVazio) {
-                        configuraLabelInformativa('O setor {0} não possui categoria cadastrada'.format(valorSelecionado), '#E68A00');
-                        return;
-                    }
+                var resultadoVazio = data.length === 0;
 
-                    $('.categoria-label-listagem').hide('slow');
-                    refreshDropDown($('.categorias-div'), dropdownCategorias);
-                    $.each(data, function (key, value) {
-                        dropdownCategorias.append($("<option />").val(value.Id).text(value.Nome));
-                    });
+                if (resultadoVazio) {
+                    configuraLabelInformativa('O setor {0} não possui categoria cadastrada'.format(valorSelecionado), '#E68A00');
+                    return;
                 }
-            }
-        });
+
+                $('.categoria-label-listagem').hide('slow');
+                refreshDropDown($('.categorias-div'), dropdownCategorias);
+                $.each(data, function(key, value) {
+                    dropdownCategorias.append($("<option />").val(value.Id).text(value.Nome));
+                });
+            });
+
+        //$.ajax({
+        //    url: 'http://localhost:6084/api/Categorias/Listar?setorId=' + this.value,
+        //    type: 'GET',
+        //    dataType: 'json',
+        //    statusCode: {
+        //        200: function (data) {
+                    
+        //            divLoading.hide();
+
+        //            var resultadoVazio = data.length === 0;
+
+        //            if (resultadoVazio) {
+        //                configuraLabelInformativa('O setor {0} não possui categoria cadastrada'.format(valorSelecionado), '#E68A00');
+        //                return;
+        //            }
+
+        //            $('.categoria-label-listagem').hide('slow');
+        //            refreshDropDown($('.categorias-div'), dropdownCategorias);
+        //            $.each(data, function (key, value) {
+        //                dropdownCategorias.append($("<option />").val(value.Id).text(value.Nome));
+        //            });
+        //        }
+        //    }
+        //});
     });
 
     //TODO: Exportar para um arquivo a parte
