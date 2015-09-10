@@ -323,6 +323,7 @@
     <Content Include="Views\Chamados\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutBasic.cshtml" />
     <Content Include="Views\Base\Menu.cshtml" />
+    <Content Include="Views\Home\Index.iphone.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
