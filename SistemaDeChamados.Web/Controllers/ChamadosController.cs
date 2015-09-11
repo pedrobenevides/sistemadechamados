@@ -4,6 +4,7 @@ using Ninject;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Web.Filters;
 
 namespace SistemaDeChamados.Web.Controllers
 {
@@ -24,7 +25,7 @@ namespace SistemaDeChamados.Web.Controllers
             this.setorAppService = setorAppService;
         }
 
-        [HttpGet]
+        [HttpGet, ComprimirResponse]
         public ActionResult Index()
         {
             var vm = ChamadoAppService.Retrieve();

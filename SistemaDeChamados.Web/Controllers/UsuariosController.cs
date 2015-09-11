@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Web.Filters;
 
 namespace SistemaDeChamados.Web.Controllers
 {
@@ -28,7 +29,7 @@ namespace SistemaDeChamados.Web.Controllers
             return View("Index", await usuarioAppService.ObterAsync());
         }
 
-        [HttpGet]
+        [HttpGet, ComprimirResponse]
         public ActionResult Index()
         {
             return View(usuarioAppService.Obter());
