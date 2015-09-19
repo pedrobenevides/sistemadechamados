@@ -20,6 +20,13 @@ namespace SistemaDeChamados.Domain.Entities
         public string Texto { get; private set; }
         public long ChamadoId { get; private set; }
         public long UsuarioId { get; private set; }
+        public DateTime? DataDaLeitura { get; private set; }
         public virtual Chamado Chamado { get; private set; }
+
+        public void ConfirmarLeitura(long usuarioLeitorId)
+        {
+            if(usuarioLeitorId != UsuarioId)
+                DataDaLeitura = DateTime.Now;
+        }
     }
 }
