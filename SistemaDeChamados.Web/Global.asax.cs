@@ -19,6 +19,7 @@ namespace SistemaDeChamados.Web
             AutoMapperConfig.RegisterMappings();
 
             ConfigurarDisplayMode();
+            ConfigurarViewEngine();
         }
 
         /// <summary>
@@ -31,6 +32,12 @@ namespace SistemaDeChamados.Web
             {
                 ContextCondition = (context => context.GetOverriddenUserAgent().IndexOf("iphone", StringComparison.OrdinalIgnoreCase) >= 0)
             });
+        }
+
+        private static void ConfigurarViewEngine()
+        {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
         }
     }
 }
