@@ -5,6 +5,7 @@ using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -59,6 +60,23 @@ namespace SistemaDeChamados.Application.AppServices
         {
             var chamados = await chamadoService.Obter5RecentesPorUsuarioAsync(usuarioId);
             return await Task.Run(() => Mapper.Map<IList<ChamadoIndexVM>>(chamados));
+        }
+
+        public async Task<HomeVM> ObterHomeVMAsync(long usuarioId)
+        {
+            var chamadosAtualizadosRecente = await chamadoService.Obter5RecentesPorUsuarioAsync(usuarioId);
+            var chamadosEmAberto = await chamadoService.Obter5EmAbertoAsync(usuarioId);
+
+            return await Task.Run((() =>
+            {
+                var model = new HomeVM
+                {
+                    ChamadosEmAberto = Mapper.Map<IEnumerable<CommonDTO>>(chamadosEmAberto),
+                    ChamadosAtualizados = Mapper.Map<IEnumerable<CommonDTO>>(chamadosAtualizadosRecente)
+                };
+
+                return model;
+            }));
         }
     }
 }

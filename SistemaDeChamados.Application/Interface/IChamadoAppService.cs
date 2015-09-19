@@ -12,5 +12,6 @@ namespace SistemaDeChamados.Application.Interface
         void Delete(long id);
         ChamadoVM GetById(long id);
         Task<IList<ChamadoIndexVM>> Obter5RecentesPorUsuarioAsync(long usuarioId);
+        Task<HomeVM> ObterHomeVMAsync(long usuarioId);
     }
 }

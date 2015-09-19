@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.Practices.ServiceLocation;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces;
@@ -25,6 +27,10 @@ namespace SistemaDeChamados.Application.AutoMapper.CustomMaps
                 .ForMember(m => m.NomeDoColaborador, exp => exp.ResolveUsing(ObterNomeDoColaborador))
                 .ForMember(m => m.NomeDoAnalista, exp => exp.ResolveUsing(ObterNomeDoAnalista))
                 .ForMember(m => m.DiasEmAberto, exp => exp.MapFrom(c => c.NumeroDeDiasUteis(ServiceLocator.Current.GetInstance<ICalculateDate>())));
+
+            Mapper.CreateMap<Chamado, CommonDTO>()
+                .ForMember(c => c.Id, exp => exp.MapFrom(c => c.Id))
+                .ForMember(c => c.Nome, exp => exp.MapFrom(c => c.Titulo));
         }
 
         private object ObterNomeDoColaborador(Chamado chamado)

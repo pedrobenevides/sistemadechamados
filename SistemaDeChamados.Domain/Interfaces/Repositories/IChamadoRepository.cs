@@ -7,5 +7,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
     public interface IChamadoRepository : IRepositoryBase<Chamado>
     {
         Task<List<Chamado>> Obter5RecentesPorUsuarioAsync(long usuarioId);
+        Task<List<Chamado>> Obter5EmAbertoAsync(long usuarioId);
     }
 }

@@ -1,8 +1,13 @@
-﻿.ultimos-chamados-table > tbody > tr > td:nth-child(2) {
-    width: 160px;
+﻿.ultimos-chamados-table > tbody > tr > td:first-child {
+    width: 60px;
 }
 
 .dashboard-title {
     text-align: center;
     font-family: Segoe UI;
+}
+
+.ultimos-chamados-table > thead {
+    text-align: center;
+    font-weight: bold;
 }

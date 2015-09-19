@@ -3,13 +3,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 
 namespace SistemaDeChamados.Infra.Data.Repositories
 {
     public class ChamadoRepository : RepositoryBase<Chamado>, IChamadoRepository
     {
-        public IDbSet<Chamado> Chamados { get { return context.Chamados; } }
+        protected IDbSet<Chamado> Chamados { get { return context.Chamados; } }
 
         public async Task<List<Chamado>> Obter5RecentesPorUsuarioAsync(long usuarioId)
         {
@@ -19,6 +20,16 @@ namespace SistemaDeChamados.Infra.Data.Repositories
                     .OrderByDescending(c => c.DataDeCriacao)
                     .Take(5)
                     .ToListAsync();
+        }
+
+        public async Task<List<Chamado>> Obter5EmAbertoAsync(long usuarioId)
+        {
+            return await
+                Chamados.Where(c => c.StatusDoChamado == StatusDoChamado.Aberto && c.ColaboradorId == usuarioId)
+                    .OrderBy(c => c.DataDeCriacao)
+                    .Take(5)
+                    .ToListAsync();
+
         }
     }
 }

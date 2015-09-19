@@ -17,7 +17,7 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet, PermissaoLivre]
         public async Task<ActionResult> Index()
         {
-            return View(await chamadoAppService.Obter5RecentesPorUsuarioAsync(UsuarioId));
+            return View(await chamadoAppService.ObterHomeVMAsync(UsuarioId));
         }
 
         [HttpGet]

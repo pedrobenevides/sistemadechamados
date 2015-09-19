@@ -20,5 +20,10 @@ namespace SistemaDeChamados.Domain.Services
         {
             return await chamadoRepository.Obter5RecentesPorUsuarioAsync(usuarioId);
         }
+
+        public async Task<List<Chamado>> Obter5EmAbertoAsync(long usuarioId)
+        {
+            return await chamadoRepository.Obter5EmAbertoAsync(usuarioId);
+        }
     }
 }

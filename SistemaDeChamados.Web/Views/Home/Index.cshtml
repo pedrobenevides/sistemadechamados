@@ -1,4 +1,4 @@
-﻿@model IList<SistemaDeChamados.Application.ViewModels.ChamadoIndexVM>
+﻿@model SistemaDeChamados.Application.ViewModels.HomeVM
 
 @{
     ViewBag.Title = "Index";
@@ -8,29 +8,24 @@
     <h3>Dashboard</h3>
 </div>
 
-<div style="margin-top: 100px">
-    <a href="#">Chamados atualizados <span class="badge">@Model.Count</span></a>
+<div style="margin-top: 100px;" class="div-left">
+    <a href="#">Chamados atualizados <span class="badge">@Model.ChamadosAtualizados.Count()</span></a>
     <hr/>
-    @if (Model.Any())
+    @if (Model.ChamadosAtualizados.Any())
     {
         <table class="table table-condensed ultimos-chamados-table">
-            <thead style="text-align: center">
+            <thead>
             <tr>
-                <td colspan="2">Data</td>
-                <td>Dias</td>
+                <td></td>
                 <td>Titulo</td>
-                <td>Analista</td>
             </tr>
             </thead>
             <tbody style="text-align: center">
-            @foreach (var c in Model)
+            @foreach (var c in Model.ChamadosAtualizados)
             {
                 <tr class="tr-ultimos-chamados">
                     <td><a href="@Url.Action("Ver", "Chamados")"><i class="fa fa-info fa-lg"></i></a></td>
-                    <td>@c.DataDeCriacao</td>
-                    <td>@c.DiasEmAberto</td>
-                    <td>@c.Titulo</td>
-                    <td>@c.NomeDoAnalista</td>
+                    <td>@c.Nome</td>
                 </tr>
             }
             </tbody>
@@ -40,4 +35,26 @@
     {
         <p>Você não possui atualizações novas.</p>
     }
+</div>
+
+<div class="div-right" style="margin-top: 100px;">
+    <a href="#">Chamados nunca visto <span class="badge">@Model.ChamadosEmAberto.Count()</span></a>
+    <hr />
+    <table class="table table-condensed ultimos-chamados-table">
+        <thead>
+        <tr>
+            <td></td>
+            <td>Titulo</td>
+        </tr>
+        </thead>
+        <tbody style="text-align: center">
+        @foreach (var c in Model.ChamadosEmAberto)
+        {
+            <tr class="tr-ultimos-chamados">
+                <td><a href="@Url.Action("Ver", "Chamados")"><i class="fa fa-info fa-lg"></i></a></td>
+                <td>@c.Nome</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
