@@ -46,10 +46,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Descricao, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Descricao, new { @class = "textarea-descriptor" })
-                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.Descricao, new {@class = "textarea-descriptor"})
+                @Html.ValidationMessageFor(model => model.Descricao, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Anexo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file"/>
             </div>
         </div>
 
