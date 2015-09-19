@@ -200,6 +200,7 @@
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\styles-app\chamados\criacao-chamado.css" />
     <Content Include="Content\styles-app\customBootstrap.css" />
+    <Content Include="Content\styles-app\home\index.css" />
     <Content Include="Content\styles-app\layout.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />

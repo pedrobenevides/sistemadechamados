@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Services;
@@ -52,6 +53,12 @@ namespace SistemaDeChamados.Application.AppServices
         {
             var chamado = chamadoService.GetById(id);
             return Mapper.Map<ChamadoVM>(chamado);
+        }
+
+        public async Task<IList<ChamadoIndexVM>> Obter5RecentesPorUsuarioAsync(long usuarioId)
+        {
+            var chamados = await chamadoService.Obter5RecentesPorUsuarioAsync(usuarioId);
+            return await Task.Run(() => Mapper.Map<IList<ChamadoIndexVM>>(chamados));
         }
     }
 }

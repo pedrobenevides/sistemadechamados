@@ -16,8 +16,11 @@ namespace SistemaDeChamados.Web
 
             bundles.Add(new StyleBundle("~/bundles/bootstrapStyle").Include("~/Content/bootstrap*", 
                 "~/Content/styles-app/customBootstrap.css",
-                "~/Content/styles-app/layout.css"));
-            bundles.Add(new StyleBundle("~/bundles/chamados").IncludeDirectory("~/Content/styles-app/chamados", "*.css"));
+                "~/Content/styles-app/layout.css")
+                .IncludeDirectory("~/Content/styles-app/home", "*.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/chamados")
+                .IncludeDirectory("~/Content/styles-app/chamados", "*.css"));
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Web.Filters;
 
 namespace SistemaDeChamados.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IChamadoAppService chamadoAppService;
 
@@ -14,9 +15,9 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpGet, PermissaoLivre]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await chamadoAppService.Obter5RecentesPorUsuarioAsync(UsuarioId));
         }
 
         [HttpGet]
