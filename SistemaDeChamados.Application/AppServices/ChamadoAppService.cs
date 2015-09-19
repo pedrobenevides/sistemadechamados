@@ -7,6 +7,7 @@ using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
 namespace SistemaDeChamados.Application.AppServices
@@ -77,6 +78,11 @@ namespace SistemaDeChamados.Application.AppServices
 
                 return model;
             }));
+        }
+
+        public void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo)
+        {
+            chamadoService.AlterarStatus(chamadoId, usuarioId, statusNovo);
         }
     }
 }

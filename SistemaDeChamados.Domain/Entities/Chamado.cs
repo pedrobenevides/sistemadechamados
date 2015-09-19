@@ -71,8 +71,8 @@ namespace SistemaDeChamados.Domain.Entities
 
         public void VisualizarChamado(long usuarioVisualizadorId)
         {
-            if(ColaboradorId == usuarioVisualizadorId || Categoria.AnalistaId == usuarioVisualizadorId)
-                FoiAtualizado = true;
+            if(ColaboradorId == usuarioVisualizadorId)
+                FoiAtualizado = false;
         }
     }
 }

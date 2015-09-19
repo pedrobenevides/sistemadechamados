@@ -25,10 +25,5 @@ namespace SistemaDeChamados.Web.Controllers
         {
             return View();
         }
-
-        public ActionResult Teste()
-        {
-            return View();
-        }
     }
 }

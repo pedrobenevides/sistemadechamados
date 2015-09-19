@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Enums;
+using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 
 namespace SistemaDeChamados.Infra.Data.Repositories
@@ -29,7 +30,12 @@ namespace SistemaDeChamados.Infra.Data.Repositories
                     .OrderBy(c => c.DataDeCriacao)
                     .Take(5)
                     .ToListAsync();
+        }
 
+        public void AlterarStatus(Chamado chamado, StatusDoChamado statusNovo)
+        {
+            chamado.AlterarStatus(statusNovo);
+            Update(chamado);
         }
     }
 }

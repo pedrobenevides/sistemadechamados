@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaDeChamados.Application.ViewModels;
+using SistemaDeChamados.Domain.Enums;
 
 namespace SistemaDeChamados.Application.Interface
 {
@@ -13,5 +14,6 @@ namespace SistemaDeChamados.Application.Interface
         ChamadoVM GetById(long id);
         Task<IList<ChamadoIndexVM>> Obter5RecentesPorUsuarioAsync(long usuarioId);
         Task<HomeVM> ObterHomeVMAsync(long usuarioId);
+        void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo);
     }
 }
