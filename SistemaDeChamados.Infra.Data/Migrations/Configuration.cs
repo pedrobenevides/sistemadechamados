@@ -1,5 +1,6 @@
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
+using System.Linq;
 using System.Text;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Services;
@@ -16,6 +17,9 @@ namespace SistemaDeChamados.Infra.Data.Migrations
 
         protected override void Seed(SistemaContext context)
         {
+            if(context.Setores.Any())
+                return;
+
             var setorFinanceiro = new Setor("Financeiro");
             var setorComercial = new Setor("Comercial");
             var setorTI = new Setor("TI");

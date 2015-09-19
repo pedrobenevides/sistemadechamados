@@ -28,6 +28,7 @@ namespace SistemaDeChamados.Domain.Entities
         public long CategoriaId { get; private set; }
         public StatusDoChamado StatusDoChamado { get; private set; }
         public string Titulo { get; private set; }
+        public bool FoiAtualizado { get; private set; }
         public virtual Categoria Categoria { get; set; }
         public virtual Colaborador UsuarioCriador { get; private set; }
         public virtual IList<Mensagem> Mensagens { get; private set; }
@@ -52,12 +53,26 @@ namespace SistemaDeChamados.Domain.Entities
             DataDeReabertura = DateTime.Now;
             DataDeEncerramento = null;
             StatusDoChamado = StatusDoChamado.Reaberto;
+            FoiAtualizado = true;
         }
 
         public void EncerrarChamado(StatusDoChamado statusDoChamado)
         {
             DataDeEncerramento = DateTime.Now;
             StatusDoChamado = statusDoChamado;
+            FoiAtualizado = true;
+        }
+
+        public void AlterarStatus(StatusDoChamado status)
+        {
+            StatusDoChamado = status;
+            FoiAtualizado = true;
+        }
+
+        public void VisualizarChamado(long usuarioVisualizadorId)
+        {
+            if(ColaboradorId == usuarioVisualizadorId || Categoria.AnalistaId == usuarioVisualizadorId)
+                FoiAtualizado = true;
         }
     }
 }

@@ -13,9 +13,9 @@ namespace SistemaDeChamados.Infra.Data.Repositories
 
         public async Task<List<Chamado>> Obter5RecentesPorUsuarioAsync(long usuarioId)
         {
-            return await 
-                Chamados.Where(c => c.UsuarioCriador.Id == usuarioId 
-                    && !c.DataDeEncerramento.HasValue)
+            return await
+                Chamados.Where(c => c.UsuarioCriador.Id == usuarioId)
+                        .Where(c => c.Mensagens.Any(m => !m.DataDaLeitura.HasValue && m.UsuarioId != usuarioId) || c.FoiAtualizado)
                     .OrderByDescending(c => c.DataDeCriacao)
                     .Take(5)
                     .ToListAsync();

@@ -4,28 +4,40 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Meus Chamados</h2>
+<div class="dashboard-title">
+    <h3>Dashboard</h3>
+</div>
+
 <div style="margin-top: 100px">
-    <table class="table table-condensed table-bordered ultimos-chamados-table">
-        <thead style="text-align: center">
+    <a href="#">Chamados atualizados <span class="badge">@Model.Count</span></a>
+    <hr/>
+    @if (Model.Any())
+    {
+        <table class="table table-condensed ultimos-chamados-table">
+            <thead style="text-align: center">
             <tr>
                 <td colspan="2">Data</td>
                 <td>Dias</td>
                 <td>Titulo</td>
                 <td>Analista</td>
             </tr>
-        </thead>
-        <tbody style="text-align: center">
+            </thead>
+            <tbody style="text-align: center">
             @foreach (var c in Model)
             {
                 <tr class="tr-ultimos-chamados">
-                    <td><a href="@Url.Action("Ver","Chamados")"><i class="fa fa-info fa-lg"></i></a></td>
+                    <td><a href="@Url.Action("Ver", "Chamados")"><i class="fa fa-info fa-lg"></i></a></td>
                     <td>@c.DataDeCriacao</td>
                     <td>@c.DiasEmAberto</td>
                     <td>@c.Titulo</td>
                     <td>@c.NomeDoAnalista</td>
                 </tr>
             }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Você não possui atualizações novas.</p>
+    }
 </div>

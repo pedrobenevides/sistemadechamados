@@ -9,3 +9,8 @@
     margin-top: 15px;
     font-family: Segoe UI;
 }
+
+.menu-active{
+    height: 30px;
+    padding-top: 5px !important;
+}

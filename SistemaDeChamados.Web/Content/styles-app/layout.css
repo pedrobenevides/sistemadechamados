@@ -21,3 +21,8 @@
 .menu-item-chamados {
     padding-bottom: 95px;
 }
+
+hr {
+    border-top: 1px solid #E0D7D7;
+    margin-top: 10px;
+}
