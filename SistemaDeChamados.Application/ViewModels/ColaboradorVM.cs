@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using SistemaDeChamados.Domain.Entities;
+using SistemaDeChamados.Domain.Enums;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
@@ -43,7 +44,9 @@ namespace SistemaDeChamados.Application.ViewModels
         public string Email { get; set; }
         public string Nome { get; set; }
         public string Setor { get; set; }
+        public string Categoria { get; set; }
         public Perfil Perfil { get; set; }
+        public TipoUsuario TipoUsuario { get; set; }
     }
 
     public class UsuarioEdicaoSenhaVM

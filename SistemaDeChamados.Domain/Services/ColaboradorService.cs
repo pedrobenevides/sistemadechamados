@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
@@ -27,7 +28,12 @@ namespace SistemaDeChamados.Domain.Services
         
         public UsuarioDTO ObterParaEdicao(long id)
         {
-            return colaboradorRepository.ObterParaEdicao(id);
+            var colaborador = colaboradorRepository.ObterParaEdicao(id);
+
+            if(colaborador == null)
+                throw new ArgumentNullException();
+
+            return colaborador;
         }
 
         public string ObterNomeDoColaboradorPorId(long id)

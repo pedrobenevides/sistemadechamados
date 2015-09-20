@@ -14,12 +14,18 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
     {
         private IChamadoService chamadoService;
         private IChamadoRepository chamadoRepository;
+        private Chamado chamado;
 
         [TestInitialize]
         public virtual void Setup()
         {
             chamadoRepository = Substitute.For<IChamadoRepository>();
             chamadoService = new ChamadoService(chamadoRepository);
+
+            chamado = new Chamado("Chamado de Teste", "Teste", 1, 1);
+            var categoria = new Categoria("Categoria teste", 1);
+            categoria.AssociarAnalista(3);
+            chamado.Categoria = categoria;
         }
 
         [TestMethod]
@@ -34,11 +40,6 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         [TestMethod]
         public void PossoAlterarOStatusDoChamadoSeEuForOAnalistaResponsavel()
         {
-            var chamado = new Chamado("Chamado de Teste", "Teste", 1, 1);
-            var categoria = new Categoria("Categoria teste", 1);
-            categoria.AssociarAnalista(3);
-            chamado.Categoria = categoria;
-
             chamadoRepository.GetById(1).Returns(chamado);
             chamadoService.AlterarStatus(1,3, StatusDoChamado.NaoReproduzido);
 
@@ -48,13 +49,22 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
         [TestMethod, ExpectedException(typeof(ChamadosException))]
         public void QuandoUsuarioTentarAlterarUmChamadoQueEleNaoSejaOColaboradorOuOAnalistaGeraExcecao()
         {
-            var chamado = new Chamado("Chamado de Teste", "Teste", 1, 1);
-            var categoria = new Categoria("Categoria teste", 1);
-            categoria.AssociarAnalista(3);
-            chamado.Categoria = categoria;
-
             chamadoRepository.GetById(1).Returns(chamado);
             chamadoService.AlterarStatus(1, 13, StatusDoChamado.NaoReproduzido);
+        }
+
+        [TestMethod]
+        public void AoObter5ChamadosRecentesChamaOMesmoMetodoDoRepositorio()
+        {
+            chamadoService.Obter5RecentesPorUsuarioAsync(1);
+            chamadoRepository.Received().Obter5RecentesPorUsuarioAsync(1);
+        }
+
+        [TestMethod]
+        public void AoObter5ChamadosEmAbertoChamaOMesmoMetodoDoRepositorio()
+        {
+            chamadoService.Obter5EmAbertoAsync(1);
+            chamadoRepository.Received().Obter5EmAbertoAsync(1);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<UsuarioSenhaDTO, ColaboradorVM>();
             Mapper.CreateMap<ColaboradorDTO, ColaboradorVM>();
             Mapper.CreateMap<Colaborador, UsuarioLogadoVM>().ForMember(vm => vm.Setor, expr => expr.MapFrom(u => u.Setor.Nome));
+            Mapper.CreateMap<Analista, UsuarioLogadoVM>();
             Mapper.CreateMap<Setor, SetorVM>();
             Mapper.CreateMap<Perfil, PerfilVM>();
             Mapper.CreateMap<Categoria, CategoriaVM>();
