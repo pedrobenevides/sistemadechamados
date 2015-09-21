@@ -23,26 +23,26 @@ namespace SistemaDeChamados.Application.AppServices
             this.perfilService = perfilService;
         }
         
-        public IEnumerable<ColaboradorVM> Retrieve()
+        public virtual IEnumerable<ColaboradorVM> Retrieve()
         {
             var listaDeUsuario = usuarioService.Obter();
             return Mapper.Map<IEnumerable<Usuario>, IEnumerable<ColaboradorVM>>(listaDeUsuario.ToList());
         }
         
-        public void Delete(long id)
+        public virtual void Delete(long id)
         {
             BeginTransaction();
             usuarioService.Delete(id);
             Commit();
         }
 
-        public ColaboradorVM GetById(long id)
+        public virtual ColaboradorVM GetById(long id)
         {
             var usuario = usuarioService.GetById(id);
             return Mapper.Map<Usuario, ColaboradorVM>(usuario); 
         }
 
-        public IEnumerable<ColaboradorVM> ObterReadOnly()
+        public virtual IEnumerable<ColaboradorVM> ObterReadOnly()
         {
             var listaDeUsuario = usuarioService.ObterReadOnly();
             return Mapper.Map<IEnumerable<Usuario>, IEnumerable<ColaboradorVM>>(listaDeUsuario.ToList());
@@ -72,24 +72,14 @@ namespace SistemaDeChamados.Application.AppServices
             return usuarioLogadoVM;
         }
 
-        private dynamic ObterUsuarioTipado(Usuario usuario)
-        {
-            var colaborador = usuario as Colaborador;
-
-            if (colaborador != null)
-                return colaborador;
-
-            return usuario as Analista;
-        }
-
-        public void AlterarStatus(long id)
+        public virtual void AlterarStatus(long id)
         {
             BeginTransaction();
             usuarioService.AlterarStatus(1);
             Commit();
         }
 
-        public void AtualizarSenha(ColaboradorVM colaborador)
+        public virtual void AtualizarSenha(ColaboradorVM colaborador)
         {
             BeginTransaction();
             usuarioService.AtualizarSenha(Mapper.Map<UsuarioSenhaDTO>(colaborador));

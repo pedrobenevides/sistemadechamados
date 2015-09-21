@@ -9,15 +9,15 @@ namespace SistemaDeChamados.Web.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly IColaboradorAppService usuarioAppService;
+        private readonly IColaboradorAppService colaboradorAppService;
         private readonly ISistemaHub sistemaHub;
         private readonly ISetorAppService setorAppService;
         private readonly IPerfilAppService perfilAppService;
 
-        public UsuariosController(IColaboradorAppService usuarioAppService, ISistemaHub sistemaHub, ISetorAppService setorAppService, 
+        public UsuariosController(IColaboradorAppService colaboradorAppService, ISistemaHub sistemaHub, ISetorAppService setorAppService, 
             IPerfilAppService perfilAppService)
         {
-            this.usuarioAppService = usuarioAppService;
+            this.colaboradorAppService = colaboradorAppService;
             this.sistemaHub = sistemaHub;
             this.setorAppService = setorAppService;
             this.perfilAppService = perfilAppService;
@@ -26,13 +26,13 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> IndexAsync()
         {
-            return View("Index", await usuarioAppService.ObterAsync());
+            return View("Index", await colaboradorAppService.ObterAsync());
         }
 
         [HttpGet, ComprimirResponse]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(usuarioAppService.Obter());
+            return View(await colaboradorAppService.ObterAsync());
         }
 
         [HttpGet]
@@ -51,7 +51,7 @@ namespace SistemaDeChamados.Web.Controllers
                 return View(model);
             }
 
-            usuarioAppService.Create(model);
+            colaboradorAppService.Create(model);
             sistemaHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), "Usuário adicionado ao sistema");
 
             return RedirectToAction("Index", "Usuarios");
@@ -60,7 +60,7 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet]
         public ActionResult Edicao(long id)
         {
-            var model = usuarioAppService.ObterParaEdicao(id);
+            var model = colaboradorAppService.ObterParaEdicao(id);
             model.Id = id;
 
             PreencherTodosOsViewBags(model.SetorId, model.PerfilId);
@@ -77,20 +77,20 @@ namespace SistemaDeChamados.Web.Controllers
                 return View(model);
             }
 
-            usuarioAppService.Update(model);
+            colaboradorAppService.Update(model);
             return RedirectToAction("Index", "Usuarios");
         }
 
         [HttpGet]
         public ActionResult AlterarSenha(long id)
         {
-            return View(usuarioAppService.ObterParaEdicao(id));
+            return View(colaboradorAppService.ObterParaEdicao(id));
         }
         
         [HttpPost]
         public ActionResult AlterarSenha(ColaboradorVM model)
         {
-            usuarioAppService.AtualizarSenha(model);
+            colaboradorAppService.AtualizarSenha(model);
             return RedirectToAction("Index");
         }
 
