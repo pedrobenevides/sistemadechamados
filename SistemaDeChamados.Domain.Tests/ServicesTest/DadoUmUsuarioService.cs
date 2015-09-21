@@ -55,7 +55,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
             var usuario = new Colaborador("teste@mail.com", "Fulano", 1);
             usuario.DesativarUsuario();
 
-            usuarioRepository.GetById(1).Returns(usuario);
+            usuarioRepository.GetByIdAsNoTracking(1).Returns(usuario);
             usuarioService.AlterarStatus(1);
 
             usuarioRepository.Received().Update(usuario);
@@ -67,7 +67,7 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
             var usuario = new Colaborador("teste@mail.com", "Fulano", 1);
             usuario.AtivarUsuario();
 
-            usuarioRepository.GetById(1).Returns(usuario);
+            usuarioRepository.GetByIdAsNoTracking(1).Returns(usuario);
             usuarioService.AlterarStatus(1);
 
             usuarioRepository.Received().Update(usuario);

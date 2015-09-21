@@ -15,5 +15,10 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         {
             return context.Usuarios.AsNoTracking();
         }
+
+        public Usuario GetByIdAsNoTracking(long id)
+        {
+            return context.Usuarios.AsNoTracking().FirstOrDefault(u => u.Id == id);
+        }
     }
 }

@@ -12,6 +12,10 @@ namespace SistemaDeChamados.Web
             bundles.Add(new ScriptBundle("~/bundles/sistema")
                 .IncludeDirectory("~/Scripts/DataSources", "*.js", true)
                 .IncludeDirectory("~/Scripts/Chamados", "*.js", true));
+            
+            bundles.Add(new ScriptBundle("~/bundles/scripts/usuarios")
+                .IncludeDirectory("~/Scripts/DataSources", "*.js", true)
+                .IncludeDirectory("~/Scripts/Usuarios", "*.js", true));
             bundles.Add(new ScriptBundle("~/bundles/layout").IncludeDirectory("~/Scripts/Layout", "*.js", true));
 
             bundles.Add(new StyleBundle("~/bundles/bootstrapStyle").Include("~/Content/bootstrap*", 
@@ -21,6 +25,9 @@ namespace SistemaDeChamados.Web
 
             bundles.Add(new StyleBundle("~/bundles/chamados")
                 .IncludeDirectory("~/Content/styles-app/chamados", "*.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/usuarios")
+                .IncludeDirectory("~/Content/styles-app/usuarios", "*.css"));
         }
     }
 }

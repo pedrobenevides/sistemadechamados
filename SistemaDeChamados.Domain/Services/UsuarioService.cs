@@ -47,7 +47,7 @@ namespace SistemaDeChamados.Domain.Services
 
         public void AlterarStatus(long id)
         {
-            var usuario = usuarioRepository.GetById(id);
+            var usuario = usuarioRepository.GetByIdAsNoTracking(id);
 
             if (usuario == null)
                 throw new UsuarioNaoEncontradoException();

@@ -8,5 +8,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
     {
         Usuario ObterAtivoPorEmail(string email);
         IQueryable<Usuario> ObterReadOnly();
+        Usuario GetByIdAsNoTracking(long id);
     }
 }

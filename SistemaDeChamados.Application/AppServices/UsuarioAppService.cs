@@ -75,7 +75,7 @@ namespace SistemaDeChamados.Application.AppServices
         public virtual void AlterarStatus(long id)
         {
             BeginTransaction();
-            usuarioService.AlterarStatus(1);
+            usuarioService.AlterarStatus(id);
             Commit();
         }
 

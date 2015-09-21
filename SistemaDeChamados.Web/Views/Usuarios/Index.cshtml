@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SistemaDeChamados.Application.ViewModels.ColaboradorVM>
+﻿@using System.Web.Optimization
+@model IEnumerable<SistemaDeChamados.Application.ViewModels.ColaboradorVM>
 
 @{
     ViewBag.Title = "Usuários";
@@ -10,22 +11,16 @@
 <a href="@Url.Action("Novo")" class="btn btn-primary" style="margin-bottom: 10px; margin-top: 10px"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
 <table class="table table-condensed table-bordered">
     <tr>
-        <th class="table-actions">
-
-        </th>
+        <th class="th-usuarios-buttons"></th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
+        <th class="th-usuarios-buttons">
             @Html.DisplayNameFor(model => model.EstaAtivo)
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -42,67 +37,12 @@
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
             <button class="btn-status btn btn-sm" name="@item.Id">@item.StatusAtual</button>
-            @*<a href="@Url.Action("AlterarStatus", "Usuarios", new {id = item.Id})" class="btn-status btn btn-sm">@item.StatusAtual</a>*@
         </td>
     </tr>
     }
 
 </table>
-<style>
-    hr {
-        margin: 0;
-        border-color: darkgray;
-    }
 
-    .title {
-        width: auto;
-        margin: 0 auto;
-        text-align: center;
-    }
-</style>
-<script>
-    $(function () {
-
-        //$.connection.hub.start().done(function () {
-        //    toastr.success('Testando', 'Teste');
-        //});
-
-        $('.btn-status').each(function () {
-            if (this.innerText === 'Ativo') {
-                $(this).removeClass('btn-default').addClass('btn-primary');
-            } else {
-                $(this).removeClass('btn-primary').addClass('btn-default');
-            }
-        });
-
-        $('.btn-status').click(function () {
-            var self = this;
-            var statusAntigo = this.innerText;
-            //jQuery.support.cors = true;
-            $.ajax({
-                url: 'http://localhost:6084/api/Usuarios/AlterarStatus/' + this.name,
-                type: 'GET',
-                success: function (result) {
-                    self.innerText = alterarStatus(statusAntigo);
-                    alterarCssClassStatus(statusAntigo, self);
-                }
-            });
-        });
-
-        var alterarStatus = function(statusAntigo) {
-            return statusAntigo === 'Ativo' ? 'Desativado' : 'Ativo';
-        };
-
-        var alterarCssClassStatus = function(statusAntigo, elemHtml) {
-            if (statusAntigo === 'Desativado') {
-                $(elemHtml).removeClass('btn-default').addClass('btn-primary');
-            } else {
-                $(elemHtml).removeClass('btn-primary').addClass('btn-default');
-            }
-        }
-    });
-</script>
+@Styles.Render("~/bundles/usuarios")
+@Scripts.Render("~/bundles/scripts/usuarios")
