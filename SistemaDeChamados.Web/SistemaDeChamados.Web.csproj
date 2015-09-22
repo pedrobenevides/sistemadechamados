@@ -280,6 +280,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountBaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalistasController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChamadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -328,6 +329,7 @@
     <Content Include="Views\Shared\_LayoutBasic.cshtml" />
     <Content Include="Views\Base\Menu.cshtml" />
     <Content Include="Views\Home\Index.iphone.cshtml" />
+    <Content Include="Views\Analistas\IndexAsync.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
