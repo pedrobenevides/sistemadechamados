@@ -16,38 +16,72 @@
     @Scripts.Render("~/bundles/jqueryValidate")
 </head>
 <body>
-<div class="container">
-    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-signin" }))
-    {
-        <div style="width: 400px; background-color: bisque">
-            @Html.ValidationMessage("ErroLogin")
-        </div>
-        <h2 class="form-signin-heading">Efetue o login</h2>
-        <label for="inputEmail" class="sr-only">Email</label>
-        @Html.TextBoxFor(m => m.Login, new {@class = "form-control", placeholder = "Email address", id = "inputEmail"})
-        <label for="inputPassword" class="sr-only">Senha</label>
-        @Html.PasswordFor(m => m.Senha, new {@class = "form-control", placeholder = "Senha", id = "inputPassword"})
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Lembrar-me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-    }
-</div>
-<style>
-    .form-signin {
-        max-width: 330px;
-        padding: 15px;
-        margin: 0 auto;
-    }
-</style>
+    <div class="container">
+        <form class="form-signin">
+            <div style="width: 400px; background-color: bisque">
+                @Html.ValidationMessage("ErroLogin")
+            </div>
+            <h2 class="form-signin-heading">Efetue o login</h2>
+            <label for="inputEmail" class="sr-only">Email</label>
+            @Html.TextBoxFor(m => m.Login, new { @class = "form-control", placeholder = "Email address", id = "inputEmail" })
+            <label for="inputPassword" class="sr-only">Senha</label>
+            @Html.PasswordFor(m => m.Senha, new { @class = "form-control", placeholder = "Senha", id = "inputPassword" })
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Lembrar-me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block">Entrar</button>
+        </form>
+
+    </div>
+    <style>
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+    </style>
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="/signalr/hubs" type="text/javascript"></script>
-<script>
-    $(function() {
-        $.connection.hub.start();
-    });
-</script>
+    <script>
+        $(function () {
+            $.connection.hub.start();
+
+            //var dataSource = new baseDataSource();
+
+            var loginVm = {
+                Login: "",
+                Senha: ""
+            };
+
+            var postRequest = function (url, model, success, error) {
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: model,
+                    statusCode: {
+                        200: function (result) { success(result); },
+                        500: function (erro) {
+                            debugger;
+                            error(erro);
+                        }
+                    }
+                });
+            }
+
+            $('.btn-block').click(function () {
+                debugger;
+                loginVm.Login = $('#inputEmail').val();
+                loginVm.Senha = $('#inputPassword').val();
+
+                postRequest('http://localhost:6084/api/Account/Login', loginVm, function (retorno) {
+                    debugger;
+                    alert(retorno);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
