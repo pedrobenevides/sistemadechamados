@@ -29,7 +29,7 @@ namespace SistemaDeChamados.Application.AppServices
         {
             return await Task.Run(() =>
             {
-                var analistasVm = Mapper.Map<IEnumerable<Analista>, IEnumerable<AnalistaVM>>(analistaService.ObterAsync().Result);
+                var analistasVm = Mapper.Map<Task<IEnumerable<AnalistaVM>>>(analistaService.ObterAsync());
                 return analistasVm;
             });
         }

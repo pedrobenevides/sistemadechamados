@@ -296,6 +296,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BotoesAgrupados.cs" />
     <Compile Include="Helpers\Listas.cs" />
     <Compile Include="Modules\RemoveHeadersModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

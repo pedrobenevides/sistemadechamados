@@ -10,7 +10,7 @@
 <a href="@Url.Action("Novo")" class="btn btn-primary" style="margin-bottom: 10px; margin-top: 10px"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
 <table class="table table-condensed table-bordered">
     <tr>
-        <th class="th-usuarios-buttons"></th>
+        <th class="th-buttons"></th>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
@@ -20,8 +20,7 @@
     {
         <tr>
             <td class="table-actions">
-                <a href="@Url.Action("Edicao","Analistas", new {id = item.Id})" class="btn btn-primary btn-sm">Editar</a>
-                <a href="@Url.Action("Excluir","Analistas", new {id = item.Id})" class="btn btn-danger btn-sm">Excluir</a>
+                @Html.GroupedActionButtons("Analistas", item.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)

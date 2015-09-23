@@ -1,5 +1,7 @@
 ﻿$(function () {
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     var dataSource = new baseDataSource();
 
     $('.btn-status').each(function () {
@@ -30,14 +32,5 @@
             self.innerText = alterarStatus(statusAntigo);
             alterarCssClassStatus(statusAntigo, self);
         });
-
-        //$.ajax({
-        //    url: 'http://localhost:6084/api/Usuarios/AlterarStatus/' + this.name,
-        //    type: 'GET',
-        //    success: function (result) {
-        //        self.innerText = alterarStatus(statusAntigo);
-        //        alterarCssClassStatus(statusAntigo, self);
-        //    }
-        //});
     });
 });

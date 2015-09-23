@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
 using SistemaDeChamados.Domain.Entities;
@@ -21,7 +23,9 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<Analista, UsuarioLogadoVM>();
             Mapper.CreateMap<Setor, SetorVM>();
             Mapper.CreateMap<Perfil, PerfilVM>();
-            Mapper.CreateMap<Categoria, CategoriaVM>();
+
+            //Assíncronos
+            Mapper.CreateMap<Task<IEnumerable<Analista>>, Task<IEnumerable<AnalistaVM>>>();
         }
     }
 }
