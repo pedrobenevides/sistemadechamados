@@ -11,7 +11,7 @@ namespace SistemaDeChamados.Web.Helpers
             var stringBuilder = new StringBuilder();
 
             foreach (var item in model)
-                stringBuilder.Append(string.Format("<li><a href=\"{0}\">{1}</a></li>", item.Key, item.Value));
+                stringBuilder.Append(string.Format("<li><a href=\"/{0}\">{1}</a></li>", item.Key, item.Value));
 
             return MvcHtmlString.Create(stringBuilder.ToString());
         }
