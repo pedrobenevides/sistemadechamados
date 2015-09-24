@@ -3,6 +3,7 @@
  using System.Linq;
  using System.Security.Claims;
  using System.Web.Mvc;
+ using SistemaDeChamados.Application.ViewModels;
  using SistemaDeChamados.Domain.Exceptions;
  using SistemaDeChamados.Domain.Services;
  using SistemaDeChamados.Web.Filters;
@@ -25,6 +26,12 @@ namespace SistemaDeChamados.Web.Controllers
             var valores = DicionarioDePermissoes(controllers.ToList());
 
             return PartialView(valores);
+        }
+
+        [HttpGet, ChildActionOnly, PermissaoLivre]
+        public ActionResult Pagination(string controller)
+        {
+            return PartialView("_Pagination", new PaggingVM(controller));
         }
 
         private static IDictionary<string, string> DicionarioDePermissoes(IList<string> controllers)

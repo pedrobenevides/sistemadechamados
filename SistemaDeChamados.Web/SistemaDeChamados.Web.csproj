@@ -331,6 +331,7 @@
     <Content Include="Views\Base\Menu.cshtml" />
     <Content Include="Views\Home\Index.iphone.cshtml" />
     <Content Include="Views\Analistas\IndexAsync.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

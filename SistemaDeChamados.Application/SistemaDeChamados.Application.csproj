@@ -102,6 +102,7 @@
     <Compile Include="ViewModels\AnalistaVM.cs" />
     <Compile Include="ViewModels\CategoriaVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
+    <Compile Include="ViewModels\PaggingVM.cs" />
     <Compile Include="ViewModels\PerfilVM.cs" />
     <Compile Include="ViewModels\SetorVM.cs" />
     <Compile Include="Interface\Socket\ISistemaHub.cs" />
