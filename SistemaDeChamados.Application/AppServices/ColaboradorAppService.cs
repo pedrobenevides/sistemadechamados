@@ -70,5 +70,11 @@ namespace SistemaDeChamados.Application.AppServices
         {
             return colaboradorService.ObterNomeDoColaboradorPorId(id);
         }
+
+        public async Task<IEnumerable<ColaboradorVM>> ObterAsyncPaginado(int pagina, int porPagina)
+        {
+            var colaboradores = await colaboradorService.ObterAsyncPaginado(pagina, porPagina);
+            return await Task.Run(() => Mapper.Map<IList<ColaboradorVM>>(colaboradores));
+        }
     }
 }

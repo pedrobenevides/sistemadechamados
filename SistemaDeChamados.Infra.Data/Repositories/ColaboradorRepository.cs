@@ -29,7 +29,8 @@ namespace SistemaDeChamados.Infra.Data.Repositories
                 Id = c.Id,
                 Nome = c.Nome,
                 Senha = c.Password
-            }).ToListAsync();
+            })
+            .OrderBy(c => c.Nome).ToListAsync();
         }
         public UsuarioDTO ObterParaEdicao(long id)
         {
@@ -47,6 +48,20 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         public string ObterNomeDoColaboradorPorId(long id)
         {
             return context.Colaboradores.Where(c => c.Id == id).Select(c => c.Nome).FirstOrDefault();
+        }
+
+        public async Task<IEnumerable<ColaboradorDTO>> ObterAsyncPaginado(int pagina, int porPagina)
+        {
+            var skip = ((pagina - 1)*porPagina);
+            return await context.Colaboradores.Select(c => new ColaboradorDTO
+            {
+                Email = c.Email,
+                EstaAtivo = c.EstaAtivo,
+                Id = c.Id,
+                Nome = c.Nome,
+                Senha = c.Password
+            })
+           .OrderBy(c => c.Nome).Skip(skip).Take(porPagina).ToListAsync();
         }
     }
 

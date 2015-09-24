@@ -32,7 +32,7 @@ namespace SistemaDeChamados.Web.Controllers
         [HttpGet, ComprimirResponse]
         public async Task<ActionResult> Index()
         {
-            return View(await colaboradorAppService.ObterAsync());
+            return View(await colaboradorAppService.ObterAsyncPaginado(1, 10));
         }
 
         [HttpGet]

@@ -16,6 +16,11 @@ namespace SistemaDeChamados.Domain.Services
             this.colaboradorRepository = colaboradorRepository;
         }
 
+        public async Task<IEnumerable<ColaboradorDTO>> ObterAsyncPaginado(int pagina, int porPagina)
+        {
+            return await colaboradorRepository.ObterAsyncPaginado(pagina, porPagina);
+        }
+
         public async Task<IList<ColaboradorDTO>> ObterAtivosAsync()
         {
             return await colaboradorRepository.ObterAtivosAsync();

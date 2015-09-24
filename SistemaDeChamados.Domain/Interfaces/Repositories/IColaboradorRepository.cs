@@ -10,5 +10,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
         Task<IList<ColaboradorDTO>> ObterAtivosAsync();
         UsuarioDTO ObterParaEdicao(long id);
         string ObterNomeDoColaboradorPorId(long id);
+        Task<IEnumerable<ColaboradorDTO>> ObterAsyncPaginado(int pagina, int porPagina);
     }
 }
