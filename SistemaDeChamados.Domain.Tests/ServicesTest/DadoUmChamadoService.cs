@@ -14,13 +14,16 @@ namespace SistemaDeChamados.Domain.Tests.ServicesTest
     {
         private IChamadoService chamadoService;
         private IChamadoRepository chamadoRepository;
+        private IArquivoService arquivoService;
         private Chamado chamado;
 
         [TestInitialize]
         public virtual void Setup()
         {
             chamadoRepository = Substitute.For<IChamadoRepository>();
-            chamadoService = new ChamadoService(chamadoRepository);
+            arquivoService = Substitute.For<IArquivoService>();
+
+            chamadoService = new ChamadoService(chamadoRepository, arquivoService);
 
             chamado = new Chamado("Chamado de Teste", "Teste", 1, 1);
             var categoria = new Categoria("Categoria teste", 1);

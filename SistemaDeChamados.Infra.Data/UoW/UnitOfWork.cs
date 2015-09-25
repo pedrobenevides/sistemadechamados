@@ -48,11 +48,11 @@ namespace SistemaDeChamados.Infra.Data.UoW
             }
         }
 
-        public Task SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
             try
             {
-                return sistemaContext.SaveChangesAsync();
+                await sistemaContext.SaveChangesAsync();
             }
             catch (DbEntityValidationException ex)
             {

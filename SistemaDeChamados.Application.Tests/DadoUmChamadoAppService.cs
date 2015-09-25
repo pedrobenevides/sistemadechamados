@@ -31,7 +31,7 @@ namespace SistemaDeChamados.Application.Tests
         }
 
         [TestMethod]
-        public void AoCriarUmChamadoDeveSerChamadoOMetodoCreateNoServico()
+        public void AoCriarUmChamadoDeveSerChamadoOMetodoCreateComAnexosNoServico()
         {
             var vm = new CriacaoChamadoVM
             {
@@ -43,7 +43,7 @@ namespace SistemaDeChamados.Application.Tests
             };
 
             chamadoAppService.CreateAsync(vm);
-            chamadoService.Received().Create(Arg.Any<Chamado>());
+            chamadoService.Received().CreateComAnexos(Arg.Any<Chamado>());
         }
 
         [TestMethod]

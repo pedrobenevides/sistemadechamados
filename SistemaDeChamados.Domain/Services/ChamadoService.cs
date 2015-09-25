@@ -43,12 +43,12 @@ namespace SistemaDeChamados.Domain.Services
             chamadoRepository.AlterarStatus(chamado, statusNovo);
         }
 
-        public Task CreateComAnexos(Chamado chamado)
+        public async Task CreateComAnexos(Chamado chamado)
         {
             var chamadoSalvo = chamadoRepository.Create(chamado);
 
             if (chamadoSalvo.Arquivos.Any())
-                arquivoService.SalvarArquivosFisicos(chamado.Arquivos);
+                await arquivoService.SalvarArquivosFisicos(chamado.Arquivos);
         }
     }
 }

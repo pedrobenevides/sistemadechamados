@@ -46,7 +46,6 @@ namespace SistemaDeChamados.Application.ViewModels
         public long CategoriaId { get; set; }
         [DisplayName("Setores")]
         public long SetorId { get; set; }
-        public IList<ArquivoVM> ArquivosStream { get; set; }
         public IList<HttpPostedFileBase> Anexos { get; set; }
     }
 }
