@@ -1,4 +1,5 @@
-﻿using SistemaDeChamados.Application.Interface;
+﻿using System.Threading.Tasks;
+using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Services;
 using SistemaDeChamados.Infra.Data.Interfaces;
 
@@ -23,6 +24,11 @@ namespace SistemaDeChamados.Application
         public void Commit()
         {
             uow.SaveChanges();
+        }
+
+        public Task CommitAsync()
+        {
+            return uow.SaveChangesAsync();
         }
     }
 }

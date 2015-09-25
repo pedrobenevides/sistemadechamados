@@ -29,7 +29,7 @@ namespace SistemaDeChamados.Application.AppServices
 
             BeginTransaction();
             await chamadoService.CreateComAnexos(chamado);
-            Commit();
+            await CommitAsync();
         }
 
         public IEnumerable<ChamadoIndexVM> Retrieve()
