@@ -46,7 +46,7 @@ namespace SistemaDeChamados.Web.Tests.Controllers
             var vm = new CriacaoChamadoVM();
             chamadosController.Novo(vm);
 
-            chamadoAppService.Received().Create(vm);
+            chamadoAppService.Received().CreateAsync(vm);
         }
 
         public void AoCriarChamadoComAnexoSalvaOAnexoNoDisco()

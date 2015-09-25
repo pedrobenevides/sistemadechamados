@@ -11,6 +11,7 @@ namespace SistemaDeChamados.Infra.Data.Configuration
             Property(c => c.Descricao).IsRequired().HasMaxLength(500);
             HasMany(c => c.Mensagens);
             Property(c => c.DataDeReabertura).IsOptional();
+            HasMany(c => c.Arquivos);
         }
     }
 }

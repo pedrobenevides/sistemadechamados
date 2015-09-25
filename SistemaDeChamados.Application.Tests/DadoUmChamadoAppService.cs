@@ -42,7 +42,7 @@ namespace SistemaDeChamados.Application.Tests
                 UsuarioId = 1
             };
 
-            chamadoAppService.Create(vm);
+            chamadoAppService.CreateAsync(vm);
             chamadoService.Received().Create(Arg.Any<Chamado>());
         }
 

@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.SessionState;
 using Ninject;
@@ -43,7 +46,7 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Novo([Bind]CriacaoChamadoVM model)
+        public async Task<ActionResult> Novo(CriacaoChamadoVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -52,27 +55,10 @@ namespace SistemaDeChamados.Web.Controllers
             }
 
             model.UsuarioId = UsuarioId;
-            ResolverAnexos(model);
-            chamadoAppService.Create(model);
+            await chamadoAppService.CreateAsync(model);
             signalRHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name));
 
             return RedirectToAction("Index");
-        }
-
-        private void ResolverAnexos(CriacaoChamadoVM model)
-        {
-            if(Request.Files.Count == 0) return;
-
-            foreach (HttpPostedFileBase file in Request.Files)
-            {
-                model.ArquivosStream.Add(new ArquivoVM
-                {
-                    ContentLength = file.ContentLength,
-                    ContentType = file.ContentType,
-                    Filename = file.FileName,
-                    Stream = file.InputStream
-                });
-            }
         }
 
         private void PreencherSetoresNoViewBag(long? selectedValue = null)

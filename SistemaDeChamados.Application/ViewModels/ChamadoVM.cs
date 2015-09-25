@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Web;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
@@ -34,7 +35,7 @@ namespace SistemaDeChamados.Application.ViewModels
     {
         public CriacaoChamadoVM()
         {
-            
+            Anexos = new List<HttpPostedFileBase>();
         }
 
         public string Titulo { get; set; }
@@ -46,5 +47,6 @@ namespace SistemaDeChamados.Application.ViewModels
         [DisplayName("Setores")]
         public long SetorId { get; set; }
         public IList<ArquivoVM> ArquivosStream { get; set; }
+        public IList<HttpPostedFileBase> Anexos { get; set; }
     }
 }

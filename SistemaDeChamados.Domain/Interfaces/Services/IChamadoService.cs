@@ -11,6 +11,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         Task<List<Chamado>> Obter5RecentesPorUsuarioAsync(long usuarioId);
         Task<List<Chamado>> Obter5EmAbertoAsync(long usuarioId);
         void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo);
-        void SalvarAnexos(IEnumerable<Stream> arquivosStream, long chamadoId);
+        Task CreateComAnexos(Chamado chamado);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Enums;
@@ -13,12 +13,15 @@ namespace SistemaDeChamados.Domain.Services
     public class ChamadoService : ServiceBase<Chamado>,  IChamadoService
     {
         private readonly IChamadoRepository chamadoRepository;
+        private readonly IArquivoService arquivoService;
 
-        public ChamadoService(IChamadoRepository chamadoRepository) 
+        public ChamadoService(IChamadoRepository chamadoRepository, IArquivoService arquivoService) 
             : base(chamadoRepository)
         {
             this.chamadoRepository = chamadoRepository;
+            this.arquivoService = arquivoService;
         }
+
 
         public async Task<List<Chamado>> Obter5RecentesPorUsuarioAsync(long usuarioId)
         {
@@ -40,9 +43,12 @@ namespace SistemaDeChamados.Domain.Services
             chamadoRepository.AlterarStatus(chamado, statusNovo);
         }
 
-        public void SalvarAnexos(IEnumerable<Stream> arquivosStream, long chamadoId)
+        public Task CreateComAnexos(Chamado chamado)
         {
-            throw new NotImplementedException();
+            var chamadoSalvo = chamadoRepository.Create(chamado);
+
+            if (chamadoSalvo.Arquivos.Any())
+                arquivoService.SalvarArquivosFisicos(chamado.Arquivos);
         }
     }
 }

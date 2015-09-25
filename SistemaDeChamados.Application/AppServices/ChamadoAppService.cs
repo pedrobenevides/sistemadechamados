@@ -22,11 +22,13 @@ namespace SistemaDeChamados.Application.AppServices
             this.chamadoService = chamadoService;
         }
 
-        public void Create(CriacaoChamadoVM chamadoVM)
+        public async Task CreateAsync(CriacaoChamadoVM chamadoVM)
         {
             var chamado = Mapper.Map<Chamado>(chamadoVM);
+            chamado.Arquivos = Mapper.Map<IList<Arquivo>>(chamadoVM.Anexos);
+
             BeginTransaction();
-            chamadoService.Create(chamado);
+            await chamadoService.CreateComAnexos(chamado);
             Commit();
         }
 
