@@ -37,5 +37,13 @@ namespace SistemaDeChamados.Infra.Data.Repositories
             chamado.AlterarStatus(statusNovo);
             Update(chamado);
         }
+
+        public async Task<Chamado> CreateAndCommit(Chamado chamado)
+        {
+            var chamadoDoBanco = Chamados.Add(chamado);
+            await context.SaveChangesAsync();
+
+            return chamadoDoBanco;
+        }
     }
 }

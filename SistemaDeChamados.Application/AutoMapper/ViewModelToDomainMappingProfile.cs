@@ -23,7 +23,8 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<PerfilVM, Perfil>();
             Mapper.CreateMap<CategoriaVM, Categoria>();
             Mapper.CreateMap<HttpPostedFileBase, Arquivo>()
-                .ForMember(a => a.Tamanho, opt => opt.MapFrom(f => f.ContentLength));
+                .ForMember(a => a.Tamanho, opt => opt.MapFrom(f => f.ContentLength))
+                .ForMember(a => a.Stream, opt => opt.MapFrom(f => f.InputStream));
         }
     }
 }

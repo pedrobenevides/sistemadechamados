@@ -27,9 +27,9 @@ namespace SistemaDeChamados.Application.AppServices
             var chamado = Mapper.Map<Chamado>(chamadoVM);
             chamado.Arquivos = Mapper.Map<IList<Arquivo>>(chamadoVM.Anexos);
 
-            BeginTransaction();
+            //BeginTransaction();
             await chamadoService.CreateComAnexos(chamado);
-            await CommitAsync();
+            //await CommitAsync();
         }
 
         public IEnumerable<ChamadoIndexVM> Retrieve()

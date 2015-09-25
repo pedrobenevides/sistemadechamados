@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
@@ -45,10 +44,10 @@ namespace SistemaDeChamados.Domain.Services
 
         public async Task CreateComAnexos(Chamado chamado)
         {
-            var chamadoSalvo = chamadoRepository.Create(chamado);
-
-            if (chamadoSalvo.Arquivos.Any())
-                await arquivoService.SalvarArquivosFisicos(chamado.Arquivos);
+            var chamadoSalvo = chamadoRepository.CreateAndCommit(chamado);
+            
+            if (chamado.Arquivos.Any())
+                await arquivoService.SalvarArquivosFisicos(chamado.Arquivos, chamadoSalvo.Id);
         }
     }
 }

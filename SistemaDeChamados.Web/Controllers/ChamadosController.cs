@@ -56,7 +56,7 @@ namespace SistemaDeChamados.Web.Controllers
 
             model.UsuarioId = UsuarioId;
             await chamadoAppService.CreateAsync(model);
-            signalRHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name));
+            await Task.Run(() => { signalRHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name)); });
 
             return RedirectToAction("Index");
         }
