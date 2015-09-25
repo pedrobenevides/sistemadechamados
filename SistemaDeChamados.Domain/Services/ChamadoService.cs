@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Enums;
@@ -37,6 +38,11 @@ namespace SistemaDeChamados.Domain.Services
                 throw new ChamadosException("Usuário não tem permissão de alterar esse chamado.");
 
             chamadoRepository.AlterarStatus(chamado, statusNovo);
+        }
+
+        public void SalvarAnexos(IEnumerable<Stream> arquivosStream, long chamadoId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

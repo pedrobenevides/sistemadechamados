@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.SessionState;
 using Ninject;
 using SistemaDeChamados.Application.Interface;
@@ -12,23 +13,25 @@ namespace SistemaDeChamados.Web.Controllers
     public class ChamadosController : BaseController
     {
         private readonly ISetorAppService setorAppService;
+        private readonly IChamadoAppService chamadoAppService;
+        private readonly ICategoriaAppService categoriaAppService;
+        private readonly ISistemaHub signalRHub;
 
-        [Inject]
-        public ICategoriaAppService CategoriaAppService { get; set; }
-        [Inject]
-        public IChamadoAppService ChamadoAppService { get; set; }
-        [Inject]
-        public ISistemaHub SignalRHub { get; set; }
-
-        public ChamadosController(ISetorAppService setorAppService)
+        public ChamadosController(ISetorAppService setorAppService, 
+                                    IChamadoAppService chamadoAppService, 
+                                    ICategoriaAppService categoriaAppService,  
+                                    ISistemaHub signalRHub)
         {
             this.setorAppService = setorAppService;
+            this.chamadoAppService = chamadoAppService;
+            this.categoriaAppService = categoriaAppService;
+            this.signalRHub = signalRHub;
         }
 
         [HttpGet, ComprimirResponse]
         public ActionResult Index()
         {
-            var vm = ChamadoAppService.Retrieve();
+            var vm = chamadoAppService.Retrieve();
             return View(vm);
         }
 
@@ -40,7 +43,7 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Novo(CriacaoChamadoVM model)
+        public ActionResult Novo([Bind]CriacaoChamadoVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -49,10 +52,27 @@ namespace SistemaDeChamados.Web.Controllers
             }
 
             model.UsuarioId = UsuarioId;
-            ChamadoAppService.Create(model);
-            SignalRHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name));
+            ResolverAnexos(model);
+            chamadoAppService.Create(model);
+            signalRHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name));
 
             return RedirectToAction("Index");
+        }
+
+        private void ResolverAnexos(CriacaoChamadoVM model)
+        {
+            if(Request.Files.Count == 0) return;
+
+            foreach (HttpPostedFileBase file in Request.Files)
+            {
+                model.ArquivosStream.Add(new ArquivoVM
+                {
+                    ContentLength = file.ContentLength,
+                    ContentType = file.ContentType,
+                    Filename = file.FileName,
+                    Stream = file.InputStream
+                });
+            }
         }
 
         private void PreencherSetoresNoViewBag(long? selectedValue = null)
