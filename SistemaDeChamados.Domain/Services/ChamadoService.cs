@@ -42,9 +42,9 @@ namespace SistemaDeChamados.Domain.Services
             chamadoRepository.AlterarStatus(chamado, statusNovo);
         }
 
-        public async Task CreateComAnexos(Chamado chamado)
+        public async Task CreateComAnexosAsync(Chamado chamado)
         {
-            var chamadoSalvo = chamadoRepository.CreateAndCommit(chamado);
+            var chamadoSalvo = await chamadoRepository.CreateAndCommitAsync(chamado);
             
             if (chamado.Arquivos.Any())
                 await arquivoService.SalvarArquivosFisicos(chamado.Arquivos, chamadoSalvo.Id);

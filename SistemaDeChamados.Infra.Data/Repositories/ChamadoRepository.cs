@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Enums;
-using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 
 namespace SistemaDeChamados.Infra.Data.Repositories
@@ -38,7 +37,7 @@ namespace SistemaDeChamados.Infra.Data.Repositories
             Update(chamado);
         }
 
-        public async Task<Chamado> CreateAndCommit(Chamado chamado)
+        public async Task<Chamado> CreateAndCommitAsync(Chamado chamado)
         {
             var chamadoDoBanco = Chamados.Add(chamado);
             await context.SaveChangesAsync();

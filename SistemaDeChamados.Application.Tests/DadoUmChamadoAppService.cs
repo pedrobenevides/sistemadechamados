@@ -43,7 +43,7 @@ namespace SistemaDeChamados.Application.Tests
             };
 
             chamadoAppService.CreateAsync(vm);
-            chamadoService.Received().CreateComAnexos(Arg.Any<Chamado>());
+            chamadoService.Received().CreateComAnexosAsync(Arg.Any<Chamado>());
         }
 
         [TestMethod]
