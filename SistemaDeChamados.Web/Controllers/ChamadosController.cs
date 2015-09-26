@@ -61,6 +61,13 @@ namespace SistemaDeChamados.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Visualizar(long id)
+        {
+            var chamado = chamadoAppService.GetCompleteById(id);
+            return View(chamado);
+        }
+
+
         private void PreencherSetoresNoViewBag(long? selectedValue = null)
         {
             ViewBag.Setores = new SelectList(

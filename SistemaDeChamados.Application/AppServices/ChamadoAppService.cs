@@ -37,6 +37,12 @@ namespace SistemaDeChamados.Application.AppServices
             return Mapper.Map<IList<ChamadoIndexVM>>(listaDeChamados.ToList());
         }
 
+        public VisualizarChamadoVM GetCompleteById(long id)
+        {
+            var chamado = chamadoService.GetById(id);
+            return Mapper.Map<VisualizarChamadoVM>(chamado);
+        }
+
         public void Update(ChamadoVM chamadoVM)
         {
             var chamado = Mapper.Map<Chamado>(chamadoVM);

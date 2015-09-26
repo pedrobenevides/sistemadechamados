@@ -297,6 +297,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BotoesAgrupados.cs" />
+    <Compile Include="Helpers\ListaDeMensagem.cs" />
     <Compile Include="Helpers\Listas.cs" />
     <Compile Include="Modules\RemoveHeadersModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -332,6 +333,7 @@
     <Content Include="Views\Home\Index.iphone.cshtml" />
     <Content Include="Views\Analistas\IndexAsync.cshtml" />
     <Content Include="Views\Shared\_Pagination.cshtml" />
+    <Content Include="Views\Chamados\Visualizar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

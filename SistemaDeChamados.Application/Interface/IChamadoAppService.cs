@@ -9,6 +9,7 @@ namespace SistemaDeChamados.Application.Interface
     {
         Task CreateAsync(CriacaoChamadoVM chamadoVM);
         IEnumerable<ChamadoIndexVM> Retrieve();
+        VisualizarChamadoVM GetCompleteById(long id);
         void Update(ChamadoVM chamadoVM);
         void Delete(long id);
         ChamadoVM GetById(long id);
