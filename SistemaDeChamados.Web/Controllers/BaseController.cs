@@ -60,5 +60,17 @@ namespace SistemaDeChamados.Web.Controllers
                 return Convert.ToInt64(claimId.Value);
             }
         }
+        protected string NomeUsuario
+        {
+            get
+            {
+                var claims = User.Identity as ClaimsIdentity;
+
+                if (claims == null)
+                    throw new Exception("Erro no cast das Claims do usuário");
+
+                return claims.Name;
+            }
+        }
     }
 }

@@ -14,5 +14,6 @@ namespace SistemaDeChamados.Application.ViewModels
         public string Texto { get; set; }
         public long ChamadoId { get; set; }
         public long UsuarioId { get; set; }
+        public string NomeUsuario { get; set; }
     }
 }

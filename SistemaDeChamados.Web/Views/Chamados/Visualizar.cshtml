@@ -48,7 +48,7 @@
                 <li><a href="#">Não reproduzido</a></li>
             </ul>
             <button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i></button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mensagemModal"><i class="fa fa-envelope"></i></button>
             <button type="button" class="btn btn-warning">Encerrar</button>
 
         </div>
@@ -72,7 +72,7 @@
         <div class="panel-heading">
             Últimas mensagens <a style="float: right">Ver todas</a>
         </div>
-        <div class="panel-body" style="overflow-y: scroll; height: 300px">
+        <div class="panel-body" id="panelMsg" style="overflow-y: scroll; height: 300px">
             @Html.ListaDeMensagemDoChamado(Model.Mensagens, Model.ColaboradorId, Model.NomeColaborador, Model.NomeAnalista)
         </div>
     </div>
@@ -80,7 +80,7 @@
 </div>
 
 <div>
-    <div class="modal fade" id="myModal">
+    <div class="modal fade" id="mensagemModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -94,7 +94,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="button" class="btn btn-primary btn-send">Enviar</button>
                     </div>
                 </form>
 
@@ -143,24 +143,42 @@
 <script>
     $(function () {
 
+        var modalMensagem = $('#mensagemModal');
+
         var novaMensagem = {
             ChamadoId: "",
-            Texto: ""
+            Texto: "",
+            NomeUsuario: ""
         };
 
-        $('#myModal').on('shown.bs.modal', function () {
+       modalMensagem.on('shown.bs.modal', function () {
             $('#myInput').focus();
         });
 
-        $('.novaMensagemForm').submit(function () {
+        function fecharModal() {
+            modalMensagem.modal('hide');
+            $('#mensagemModal textarea').val('');
+        }
 
+        $('.btn-send').click(function () {
             novaMensagem.ChamadoId = $('#chamadoID').val();
             novaMensagem.Texto = $('.textarea-mensagem').val();
-            alert(window.location.host + "/Chamados/NovaMensagem");
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/Chamados/NovaMensagem",
-                data: novaMensagem
+                data: novaMensagem,
+                statusCode: {
+                    200: function (data) {
+                        var listadeMsg = $('.list-group');
+                        if (listadeMsg.length === 0) {
+                            $('.text-center').first().remove();
+                            $('#panelMsg').append('<ul class=\"list-group\">');
+                        }
+
+                        $('.list-group').append('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + '</span></li></ul></li>');
+                        fecharModal();
+                    }
+                }
             });
         });
     });

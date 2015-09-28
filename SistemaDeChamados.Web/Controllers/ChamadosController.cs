@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.SessionState;
-using Ninject;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
@@ -19,16 +16,19 @@ namespace SistemaDeChamados.Web.Controllers
         private readonly IChamadoAppService chamadoAppService;
         private readonly ICategoriaAppService categoriaAppService;
         private readonly ISistemaHub signalRHub;
+        private readonly IMensagemAppService mensagemAppService;
 
         public ChamadosController(ISetorAppService setorAppService, 
                                     IChamadoAppService chamadoAppService, 
                                     ICategoriaAppService categoriaAppService,  
-                                    ISistemaHub signalRHub)
+                                    ISistemaHub signalRHub,
+                                    IMensagemAppService mensagemAppService)
         {
             this.setorAppService = setorAppService;
             this.chamadoAppService = chamadoAppService;
             this.categoriaAppService = categoriaAppService;
             this.signalRHub = signalRHub;
+            this.mensagemAppService = mensagemAppService;
         }
 
         [HttpGet, ComprimirResponse]
@@ -68,9 +68,13 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult NovaMensagem(MensagemVM novaMensagem)
+        public JsonResult NovaMensagem(MensagemVM novaMensagem)
         {
-            return View();
+            novaMensagem.UsuarioId = UsuarioId;
+            mensagemAppService.Create(novaMensagem);
+            novaMensagem.NomeUsuario = NomeUsuario;
+
+            return Json(novaMensagem, JsonRequestBehavior.AllowGet);
         }
 
 
