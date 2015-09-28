@@ -21,6 +21,7 @@ namespace SistemaDeChamados.Web.Tests.Controllers
         private ISetorAppService setorAppService;
         private ICategoriaAppService categoriaAppService;
         private IChamadoAppService chamadoAppService;
+        private IMensagemAppService mensagemAppService;
         private ISistemaHub signalRHub;
 
         [TestInitialize]
@@ -32,9 +33,10 @@ namespace SistemaDeChamados.Web.Tests.Controllers
             setorAppService = Substitute.For<ISetorAppService>();
             categoriaAppService = Substitute.For<ICategoriaAppService>();
             chamadoAppService = Substitute.For<IChamadoAppService>();
+            mensagemAppService = Substitute.For<IMensagemAppService>();
             signalRHub = Substitute.For<ISistemaHub>();
 
-            chamadosController = new ChamadosController(setorAppService, chamadoAppService, categoriaAppService, signalRHub);
+            chamadosController = new ChamadosController(setorAppService, chamadoAppService, categoriaAppService, signalRHub, mensagemAppService);
 
             var controllerContext = new ControllerContext { HttpContext = httpContextBase };
             chamadosController.ControllerContext = controllerContext;
