@@ -40,7 +40,10 @@ namespace SistemaDeChamados.Application.AppServices
         public VisualizarChamadoVM GetCompleteById(long id)
         {
             var chamado = chamadoService.GetById(id);
-            return Mapper.Map<VisualizarChamadoVM>(chamado);
+            var chamadoVm = Mapper.Map<VisualizarChamadoVM>(chamado);
+            chamadoVm.NovaMensagem.ChamadoId = id;
+
+            return chamadoVm;
         }
 
         public void Update(ChamadoVM chamadoVM)

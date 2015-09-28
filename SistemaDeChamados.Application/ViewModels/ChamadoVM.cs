@@ -52,6 +52,11 @@ namespace SistemaDeChamados.Application.ViewModels
 
     public class VisualizarChamadoVM
     {
+        public VisualizarChamadoVM()
+        {
+            NovaMensagem = new MensagemVM();
+        }
+
         public long Id { get; set; }
         public DateTime DataDeCriacao { get; set; }
         public string Titulo { get; set; }
@@ -62,5 +67,6 @@ namespace SistemaDeChamados.Application.ViewModels
         public int NumeroDeMensagens { get; set; }
         public IEnumerable<Arquivo> Arquivos { get; set; }
         public virtual IList<Mensagem> Mensagens { get; set; }
+        public MensagemVM NovaMensagem { get; set; }
     }
 }

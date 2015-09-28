@@ -4,6 +4,11 @@ namespace SistemaDeChamados.Application.ViewModels
 {
     public class MensagemVM
     {
+        public MensagemVM()
+        {
+            DataDeCriacao = DateTime.Now;
+        }
+
         public long Id { get; set; }
         public DateTime DataDeCriacao { get; set; }
         public string Texto { get; set; }

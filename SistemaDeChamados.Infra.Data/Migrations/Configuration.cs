@@ -51,6 +51,10 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             var analista = new Analista("josilva@mail.com", "Joao Silva");
             analista.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
             analista.AssociarCategoria(categoria);
+            
+            var analista2 = new Analista("josilva@mail.com", "Francisco Gomes");
+            analista2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
+            analista2.AssociarCategoria(categoria2);
 
             var colaborador2 = new Colaborador("chicomatos@mail.com", "Francisco Matos", setorComercial.Id);
             colaborador2.DefinirPassword("123456", new CriptografadorDeSenhaMD5());
@@ -59,6 +63,7 @@ namespace SistemaDeChamados.Infra.Data.Migrations
             context.Usuarios.Add(colaborador1);
             context.Usuarios.Add(colaborador2);
             context.Usuarios.Add(analista);
+            context.Usuarios.Add(analista2);
 
             CreateHundredOfUsers(context, setorComercial.Id);
 

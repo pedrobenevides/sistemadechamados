@@ -67,6 +67,12 @@ namespace SistemaDeChamados.Web.Controllers
             return View(chamado);
         }
 
+        [HttpPost]
+        public ActionResult NovaMensagem(MensagemVM novaMensagem)
+        {
+            return View();
+        }
+
 
         private void PreencherSetoresNoViewBag(long? selectedValue = null)
         {

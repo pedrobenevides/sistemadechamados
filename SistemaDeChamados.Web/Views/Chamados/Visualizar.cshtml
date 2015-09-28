@@ -1,4 +1,7 @@
-﻿@model SistemaDeChamados.Application.ViewModels.VisualizarChamadoVM
+﻿@using System.Web.Optimization
+@model SistemaDeChamados.Application.ViewModels.VisualizarChamadoVM
+
+@Styles.Render("~/bundles/chamados")
 
 <div class="col-sm-6">
 
@@ -45,7 +48,7 @@
                 <li><a href="#">Não reproduzido</a></li>
             </ul>
             <button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
-            <button type="button" class="btn btn-success"><i class="fa fa-envelope"></i></button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i></button>
             <button type="button" class="btn btn-warning">Encerrar</button>
 
         </div>
@@ -55,18 +58,19 @@
         <div class="panel-body">
             <table class="table">
                 <tbody>
-                <tr>
-                    @foreach (var anexo in @Model.Arquivos)
-                    {
-                        <td><a href="@Url.Action("DownloadAnexo", "Chamados")">@anexo.Filename</a></td>
-                    }
-                </tr>
+                    <tr>
+                        @foreach (var anexo in @Model.Arquivos)
+                        {
+                            <td><a href="@Url.Action("DownloadAnexo", "Chamados")">@anexo.Filename</a></td>
+                        }
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="panel panel-default" style="margin-top: 10px;">
-        <div class="panel-heading">Últimas mensagens <a style="float: right">Ver todas</a>
+        <div class="panel-heading">
+            Últimas mensagens <a style="float: right">Ver todas</a>
         </div>
         <div class="panel-body" style="overflow-y: scroll; height: 300px">
             @Html.ListaDeMensagemDoChamado(Model.Mensagens, Model.ColaboradorId, Model.NomeColaborador, Model.NomeAnalista)
@@ -75,10 +79,37 @@
 
 </div>
 
+<div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Nova Mensagem</h4>
+                </div>
+                <form class="novaMensagemForm">
+                    @Html.HiddenFor(model => model.NovaMensagem.ChamadoId, new { id = "chamadoID" })
+                    <div class="modal-body">
+                        @Html.TextAreaFor(model => model.NovaMensagem.Texto, new { @class = "textarea-mensagem" })
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
     .btn-custom-dropdown {
-        border-radius: 0px;
+        -ms-border-radius: 0;
+        border-radius: 0;
+        -ms-border-top-left-radius: 5px;
         border-top-left-radius: 5px;
+        -ms-border-bottom-left-radius: 5px;
         border-bottom-left-radius: 5px;
     }
 
@@ -102,4 +133,37 @@
     .identificacao-usuario > span {
         font-weight: bold;
     }
+
+    .textarea-mensagem {
+        width: 500px;
+        height: 200px;
+    }
 </style>
+
+<script>
+    $(function () {
+
+        var novaMensagem = {
+            ChamadoId: "",
+            Texto: ""
+        };
+
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').focus();
+        });
+
+        $('.novaMensagemForm').submit(function () {
+
+            novaMensagem.ChamadoId = $('#chamadoID').val();
+            novaMensagem.Texto = $('.textarea-mensagem').val();
+            alert(window.location.host + "/Chamados/NovaMensagem");
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/Chamados/NovaMensagem",
+                data: novaMensagem
+            });
+        });
+    });
+</script>
+
+

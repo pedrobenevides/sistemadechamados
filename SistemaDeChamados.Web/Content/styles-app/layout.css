@@ -54,3 +54,10 @@ hr {
 .btn-groupped {
     margin-right: 2px;
 }
+
+textarea {
+    -moz-resize: none;
+    -ms-resize: none;
+    -o-resize: none;
+    resize: none;
+}
