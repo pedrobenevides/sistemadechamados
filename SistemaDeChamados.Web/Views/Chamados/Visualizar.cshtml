@@ -94,7 +94,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary btn-send">Enviar</button>
+                        <button type="button" class="btn btn-primary btn-send">Enviar<i class="fa fa-spinner fa-spin" style="margin-left: 10px"></i></button>
                     </div>
                 </form>
 
@@ -143,6 +143,8 @@
 <script>
     $(function () {
 
+        var loadingSpinner = $('.fa-spinner');
+        loadingSpinner.hide();
         var modalMensagem = $('#mensagemModal');
 
         var novaMensagem = {
@@ -160,7 +162,14 @@
             $('#mensagemModal textarea').val('');
         }
 
+        function exibirLoading() {
+            $('.btn-send').prop('disabled', true);
+            loadingSpinner.show();
+        }
+
         $('.btn-send').click(function () {
+            exibirLoading();
+
             novaMensagem.ChamadoId = $('#chamadoID').val();
             novaMensagem.Texto = $('.textarea-mensagem').val();
             $.ajax({
@@ -169,13 +178,15 @@
                 data: novaMensagem,
                 statusCode: {
                     200: function (data) {
+
                         var listadeMsg = $('.list-group');
                         if (listadeMsg.length === 0) {
                             $('.text-center').first().remove();
                             $('#panelMsg').append('<ul class=\"list-group\">');
                         }
 
-                        $('.list-group').append('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + '</span></li></ul></li>');
+                        loadingSpinner.hide();
+                        listadeMsg.append('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + '</span></li></ul></li>');
                         fecharModal();
                     }
                 }

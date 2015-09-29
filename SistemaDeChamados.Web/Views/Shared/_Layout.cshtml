@@ -11,10 +11,15 @@
     @Styles.Render("~/bundles/bootstrap")
     @Styles.Render("~/bundles/bootstrapStyle")
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    @RenderSection("Scripts", false)
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryValidate")
     @Scripts.Render("~/bundles/layout")
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs" type="text/javascript"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -50,16 +55,12 @@
             @Html.Action("Menu", "Base")
             <div class="col-sm-9 col-md-10 main">
                 <ol class="breadcrumb" style="margin-top: 20px">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/Home">Home</a></li>
                 </ol>
                 @RenderBody()
             </div>
         </div>
-        @RenderSection("Scripts", false)
-        <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
-        <script src="/signalr/hubs" type="text/javascript"></script>
-        <script src="~/Scripts/toastr.min.js"></script>
-        <link href="~/Content/toastr.min.css" rel="stylesheet" />
+        
         <script>
             $(function () {
                 var sistemaHub = $.connection.sistemaHub;
@@ -67,23 +68,7 @@
                 sistemaHub.client.addNewMessage = function (nome, mensagem) {
                     toastr.success(mensagem, 'Teste');
                 };
-
                 $.connection.hub.start();
-
-                var urlPathArray = window.location.pathname.split("/");
-                var controller = urlPathArray[1];
-                var action = urlPathArray[2];
-
-                if (action === undefined)
-                    action = "Index";
-
-                if (controller !== "Home") {
-
-                    $('ol').append('<li><a href="#">' + controller + '</a></li>');
-                    $('ol').append('<li>' + action + '</li>');
-                }
-
-
             });
         </script>
     </div>
