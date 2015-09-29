@@ -60,6 +60,7 @@ namespace SistemaDeChamados.Application.ViewModels
         public long Id { get; set; }
         public DateTime DataDeCriacao { get; set; }
         public string Titulo { get; set; }
+        public string Status { get; set; }
         public string Descricao { get; set; }
         public long ColaboradorId { get; set; }
         public string NomeAnalista { get; set; }

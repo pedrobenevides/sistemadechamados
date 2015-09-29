@@ -4,5 +4,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
 {
     public interface IArquivoRepository : IRepositoryBase<Arquivo>
     {
+        Arquivo Obter
     }
 }

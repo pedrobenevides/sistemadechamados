@@ -13,7 +13,10 @@ namespace SistemaDeChamados.Domain.Entities
         }
 
         protected Mensagem()
-        { }
+        {
+            DataDeCriacao = DateTime.Now;
+            
+        }
 
         public long Id { get; private set; }
         public DateTime DataDeCriacao { get; private set; }

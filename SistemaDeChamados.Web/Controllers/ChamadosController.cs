@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.SessionState;
@@ -73,11 +74,11 @@ namespace SistemaDeChamados.Web.Controllers
             novaMensagem.UsuarioId = UsuarioId;
             mensagemAppService.Create(novaMensagem);
             novaMensagem.NomeUsuario = NomeUsuario;
+            novaMensagem.DataDeCriacao = DateTime.Now.ToString();
 
             return Json(novaMensagem, JsonRequestBehavior.AllowGet);
         }
-
-
+        
         private void PreencherSetoresNoViewBag(long? selectedValue = null)
         {
             ViewBag.Setores = new SelectList(

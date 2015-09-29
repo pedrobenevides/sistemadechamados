@@ -19,16 +19,17 @@ namespace SistemaDeChamados.Web.Helpers
             foreach (var mensgem in mensagens)
             {
                 var nome = colaboradorId == mensgem.UsuarioId ? nomeColaborador : nomeAnalista;
+                var cssClassMsgLida = mensgem.DataDaLeitura.HasValue ? "msg-lida" : "msg-naolida";
 
                 stringBuilder.Append(
                     string.Format(
-                        "<li class=\"list-group-item\">{0}" +
+                        "<li class=\"list-group-item {0}\">{1}" +
                         "   <ul class=\"list-inline\">" +
                         "       <li class=\"identificacao-usuario\">Por: " +
-                        "           <span>{1}</span>" +
+                        "           <span>{2} - {3}</span>" +
                         "       </li>" +
                         "   </ul>"+
-                        "</li>", mensgem.Texto, nome));
+                        "</li>", cssClassMsgLida, mensgem.Texto, nome, mensgem.DataDeCriacao));
             }
 
             return MvcHtmlString.Create(stringBuilder.ToString());
