@@ -1,4 +1,6 @@
-﻿using SistemaDeChamados.Domain.Entities;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -12,6 +14,11 @@ namespace SistemaDeChamados.Domain.Services
             :base(mensagemRepository)
         {
             this.mensagemRepository = mensagemRepository;
+        }
+
+        public async Task<IEnumerable<Mensagem>> Obter5UltimasAsync(long chamadoId)
+        {
+            return await mensagemRepository.Obter5UltimasAsync(chamadoId);
         }
     }
 }

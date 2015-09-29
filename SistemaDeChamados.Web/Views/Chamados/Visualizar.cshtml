@@ -6,7 +6,7 @@
 <div class="col-sm-6">
 
     <div class="col-xs-12">
-        <h2>@Model.Titulo <span class="label label-default label-status">@Model.Status</span></h2> 
+        <h2>@Model.Titulo <span class="label label-default label-status">@Model.Status</span></h2>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
             Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
@@ -27,7 +27,7 @@
                 <a href="#">@Model.DataDeCriacao</a>
             </li>
             <li>
-                <a href="#"><i class="glyphicon glyphicon-comment"></i> 2 Mensagens</a>
+                <a href="#"><i class="glyphicon glyphicon-comment"></i> @Model.NumeroDeMensagens Mensagen(s)</a>
             </li>
             <li>
                 Criado por: @Model.NomeColaborador
@@ -61,7 +61,7 @@
                     <tr>
                         @foreach (var anexo in @Model.Arquivos)
                         {
-                            <td><a href="@Url.Action("DownloadAnexo", "Chamados", new {filename= @anexo.Filename, chamadoId = @Model.Id})">@anexo.Filename</a></td>
+                        <td><a href="@Url.Action("DownloadAnexo", "Chamados", new {filename= @anexo.Filename, chamadoId = @Model.Id})">@anexo.Filename</a></td>
                         }
                     </tr>
                 </tbody>
@@ -79,122 +79,25 @@
 
 </div>
 
-<div>
-    <div class="modal fade" id="mensagemModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Nova Mensagem</h4>
-                </div>
-                <form class="novaMensagemForm">
-                    @Html.HiddenFor(model => model.NovaMensagem.ChamadoId, new { id = "chamadoID" })
-                    <div class="modal-body">
-                        @Html.TextAreaFor(model => model.NovaMensagem.Texto, new { @class = "textarea-mensagem" })
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary btn-send">Enviar<i class="fa fa-spinner fa-spin" style="margin-left: 10px"></i></button>
-                    </div>
-                </form>
 
+<div class="modal fade" id="mensagemModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Nova Mensagem</h4>
             </div>
+            <form class="novaMensagemForm">
+                @Html.HiddenFor(model => model.NovaMensagem.ChamadoId, new { id = "chamadoID" })
+                <div class="modal-body">
+                    @Html.TextAreaFor(model => model.NovaMensagem.Texto, new { @class = "textarea-mensagem" })
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary btn-send">Enviar<i class="fa fa-spinner fa-spin" style="margin-left: 10px"></i></button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
-
-<style>
-    .btn-custom-dropdown {
-        -ms-border-radius: 0;
-        border-radius: 0;
-        -ms-border-top-left-radius: 5px;
-        border-top-left-radius: 5px;
-        -ms-border-bottom-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    }
-
-    .div-chamado-actions {
-        margin-top: 25px;
-        margin-left: 70px;
-    }
-
-    .icon-chamado-status {
-        margin-left: 5px;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .identificacao-usuario {
-        font-size: 8pt;
-    }
-
-    .identificacao-usuario > span {
-        font-weight: bold;
-    }
-
-    .textarea-mensagem {
-        width: 500px;
-        height: 200px;
-    }
-
-    .label-status {
-        font-size: 40%;
-        margin-left: 20px
-    }
-
-</style>
-
-<script src="~/Scripts/DataSources/Base.js"></script>
-<script>
-    $(function () {
-
-        var dataSource = new baseDataSource();
-        var modalMensagem = $('#mensagemModal');
-        var loadingSpinner = $('.fa-spinner');
-        var listadeMsg = $('.list-group li:eq(0)');
-
-        var novaMensagem = {
-            ChamadoId: "",
-            Texto: "",
-            NomeUsuario: "",
-            DataDeCriacao: ""
-        };
-
-        loadingSpinner.hide();
-
-        modalMensagem.on('shown.bs.modal', function () {
-            $('#myInput').focus();
-        });
-
-        function fecharModal() {
-            modalMensagem.modal('hide');
-            $('#mensagemModal textarea').val('');
-            loadingSpinner.hide();
-        }
-
-        function exibirLoading() {
-            $('.btn-send').prop('disabled', true);
-            loadingSpinner.show();
-        }
-
-        $('.btn-send').click(function () {
-            exibirLoading();
-
-            novaMensagem.ChamadoId = $('#chamadoID').val();
-            novaMensagem.Texto = $('.textarea-mensagem').val();
-
-            dataSource.postRequest(window.location.origin + "/Chamados/NovaMensagem", novaMensagem, function(data) {
-                if (listadeMsg.length === 0) {
-                    $('.text-center').first().remove();
-                    $('#panelMsg').append('<ul class=\"list-group\">');
-                }
-                listadeMsg.before('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + ' - ' + data.DataDeCriacao + '</span></li></ul></li>');
-                fecharModal();
-            });
-        });
-    });
-</script>
-
-

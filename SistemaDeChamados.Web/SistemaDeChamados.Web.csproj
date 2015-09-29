@@ -199,6 +199,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\styles-app\chamados\criacao-chamado.css" />
+    <Content Include="Content\styles-app\chamados\visualizar-chamado.css" />
     <Content Include="Content\styles-app\customBootstrap.css" />
     <Content Include="Content\styles-app\home\index.css" />
     <Content Include="Content\styles-app\layout.css" />
@@ -252,6 +253,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chamados\chamados.js" />
+    <Content Include="Scripts\Chamados\visualizar.js" />
     <Content Include="Scripts\DataSources\Base.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

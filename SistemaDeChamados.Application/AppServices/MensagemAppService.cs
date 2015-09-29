@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Services;
@@ -52,6 +53,11 @@ namespace SistemaDeChamados.Application.AppServices
         {
             var mensagem = mensagemService.GetById(id);
             return Mapper.Map<Mensagem, MensagemVM>(mensagem);
+        }
+
+        public async Task<IEnumerable<MensagemVM>> Obter5UltimasAsync(long chamadoId)
+        {
+            return await Mapper.Map<Task<IEnumerable<MensagemVM>>>(mensagemService.Obter5UltimasAsync(chamadoId));
         }
     }
 }
