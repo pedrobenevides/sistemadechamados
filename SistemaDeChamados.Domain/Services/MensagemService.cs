@@ -20,5 +20,10 @@ namespace SistemaDeChamados.Domain.Services
         {
             return await mensagemRepository.Obter5UltimasAsync(chamadoId);
         }
+
+        public IEnumerable<Mensagem> Obter5Ultimas(long chamadoId)
+        {
+            return mensagemRepository.Obter5Ultimas(chamadoId);
+        }
     }
 }

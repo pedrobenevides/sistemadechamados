@@ -12,5 +12,7 @@ namespace SistemaDeChamados.Application.Interface
         void Delete(long id);
         MensagemVM GetById(long id);
         Task<IEnumerable<MensagemVM>> Obter5UltimasAsync(long chamadoId);
+        IEnumerable<MensagemVM> Obter5Ultimas(long chamadoId);
+
     }
 }

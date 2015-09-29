@@ -72,8 +72,10 @@
         <div class="panel-heading">
             Últimas mensagens <a style="float: right">Ver todas</a>
         </div>
-        <div class="panel-body" id="panelMsg" style="overflow-y: scroll; height: 300px">
-            @Html.ListaDeMensagemDoChamado(Model.Mensagens, Model.ColaboradorId, Model.NomeColaborador, Model.NomeAnalista)
+        <div class="panel-body" id="panelMsg">
+            <ul class="list-group">
+            </ul>
+            <div class="spinning-div"><i class="fa fa-cog fa-spin fa-4x fa-fw margin-bottom"></i></div>
         </div>
     </div>
 

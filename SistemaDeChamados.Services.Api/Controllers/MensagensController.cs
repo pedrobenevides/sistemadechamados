@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using SistemaDeChamados.Application.Interface;
@@ -19,6 +22,12 @@ namespace SistemaDeChamados.Services.Api.Controllers
         public async Task<IEnumerable<MensagemVM>> ObterMensagens(long chamadoId)
         {
             return await mensagemAppService.Obter5UltimasAsync(chamadoId);
+        }
+
+        [HttpGet]
+        public IEnumerable<MensagemVM> ObterCinco(long chamadoId)
+        {
+            return mensagemAppService.Obter5Ultimas(chamadoId);
         }
     }
 }

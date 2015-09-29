@@ -7,5 +7,7 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
     public interface IMensagemService : IServiceBase<Mensagem>
     {
         Task<IEnumerable<Mensagem>> Obter5UltimasAsync(long chamadoId);
+        IEnumerable<Mensagem> Obter5Ultimas(long chamadoId);
+
     }
 }

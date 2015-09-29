@@ -1,39 +1,50 @@
 ﻿.btn-custom-dropdown {
-        -ms-border-radius: 0;
-        border-radius: 0;
-        -ms-border-top-left-radius: 5px;
-        border-top-left-radius: 5px;
-        -ms-border-bottom-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    }
+    -ms-border-radius: 0;
+    border-radius: 0;
+    -ms-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+    -ms-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
 
-    .div-chamado-actions {
-        margin-top: 25px;
-        margin-left: 70px;
-    }
+.div-chamado-actions {
+    margin-top: 25px;
+    margin-left: 70px;
+}
 
-    .icon-chamado-status {
-        margin-left: 5px;
-    }
+.icon-chamado-status {
+    margin-left: 5px;
+}
 
-    .text-center {
-        text-align: center;
-    }
+.text-center {
+    text-align: center;
+}
 
-    .identificacao-usuario {
-        font-size: 8pt;
-    }
+.identificacao-usuario {
+    font-size: 8pt;
+}
 
     .identificacao-usuario > span {
         font-weight: bold;
     }
 
-    .textarea-mensagem {
-        width: 500px;
-        height: 200px;
-    }
+.textarea-mensagem {
+    width: 500px;
+    height: 200px;
+}
 
-    .label-status {
-        font-size: 40%;
-        margin-left: 20px
-    }
+.label-status {
+    font-size: 40%;
+    margin-left: 20px;
+}
+
+.spinning-div {
+    margin-left: 150px;
+    margin-top: 90px;
+}
+
+#panelMsg {
+    overflow-y: scroll;
+    height: 300px;
+    background-color: #b0c4de;
+}

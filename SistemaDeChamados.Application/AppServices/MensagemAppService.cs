@@ -59,5 +59,10 @@ namespace SistemaDeChamados.Application.AppServices
         {
             return await Mapper.Map<Task<IEnumerable<MensagemVM>>>(mensagemService.Obter5UltimasAsync(chamadoId));
         }
+
+        public IEnumerable<MensagemVM> Obter5Ultimas(long chamadoId)
+        {
+            return Mapper.Map<IEnumerable<MensagemVM>>(mensagemService.Obter5Ultimas(chamadoId));
+        }
     }
 }

@@ -2,17 +2,17 @@
 
     var dataSource = new baseDataSource();
     var modalMensagem = $('#mensagemModal');
-    var loadingSpinner = $('.fa-spinner');
-    var listadeMsg = $('.list-group li:eq(0)');
+    var btnLoadingSpinner = $('.fa-spinner');
+    var listadeMsg = $('.list-group');
 
     var novaMensagem = {
-        ChamadoId: "",
+        ChamadoId: $('#chamadoID').val(),
         Texto: "",
         NomeUsuario: "",
         DataDeCriacao: ""
     };
 
-    loadingSpinner.hide();
+    btnLoadingSpinner.hide();
 
     modalMensagem.on('shown.bs.modal', function () {
         $('#myInput').focus();
@@ -21,12 +21,12 @@
     function fecharModal() {
         modalMensagem.modal('hide');
         $('#mensagemModal textarea').val('');
-        loadingSpinner.hide();
+        btnLoadingSpinner.hide();
     }
 
     function exibirLoading() {
         $('.btn-send').prop('disabled', true);
-        loadingSpinner.show();
+        btnLoadingSpinner.show();
     }
 
     function montagemInicialListaDeMensagens() {
@@ -34,18 +34,22 @@
         $('#panelMsg').append('<ul class=\"list-group\">');
     }
 
-    (function carregarMensagens() {
-        dataSource.getRequest('http://localhost:6084/api/Mensagens/ObterMensagens/', novaMensagem.ChamadoId, function(mensagens) {
+    function prepararDivDeMensagens() {
+        $('.panel-body').css('background-color', 'white');
+        $('.spinning-div').hide();
+    }
 
+    (function carregarMensagens() {
+        dataSource.getRequest('http://' + window.location.hostname + ':6084/api/Mensagens/ObterCinco/?chamadoId=', novaMensagem.ChamadoId, function (mensagens) {
+
+            prepararDivDeMensagens();
             montagemInicialListaDeMensagens();
             mensagens.forEach(function(data) {
-                listadeMsg.before('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + ' - ' + data.DataDeCriacao + '</span></li></ul></li>');
+                listadeMsg.append('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + ' - ' + data.DataDeCriacao + '</span></li></ul></li>');
             });
 
         });
     })();
-
-
 
     $('.btn-send').click(function () {
         exibirLoading();

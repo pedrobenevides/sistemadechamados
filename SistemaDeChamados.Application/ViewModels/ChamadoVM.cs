@@ -67,7 +67,6 @@ namespace SistemaDeChamados.Application.ViewModels
         public string NomeColaborador { get; set; }
         public int NumeroDeMensagens { get; set; }
         public IEnumerable<Arquivo> Arquivos { get; set; }
-        public virtual IList<Mensagem> Mensagens { get; set; }
         public MensagemVM NovaMensagem { get; set; }
     }
 }

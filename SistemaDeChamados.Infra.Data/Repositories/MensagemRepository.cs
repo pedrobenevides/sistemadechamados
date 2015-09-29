@@ -15,5 +15,10 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         {
             return await Mensagens.OrderByDescending(m => m.DataDeCriacao).Take(5).ToListAsync();
         }
+
+        public IEnumerable<Mensagem> Obter5Ultimas(long chamadoId)
+        {
+            return Mensagens.OrderByDescending(m => m.DataDeCriacao).Take(5);
+        }
     }
 }
