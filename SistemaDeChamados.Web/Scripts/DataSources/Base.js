@@ -21,4 +21,15 @@
             }
         });
     }
+
+    this.deleteRequest = function (url, id, success, error) {
+        $.ajax({
+            url: url + '/?id=' + id,
+            type: 'DELETE',
+            statusCode: {
+                200: function (data) { success(data); },
+                500: function (erro) { error(erro); }
+            }
+        });
+    }
 };

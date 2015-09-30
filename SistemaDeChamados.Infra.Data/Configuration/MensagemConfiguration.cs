@@ -7,7 +7,6 @@ namespace SistemaDeChamados.Infra.Data.Configuration
     {
         public MensagemConfiguration()
         {
-            HasRequired(m => m.Chamado);
             Property(m => m.Texto).IsRequired().HasMaxLength(1000);
             Property(m => m.DataDeCriacao).IsRequired();
         }

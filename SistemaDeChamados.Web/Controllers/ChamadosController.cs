@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -62,10 +63,19 @@ namespace SistemaDeChamados.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Visualizar(long id)
         {
             var chamado = chamadoAppService.GetCompleteById(id);
             return View(chamado);
+        }
+
+        [HttpDelete]
+        public JsonResult Excluir(long id)
+        {
+            chamadoAppService.Delete(id);
+
+            return Json(HttpStatusCode.OK, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

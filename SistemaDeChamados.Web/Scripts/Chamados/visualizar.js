@@ -22,10 +22,11 @@
         modalMensagem.modal('hide');
         $('#mensagemModal textarea').val('');
         btnLoadingSpinner.hide();
+        $('.btn-send').prop('disabled', false);
     }
 
-    function exibirLoading() {
-        $('.btn-send').prop('disabled', true);
+    function exibirLoading(cssClass) {
+        $(cssClass).prop('disabled', true);
         btnLoadingSpinner.show();
     }
 
@@ -52,7 +53,7 @@
     })();
 
     $('.btn-send').click(function () {
-        exibirLoading();
+        exibirLoading('.btn-send');
 
         novaMensagem.ChamadoId = $('#chamadoID').val();
         novaMensagem.Texto = $('.textarea-mensagem').val();
@@ -64,5 +65,14 @@
             listadeMsg.before('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + ' - ' + data.DataDeCriacao + '</span></li></ul></li>');
             fecharModal();
         });
+    });
+
+    $('.btn-excluir').click(function() {
+        exibirLoading('.btn-send');
+
+        dataSource.deleteRequest(window.location.origin + "/Chamados/Excluir", $('#chamadoID').val(), function() {
+            window.location.href = window.location.origin + "/Chamados";
+        });
+
     });
 });

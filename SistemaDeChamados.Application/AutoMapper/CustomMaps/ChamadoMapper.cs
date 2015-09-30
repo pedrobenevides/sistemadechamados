@@ -35,9 +35,8 @@ namespace SistemaDeChamados.Application.AutoMapper.CustomMaps
 
             Mapper.CreateMap<Chamado, VisualizarChamadoVM>()
                 .ForMember(m => m.NomeColaborador, exp => exp.ResolveUsing(ObterNomeDoColaborador))
-                //.ForMember(m => m.NumeroDeMensagens, exp => exp.ResolveUsing(ObterNumeroDeMensagensDoChamado))
+                .ForMember(m => m.NumeroDeMensagens, exp => exp.ResolveUsing(ObterNumeroDeMensagensDoChamado))
                 .ForMember(m => m.Status, exp => exp.MapFrom(c => c.StatusDoChamado.ToString()))
-                //.ForMember(m => m.Mensagens, exp => exp.ResolveUsing(Obter5UltimasMensagens))
                 .ForMember(m => m.NomeAnalista, exp => exp.ResolveUsing(ObterNomeDoAnalista));
         }
 
@@ -54,14 +53,9 @@ namespace SistemaDeChamados.Application.AutoMapper.CustomMaps
             return analistaAppService.ObterNomePorId(chamado.Categoria.AnalistaId.Value);
         }
 
-        //private static object ObterNumeroDeMensagensDoChamado(Chamado chamado)
-        //{
-        //    return chamado.Mensagens.Count;
-        //}
-
-        //private static object Obter5UltimasMensagens(Chamado chamado)
-        //{
-        //    return chamado.Mensagens.OrderByDescending(m => m.DataDeCriacao).Take(5);
-        //}
+        private static object ObterNumeroDeMensagensDoChamado(Chamado chamado)
+        {
+            return chamado.Mensagens.Count;
+        }
     }
 }

@@ -47,7 +47,7 @@
                 <li><a href="#">Resolvido</a></li>
                 <li><a href="#">Não reproduzido</a></li>
             </ul>
-            <button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#apagarChamadoModal"><i class="fa fa-times"></i></button>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mensagemModal"><i class="fa fa-envelope"></i></button>
             <button type="button" class="btn btn-warning">Encerrar</button>
 
@@ -70,7 +70,7 @@
     </div>
     <div class="panel panel-default" style="margin-top: 10px;">
         <div class="panel-heading">
-            Últimas mensagens <a style="float: right">Ver todas</a>
+            Últimas mensagens <a style="float: right" href="#">Ver todas</a>
         </div>
         <div class="panel-body" id="panelMsg">
             <ul class="list-group">
@@ -90,13 +90,35 @@
                 <h4 class="modal-title">Nova Mensagem</h4>
             </div>
             <form class="novaMensagemForm">
-                @Html.HiddenFor(model => model.NovaMensagem.ChamadoId, new { id = "chamadoID" })
+                @Html.HiddenFor(model => model.NovaMensagem.ChamadoId, new {id = "chamadoID"})
                 <div class="modal-body">
-                    @Html.TextAreaFor(model => model.NovaMensagem.Texto, new { @class = "textarea-mensagem" })
+                    @Html.TextAreaFor(model => model.NovaMensagem.Texto, new {@class = "textarea-mensagem"})
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-primary btn-send">Enviar<i class="fa fa-spinner fa-spin" style="margin-left: 10px"></i></button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="apagarChamadoModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Excluir Chamado</h4>
+            </div>
+            <form class="novaMensagemForm">
+                @Html.HiddenFor(model => model.NovaMensagem.ChamadoId, new { id = "chamadoID" })
+                <div class="modal-body">
+                    <h3>Você tem certeza que deseja excluir o chamado ?</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary btn-excluir">Enviar<i class="fa fa-spinner fa-spin" style="margin-left: 10px"></i></button>
                 </div>
             </form>
 
