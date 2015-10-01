@@ -114,11 +114,11 @@
             <form class="novaMensagemForm">
                 @Html.HiddenFor(model => model.NovaMensagem.ChamadoId, new { id = "chamadoID" })
                 <div class="modal-body">
-                    <h3>Você tem certeza que deseja excluir o chamado ?</h3>
+                    <p>Essa operação não pode ser desfeita, ao realizar a exclusão de um chamado, você estará excluindo também todo o histórico de mensagens e seus anexos. Você tem certeza que deseja excluir esse chamado?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary btn-excluir">Enviar<i class="fa fa-spinner fa-spin" style="margin-left: 10px"></i></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger btn-excluir">Excluir<i class="fa fa-spinner fa-spin" style="margin-left: 10px"></i></button>
                 </div>
             </form>
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.SessionState;
 using SistemaDeChamados.Application.Interface;
@@ -68,14 +66,6 @@ namespace SistemaDeChamados.Web.Controllers
         {
             var chamado = chamadoAppService.GetCompleteById(id);
             return View(chamado);
-        }
-
-        [HttpDelete]
-        public JsonResult Excluir(long id)
-        {
-            chamadoAppService.Delete(id);
-
-            return Json(HttpStatusCode.OK, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

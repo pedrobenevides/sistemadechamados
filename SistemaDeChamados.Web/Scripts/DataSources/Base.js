@@ -24,7 +24,7 @@
 
     this.deleteRequest = function (url, id, success, error) {
         $.ajax({
-            url: url + '/?id=' + id,
+            url: url + id,
             type: 'DELETE',
             statusCode: {
                 200: function (data) { success(data); },

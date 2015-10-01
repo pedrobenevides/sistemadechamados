@@ -70,7 +70,7 @@
     $('.btn-excluir').click(function() {
         exibirLoading('.btn-send');
 
-        dataSource.deleteRequest(window.location.origin + "/Chamados/Excluir", $('#chamadoID').val(), function() {
+        dataSource.deleteRequest('http://' + window.location.hostname + ':6084/api/Chamados/Excluir?id=', $('#chamadoID').val(), function() {
             window.location.href = window.location.origin + "/Chamados";
         });
 
