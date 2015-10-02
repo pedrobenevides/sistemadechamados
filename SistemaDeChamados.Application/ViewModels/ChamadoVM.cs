@@ -68,5 +68,6 @@ namespace SistemaDeChamados.Application.ViewModels
         public int NumeroDeMensagens { get; set; }
         public IEnumerable<Arquivo> Arquivos { get; set; }
         public MensagemVM NovaMensagem { get; set; }
+        public long UsuarioLogadoId { get; set; }
     }
 }

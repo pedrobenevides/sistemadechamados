@@ -94,5 +94,12 @@ namespace SistemaDeChamados.Application.AppServices
         {
             chamadoService.AlterarStatus(chamadoId, usuarioId, statusNovo);
         }
+
+        public async Task AlterarStatusAsync(long id, long usuarioId, string status)
+        {
+            BeginTransaction();
+            await chamadoService.AlterarStatusAsync(id, usuarioId, status);
+            await CommitAsync();
+        }
     }
 }

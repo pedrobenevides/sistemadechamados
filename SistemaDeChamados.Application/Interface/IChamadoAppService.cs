@@ -16,5 +16,6 @@ namespace SistemaDeChamados.Application.Interface
         Task<IList<ChamadoIndexVM>> Obter5RecentesPorUsuarioAsync(long usuarioId);
         Task<HomeVM> ObterHomeVMAsync(long usuarioId);
         void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo);
+        Task AlterarStatusAsync(long id, long usuarioId, string status);
     }
 }

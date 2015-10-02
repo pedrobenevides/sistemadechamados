@@ -102,6 +102,7 @@
     <Compile Include="Interface\Services\IServiceLocator.cs" />
     <Compile Include="Services\CustomServiceLocator.cs" />
     <Compile Include="ViewModels\AnalistaVM.cs" />
+    <Compile Include="ViewModels\Api\Chamados\AlterarStatusVM.cs" />
     <Compile Include="ViewModels\CategoriaVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\PaggingVM.cs" />

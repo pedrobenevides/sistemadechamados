@@ -26,9 +26,9 @@ namespace SistemaDeChamados.Application
             uow.SaveChanges();
         }
 
-        public Task CommitAsync()
+        public async Task CommitAsync()
         {
-            return uow.SaveChangesAsync();
+            await uow.SaveChangesAsync();
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using SistemaDeChamados.Application.Interface;
+using SistemaDeChamados.Application.ViewModels.Api.Chamados;
 
 namespace SistemaDeChamados.Services.Api.Controllers
 {
@@ -18,9 +19,26 @@ namespace SistemaDeChamados.Services.Api.Controllers
         [HttpDelete]
         public IHttpActionResult Excluir(long id)
         {
+            var context = Request.Properties["MS_HttpContext"] as HttpContext;
+
             try
             {
                 chamadoAppService.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IHttpActionResult> AlterarStatusAsync(AlterarStatusVM novoStatus)
+        {
+            try
+            {
+                await chamadoAppService.AlterarStatusAsync(novoStatus.Id, novoStatus.UsuarioId, novoStatus.Status);
             }
             catch (Exception ex)
             {

@@ -51,6 +51,7 @@
     <Compile Include="Exceptions\CriptografadorException.cs" />
     <Compile Include="Exceptions\ServiceException.cs" />
     <Compile Include="Exceptions\Usuario\UsuarioNaoEncontradoException.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Interfaces\ICalculateDate.cs" />
     <Compile Include="Enums\StatusDoChamado.cs" />
     <Compile Include="Interfaces\Repositories\IAnalistaRepository.cs" />

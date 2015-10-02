@@ -65,6 +65,8 @@ namespace SistemaDeChamados.Web.Controllers
         public ActionResult Visualizar(long id)
         {
             var chamado = chamadoAppService.GetCompleteById(id);
+            chamado.UsuarioLogadoId = UsuarioId;
+
             return View(chamado);
         }
 

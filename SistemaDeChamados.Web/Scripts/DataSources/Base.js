@@ -32,4 +32,16 @@
             }
         });
     }
+
+    this.putRequest = function (url, model, success, error) {
+        $.ajax({
+            url: url,
+            type: 'PUT',
+            data: model,
+            statusCode: {
+                200: function (data) { success(data); },
+                500: function (erro) { error(erro); }
+            }
+        });
+    }
 };

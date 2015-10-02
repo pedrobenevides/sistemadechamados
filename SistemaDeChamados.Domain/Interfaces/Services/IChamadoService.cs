@@ -12,5 +12,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         Task<List<Chamado>> Obter5EmAbertoAsync(long usuarioId);
         void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo);
         Task CreateComAnexosAsync(Chamado chamado);
+        Task AlterarStatusAsync(long id, long usuarioId, string status);
     }
 }

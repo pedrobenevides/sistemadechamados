@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Enums;
 using SistemaDeChamados.Domain.Exceptions;
+using SistemaDeChamados.Domain.Extensions;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -48,6 +49,19 @@ namespace SistemaDeChamados.Domain.Services
             
             if (chamado.Arquivos.Any())
                 await arquivoService.SalvarArquivosFisicos(chamado.Arquivos, chamadoSalvo.Id);
+        }
+
+        public async Task AlterarStatusAsync(long id, long usuarioId, string status)
+        {
+            var chamado = await chamadoRepository.GetByIdAsync(id);
+
+            await Task.Run(() =>
+            {
+                if (chamado.ColaboradorId != usuarioId && chamado.Categoria.AnalistaId != usuarioId)
+                    throw new ChamadosException("Usuário não tem permissão de alterar esse chamado.");
+
+                chamado.AlterarStatus(status.ToEnum<StatusDoChamado>());
+            });
         }
     }
 }

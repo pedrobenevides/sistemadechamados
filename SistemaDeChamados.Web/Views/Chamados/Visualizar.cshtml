@@ -4,7 +4,7 @@
 @Styles.Render("~/bundles/chamados")
 
 <div class="col-sm-6">
-
+    <input type="hidden" id="key" value="@Model.UsuarioLogadoId"/>
     <div class="col-xs-12">
         <h2>@Model.Titulo <span class="label label-default label-status">@Model.Status</span></h2>
         <p>
@@ -42,10 +42,10 @@
                 <i class="fa fa-pencil-square-o"></i> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#">Aberto<i class="glyphicon glyphicon-ok icon-chamado-status"></i></a></li>
-                <li><a href="#">Suspenso</a></li>
-                <li><a href="#">Resolvido</a></li>
-                <li><a href="#">Não reproduzido</a></li>
+                <li><a class="chamado-status" id="Aberto" href="#">Aberto</a></li>
+                <li><a class="chamado-status" id="Suspenso" href="#">Suspenso</a></li>
+                <li><a class="chamado-status" id="Resolvido" href="#">Resolvido</a></li>
+                <li><a class="chamado-status" id="NaoReproduzido" href="#">Não reproduzido</a></li>
             </ul>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#apagarChamadoModal"><i class="fa fa-times"></i></button>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mensagemModal"><i class="fa fa-envelope"></i></button>
@@ -80,7 +80,6 @@
     </div>
 
 </div>
-
 
 <div class="modal fade" id="mensagemModal">
     <div class="modal-dialog">
