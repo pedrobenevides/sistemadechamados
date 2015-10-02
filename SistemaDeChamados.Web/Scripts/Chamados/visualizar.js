@@ -75,6 +75,12 @@
             }
             listadeMsg.before('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + ' - ' + data.DataDeCriacao + '</span></li></ul></li>');
             fecharModal();
+
+            var numeroDeMensagens = parse.Int($('.numero-mensagens').text);
+            numeroDeMensagens = ++numeroDeMensagens;
+
+            $('.numero-mensagens').text(numeroDeMensagens);
+
         });
     });
 

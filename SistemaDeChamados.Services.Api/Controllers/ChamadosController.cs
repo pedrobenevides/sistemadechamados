@@ -19,8 +19,6 @@ namespace SistemaDeChamados.Services.Api.Controllers
         [HttpDelete]
         public IHttpActionResult Excluir(long id)
         {
-            var context = Request.Properties["MS_HttpContext"] as HttpContext;
-
             try
             {
                 chamadoAppService.Delete(id);
