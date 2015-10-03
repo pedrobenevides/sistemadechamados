@@ -43,6 +43,13 @@
         $('.spinning-div').hide();
     }
 
+    function incrementarNumero(valor, classElementoHtml) {
+        var numeroDeMensagens = parseInt(valor);
+        numeroDeMensagens = ++numeroDeMensagens;
+
+        $(classElementoHtml).text(numeroDeMensagens);
+    }
+
     //OnLoad
     (function carregarMensagens() {
         dataSource.getRequest('http://' + window.location.hostname + ':6084/api/Mensagens/ObterCinco/?chamadoId=', novaMensagem.ChamadoId, function (mensagens) {
@@ -74,13 +81,9 @@
                 montagemInicialListaDeMensagens();
             }
             listadeMsg.before('<li class=\"list-group-item\">' + data.Texto + '<ul class=\"list-inline\"> <li class=\"identificacao-usuario\">Por: <span>' + data.NomeUsuario + ' - ' + data.DataDeCriacao + '</span></li></ul></li>');
+
             fecharModal();
-
-            var numeroDeMensagens = parse.Int($('.numero-mensagens').text);
-            numeroDeMensagens = ++numeroDeMensagens;
-
-            $('.numero-mensagens').text(numeroDeMensagens);
-
+            incrementarNumero($('.numero-mensagens').text(), '.numero-mensagens');
         });
     });
 
