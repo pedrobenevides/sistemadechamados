@@ -78,6 +78,14 @@ namespace SistemaDeChamados.Web.Controllers
             novaMensagem.NomeUsuario = NomeUsuario;
             novaMensagem.DataDeCriacao = DateTime.Now.ToString();
 
+            var chamado = chamadoAppService.GetById(novaMensagem.ChamadoId);
+            var usuarioASerNotificado = chamado.UsuarioCriadorId == UsuarioId
+                ? chamadoAppService.ObterIdDoAnalistaDesseChamado(novaMensagem.ChamadoId)
+                : UsuarioId;
+
+            signalRHub.AtualizarMsgBadge(mensagemAppService.ObterNumeroDeMensagensNaoLidas(usuarioASerNotificado),
+                User.Identity.Name);
+
             return Json(novaMensagem, JsonRequestBehavior.AllowGet);
         }
         

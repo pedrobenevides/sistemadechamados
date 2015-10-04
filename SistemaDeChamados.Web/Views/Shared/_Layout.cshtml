@@ -37,7 +37,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#contact"><i class="fa fa-bell-o"></i></a></li>
-                    <li><a href="#contact"><i class="fa fa-envelope"></i></a></li>
+                    @Html.Action("MensagensNaoLidas","Base")
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="dropdown">
@@ -69,6 +69,11 @@
                 sistemaHub.client.addNewMessage = function (nome, mensagem) {
                     toastr.success(mensagem, 'Teste');
                 };
+
+                sistemaHub.client.atualizarMsgBadge = function(count) {
+                    $('.badge-msg').text(count);
+                }
+
                 $.connection.hub.start();
             });
         </script>

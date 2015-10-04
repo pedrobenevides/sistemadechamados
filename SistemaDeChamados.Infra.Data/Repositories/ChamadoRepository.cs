@@ -44,5 +44,11 @@ namespace SistemaDeChamados.Infra.Data.Repositories
 
             return chamadoDoBanco;
         }
+
+        public long ObterIdDoAnalistaDesseChamado(long chamadoId)
+        {
+            var chamado = Chamados.Find(chamadoId);
+            return chamado.Categoria.AnalistaId ?? 0;
+        }
     }
 }

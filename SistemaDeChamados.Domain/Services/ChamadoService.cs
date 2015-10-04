@@ -63,5 +63,10 @@ namespace SistemaDeChamados.Domain.Services
                 chamado.AlterarStatus(status.ToEnum<StatusDoChamado>());
             });
         }
+
+        public long ObterIdDoAnalistaDesseChamado(long chamadoId)
+        {
+            return chamadoRepository.ObterIdDoAnalistaDesseChamado(chamadoId);
+        }
     }
 }

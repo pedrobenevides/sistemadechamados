@@ -8,5 +8,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
     {
         Task<IEnumerable<Mensagem>> Obter5UltimasAsync(long chamadoId);
         IEnumerable<Mensagem> Obter5Ultimas(long chamadoId);
+        int ObterNumeroDeMensagensNaoLidas(long usuarioId);
     }
 }

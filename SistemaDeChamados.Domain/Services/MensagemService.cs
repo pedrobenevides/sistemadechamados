@@ -25,5 +25,10 @@ namespace SistemaDeChamados.Domain.Services
         {
             return mensagemRepository.Obter5Ultimas(chamadoId);
         }
+
+        public int ObterNumeroDeMensagensNaoLidas(long usuarioId)
+        {
+            return mensagemRepository.ObterNumeroDeMensagensNaoLidas(usuarioId);
+        }
     }
 }

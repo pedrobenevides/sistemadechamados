@@ -65,5 +65,10 @@ namespace SistemaDeChamados.Application.AppServices
         {
             return Mapper.Map<IEnumerable<MensagemVM>>(mensagemService.Obter5Ultimas(chamadoId));
         }
+
+        public int ObterNumeroDeMensagensNaoLidas(long usuarioId)
+        {
+            return mensagemService.ObterNumeroDeMensagensNaoLidas(usuarioId);
+        }
     }
 }

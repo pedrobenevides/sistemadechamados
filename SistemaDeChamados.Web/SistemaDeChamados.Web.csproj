@@ -337,6 +337,7 @@
     <Content Include="Views\Analistas\IndexAsync.cshtml" />
     <Content Include="Views\Shared\_Pagination.cshtml" />
     <Content Include="Views\Chamados\Visualizar.cshtml" />
+    <Content Include="Views\Base\MensagensNaoLidas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

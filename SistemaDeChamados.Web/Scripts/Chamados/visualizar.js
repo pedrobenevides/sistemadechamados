@@ -52,6 +52,10 @@
 
     //OnLoad
     (function carregarMensagens() {
+
+        if (novaMensagem.ChamadoId === undefined)
+            return;
+
         dataSource.getRequest('http://' + window.location.hostname + ':6084/api/Mensagens/ObterCinco/?chamadoId=', novaMensagem.ChamadoId, function (mensagens) {
 
             prepararDivDeMensagens();

@@ -13,6 +13,6 @@ namespace SistemaDeChamados.Application.Interface
         MensagemVM GetById(long id);
         Task<IEnumerable<MensagemVM>> Obter5UltimasAsync(long chamadoId);
         IEnumerable<MensagemVM> Obter5Ultimas(long chamadoId);
-
+        int ObterNumeroDeMensagensNaoLidas(long usuarioId);
     }
 }

@@ -18,7 +18,6 @@ namespace SistemaDeChamados.Web.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, usuarioLogado.Email),
                 new Claim(ClaimTypes.Name, usuarioLogado.Nome),
-                new Claim(CustomClaimTypes.Setor, usuarioLogado.Setor),
                 new Claim(CustomClaimTypes.Id, usuarioLogado.Id.ToString())
             };
 
@@ -27,6 +26,9 @@ namespace SistemaDeChamados.Web.Controllers
                 claims.Add(new Claim(ClaimTypes.Role, usuarioLogado.Perfil.Nome));
                 claims.Add(new Claim(CustomClaimTypes.Acoes, usuarioLogado.Perfil.Acessos));
             }
+
+            if (usuarioLogado.Perfil != null)
+                claims.Add(new Claim(CustomClaimTypes.Setor, usuarioLogado.Setor));
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
             

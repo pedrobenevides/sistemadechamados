@@ -15,6 +15,14 @@ namespace SistemaDeChamados.Application.SignalR
             return contextoHub.Clients.Group(nome).addNewMessage(nome, menssagem);
         }
 
+        public void AtualizarMsgBadge(int count, string username)
+        {
+            //foreach (var connectionId in conexoes.ObterConexao(username))
+            //{
+            //    Clients.Client(connectionId).atualizarMsgBadge(count);
+            //}
+        }
+
         public Task AdicionarAoGrupo(string nomeDoGrupo)
         {
             return Groups.Add(Context.ConnectionId, nomeDoGrupo);
@@ -27,6 +35,7 @@ namespace SistemaDeChamados.Application.SignalR
 
             if (setor != null)
                 Groups.Add(Context.ConnectionId, setor.Value);
+
 
             return base.OnConnected();
         }

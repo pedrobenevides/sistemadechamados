@@ -13,5 +13,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo);
         Task CreateComAnexosAsync(Chamado chamado);
         Task AlterarStatusAsync(long id, long usuarioId, string status);
+        long ObterIdDoAnalistaDesseChamado(long chamadoId);
     }
 }

@@ -11,5 +11,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Repositories
         Task<List<Chamado>> Obter5EmAbertoAsync(long usuarioId);
         void AlterarStatus(Chamado chamado, StatusDoChamado statusNovo);
         Task<Chamado> CreateAndCommitAsync(Chamado chamado);
+        long ObterIdDoAnalistaDesseChamado(long chamadoId);
     }
 }

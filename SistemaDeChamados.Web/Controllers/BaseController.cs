@@ -3,6 +3,8 @@
  using System.Linq;
  using System.Security.Claims;
  using System.Web.Mvc;
+ using Ninject;
+ using SistemaDeChamados.Application.Interface;
  using SistemaDeChamados.Application.ViewModels;
  using SistemaDeChamados.Domain.Exceptions;
  using SistemaDeChamados.Domain.Services;
@@ -12,7 +14,10 @@ namespace SistemaDeChamados.Web.Controllers
 {
     public class BaseController : Controller
     {
-        //[OutputCache(Duration = 120)]
+        [Inject]
+        public IMensagemAppService MensagemAppService { get; set; }
+
+        [OutputCache(Duration = 120)]
         [HttpGet, ChildActionOnly, PermissaoLivre]
         public ActionResult Menu()
         {
@@ -26,6 +31,12 @@ namespace SistemaDeChamados.Web.Controllers
             var valores = DicionarioDePermissoes(controllers.ToList());
 
             return PartialView(valores);
+        }
+
+        [HttpGet, ChildActionOnly, PermissaoLivre]
+        public ActionResult MensagensNaoLidas()
+        {
+            return PartialView(MensagemAppService.ObterNumeroDeMensagensNaoLidas(UsuarioId));
         }
 
         [HttpGet, ChildActionOnly, PermissaoLivre]

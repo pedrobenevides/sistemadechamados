@@ -101,5 +101,10 @@ namespace SistemaDeChamados.Application.AppServices
             await chamadoService.AlterarStatusAsync(id, usuarioId, status);
             await CommitAsync();
         }
+
+        public long ObterIdDoAnalistaDesseChamado(long chamadoId)
+        {
+            return chamadoService.ObterIdDoAnalistaDesseChamado(chamadoId);
+        }
     }
 }

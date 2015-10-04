@@ -17,5 +17,6 @@ namespace SistemaDeChamados.Application.Interface
         Task<HomeVM> ObterHomeVMAsync(long usuarioId);
         void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo);
         Task AlterarStatusAsync(long id, long usuarioId, string status);
+        long ObterIdDoAnalistaDesseChamado(long chamadoId);
     }
 }
