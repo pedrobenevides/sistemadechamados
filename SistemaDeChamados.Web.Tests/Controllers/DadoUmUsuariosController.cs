@@ -2,13 +2,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Web.Controllers;
+using TestStack.FluentMVCTesting;
 
 namespace SistemaDeChamados.Web.Tests.Controllers
 {
@@ -42,8 +42,9 @@ namespace SistemaDeChamados.Web.Tests.Controllers
         [TestMethod]
         public void NovoComChamadaGetDevePassarUmUsuarioViewModelParaAView()
         {
-            var result = (ViewResult)usuariosController.Novo();
-            Assert.AreEqual(typeof(ColaboradorVM), result.Model.GetType());
+            usuariosController.WithCallTo(action => action.Novo())
+                .ShouldRenderDefaultView()
+                .WithModel<ColaboradorVM>();
         }
 
         [TestMethod]
@@ -64,20 +65,23 @@ namespace SistemaDeChamados.Web.Tests.Controllers
         [TestMethod]
         public void AoRealizarUmPostParaAActionNovoDeveRetornarAViewSeModelIsNotValid()
         {
-            var badModel = ObterViewModelInvalido();
-            var result = (ViewResult)usuariosController.Novo(badModel);
-            Assert.AreEqual(typeof(ColaboradorVM), result.Model.GetType());
+            var model = new ColaboradorVM();
+            
+            usuariosController.WithModelErrors()
+                .WithCallTo(action => action.Novo(model))
+                .ShouldRenderDefaultView()
+                .WithModel(model);
         }
-
 
         [TestMethod]
         public void EdicaoComChamadaGetDevePopularOViewModelEId()
         {
             const int idProcurado = 1;
-            usuarioAppService.ObterParaEdicao(idProcurado).Returns(new ColaboradorEdicaoVM());
-            var result = (ViewResult)usuariosController.Edicao(idProcurado);
+            var colaboradorEdicaoVm = new ColaboradorEdicaoVM{Id = 1};
+            usuarioAppService.ObterParaEdicao(idProcurado).Returns(colaboradorEdicaoVm);
 
-            Assert.AreEqual(idProcurado, ((ColaboradorEdicaoVM)result.Model).Id);
+            usuariosController.WithCallTo(action => action.Edicao(idProcurado))
+                .ShouldRenderDefaultView().WithModel(colaboradorEdicaoVm);
         }
 
         //[TestMethod]
@@ -109,10 +113,11 @@ namespace SistemaDeChamados.Web.Tests.Controllers
                 Nome = "Fulano",
                 Email = "fulano@mail.com"
             };
+            
             usuarioAppService.ObterParaEdicao(1).Returns(vm);
-            var result = (ViewResult)usuariosController.AlterarSenha(1);
-
-            Assert.AreEqual(typeof(ColaboradorEdicaoVM), result.Model.GetType());
+            usuariosController.WithCallTo(action => action.AlterarSenha(1))
+                .ShouldRenderDefaultView()
+                .WithModel(vm);
         }
 
         [TestMethod]
