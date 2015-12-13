@@ -121,6 +121,10 @@
       <Project>{BC845599-9683-431A-92DB-7A6B729E8614}</Project>
       <Name>SistemaDeChamados.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SistemaDeChamados.Infra.Data\SistemaDeChamados.Infra.Data.csproj">
+      <Project>{ddb3ebb0-579d-44bc-a335-683d2b5b4f69}</Project>
+      <Name>SistemaDeChamados.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
