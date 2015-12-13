@@ -13,7 +13,9 @@ namespace SistemaDeChamados.Domain.Entities
         }
 
         protected Mensagem()
-        { }
+        {
+            DataDeCriacao = DateTime.Now;
+        }
 
         public long Id { get; private set; }
         public DateTime DataDeCriacao { get; private set; }
@@ -21,7 +23,6 @@ namespace SistemaDeChamados.Domain.Entities
         public long ChamadoId { get; private set; }
         public long UsuarioId { get; private set; }
         public DateTime? DataDaLeitura { get; private set; }
-        public virtual Chamado Chamado { get; private set; }
 
         public void ConfirmarLeitura(long usuarioLeitorId)
         {

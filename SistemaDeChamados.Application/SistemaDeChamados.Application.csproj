@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,6 +85,7 @@
     <Compile Include="AppServices\UsuarioAppService.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\CustomMaps\ChamadoMapper.cs" />
+    <Compile Include="AutoMapper\CustomMaps\MensagemMapper.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Identity\CustomClaimTypes.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Interface\Services\IServiceLocator.cs" />
     <Compile Include="Services\CustomServiceLocator.cs" />
     <Compile Include="ViewModels\AnalistaVM.cs" />
+    <Compile Include="ViewModels\Api\Chamados\AlterarStatusVM.cs" />
     <Compile Include="ViewModels\CategoriaVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\PaggingVM.cs" />
@@ -119,7 +122,7 @@
       <Name>SistemaDeChamados.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\SistemaDeChamados.Infra.Data\SistemaDeChamados.Infra.Data.csproj">
-      <Project>{DDB3EBB0-579D-44BC-A335-683D2B5B4F69}</Project>
+      <Project>{ddb3ebb0-579d-44bc-a335-683d2b5b4f69}</Project>
       <Name>SistemaDeChamados.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>

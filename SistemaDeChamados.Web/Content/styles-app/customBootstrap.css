@@ -14,3 +14,11 @@
     height: 30px;
     padding-top: 5px !important;
 }
+
+.panel-default {
+    margin-top: 20px !important;
+}
+
+.badge {
+    background-color: #59B2D4;
+}

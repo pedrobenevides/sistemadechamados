@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Domain.Interfaces.Services;
 
@@ -41,6 +42,11 @@ namespace SistemaDeChamados.Domain.Services
         public virtual T GetById(long id)
         {
             return repository.GetById(id);
+        }
+
+        public async Task<T> GetByIdAsync(long id)
+        {
+            return await repository.GetByIdAsync(id);
         }
     }
 }

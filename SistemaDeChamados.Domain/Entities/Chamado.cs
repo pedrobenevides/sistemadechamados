@@ -32,6 +32,7 @@ namespace SistemaDeChamados.Domain.Entities
         public virtual Categoria Categoria { get; set; }
         public virtual Colaborador UsuarioCriador { get; private set; }
         public virtual IList<Mensagem> Mensagens { get; private set; }
+        public virtual IList<Arquivo> Arquivos { get; set; }
         public bool EstaEncerrado
         {
             get { return ((StatusDoChamado == StatusDoChamado.NaoReproduzido || StatusDoChamado == StatusDoChamado.Resolvido) && DataDeEncerramento.HasValue); }

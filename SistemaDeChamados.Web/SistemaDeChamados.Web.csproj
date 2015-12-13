@@ -199,6 +199,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\styles-app\chamados\criacao-chamado.css" />
+    <Content Include="Content\styles-app\chamados\visualizar-chamado.css" />
     <Content Include="Content\styles-app\customBootstrap.css" />
     <Content Include="Content\styles-app\home\index.css" />
     <Content Include="Content\styles-app\layout.css" />
@@ -252,6 +253,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chamados\chamados.js" />
+    <Content Include="Scripts\Chamados\visualizar.js" />
     <Content Include="Scripts\DataSources\Base.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -265,6 +267,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Layout\master.js" />
     <Content Include="Scripts\Layout\menu-esquerdo.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\toastr.js" />
@@ -297,6 +300,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BotoesAgrupados.cs" />
+    <Compile Include="Helpers\ListaDeMensagem.cs" />
     <Compile Include="Helpers\Listas.cs" />
     <Compile Include="Modules\RemoveHeadersModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -332,6 +336,8 @@
     <Content Include="Views\Home\Index.iphone.cshtml" />
     <Content Include="Views\Analistas\IndexAsync.cshtml" />
     <Content Include="Views\Shared\_Pagination.cshtml" />
+    <Content Include="Views\Chamados\Visualizar.cshtml" />
+    <Content Include="Views\Base\MensagensNaoLidas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

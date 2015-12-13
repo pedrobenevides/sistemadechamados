@@ -3,17 +3,24 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using SistemaDeChamados.Application.Identity;
-using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Socket;
 
 namespace SistemaDeChamados.Application.SignalR
 {
     public class SistemaHub : Hub, ISistemaHub
     {
-        public void Comunicar(string nome, string menssagem)
+        public Task Comunicar(string nome, string menssagem)
         {
             var contextoHub = GlobalHost.ConnectionManager.GetHubContext<SistemaHub>();
-            contextoHub.Clients.Group(nome).addNewMessage(nome, menssagem);
+            return contextoHub.Clients.Group(nome).addNewMessage(nome, menssagem);
+        }
+
+        public void AtualizarMsgBadge(int count, string username)
+        {
+            //foreach (var connectionId in conexoes.ObterConexao(username))
+            //{
+            //    Clients.Client(connectionId).atualizarMsgBadge(count);
+            //}
         }
 
         public Task AdicionarAoGrupo(string nomeDoGrupo)
@@ -28,6 +35,7 @@ namespace SistemaDeChamados.Application.SignalR
 
             if (setor != null)
                 Groups.Add(Context.ConnectionId, setor.Value);
+
 
             return base.OnConnected();
         }

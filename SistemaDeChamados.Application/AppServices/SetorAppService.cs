@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Services;
@@ -38,6 +39,16 @@ namespace SistemaDeChamados.Application.AppServices
                 throw new ChamadosException("Setor inexistente.");
 
             return setor.Nome;
+        }
+
+        public async Task<string> ObterNomeDoSetorPorIdAsync(long setorId)
+        {
+            var setor = await setorService.GetByIdAsync(setorId);
+
+            if (setor == null)
+                throw new ChamadosException("Setor inexistente.");
+
+            return setor.Nome; ;
         }
     }
 }

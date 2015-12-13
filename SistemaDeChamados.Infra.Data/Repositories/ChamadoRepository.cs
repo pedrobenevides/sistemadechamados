@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using SistemaDeChamados.Domain.Entities;
 using SistemaDeChamados.Domain.Enums;
-using SistemaDeChamados.Domain.Exceptions;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 
 namespace SistemaDeChamados.Infra.Data.Repositories
@@ -36,6 +35,20 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         {
             chamado.AlterarStatus(statusNovo);
             Update(chamado);
+        }
+
+        public async Task<Chamado> CreateAndCommitAsync(Chamado chamado)
+        {
+            var chamadoDoBanco = Chamados.Add(chamado);
+            await context.SaveChangesAsync();
+
+            return chamadoDoBanco;
+        }
+
+        public long ObterIdDoAnalistaDesseChamado(long chamadoId)
+        {
+            var chamado = Chamados.Find(chamadoId);
+            return chamado.Categoria.AnalistaId ?? 0;
         }
     }
 }

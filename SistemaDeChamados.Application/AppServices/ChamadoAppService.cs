@@ -22,18 +22,28 @@ namespace SistemaDeChamados.Application.AppServices
             this.chamadoService = chamadoService;
         }
 
-        public void Create(CriacaoChamadoVM chamadoVM)
+        public async Task CreateAsync(CriacaoChamadoVM chamadoVM)
         {
             var chamado = Mapper.Map<Chamado>(chamadoVM);
-            BeginTransaction();
-            chamadoService.Create(chamado);
-            Commit();
+            chamado.Arquivos = Mapper.Map<IList<Arquivo>>(chamadoVM.Anexos);
+
+            //Não é usado BeginTransaction porque o commit é feito manualmente para obter o id do chamado.
+            await chamadoService.CreateComAnexosAsync(chamado);
         }
 
         public IEnumerable<ChamadoIndexVM> Retrieve()
         {
             var listaDeChamados = chamadoService.Obter();
             return Mapper.Map<IList<ChamadoIndexVM>>(listaDeChamados.ToList());
+        }
+
+        public VisualizarChamadoVM GetCompleteById(long id)
+        {
+            var chamado = chamadoService.GetById(id);
+            var chamadoVm = Mapper.Map<VisualizarChamadoVM>(chamado);
+            chamadoVm.NovaMensagem.ChamadoId = id;
+
+            return chamadoVm;
         }
 
         public void Update(ChamadoVM chamadoVM)
@@ -83,6 +93,18 @@ namespace SistemaDeChamados.Application.AppServices
         public void AlterarStatus(long chamadoId, long usuarioId, StatusDoChamado statusNovo)
         {
             chamadoService.AlterarStatus(chamadoId, usuarioId, statusNovo);
+        }
+
+        public async Task AlterarStatusAsync(long id, long usuarioId, string status)
+        {
+            BeginTransaction();
+            await chamadoService.AlterarStatusAsync(id, usuarioId, status);
+            await CommitAsync();
+        }
+
+        public long ObterIdDoAnalistaDesseChamado(long chamadoId)
+        {
+            return chamadoService.ObterIdDoAnalistaDesseChamado(chamadoId);
         }
     }
 }

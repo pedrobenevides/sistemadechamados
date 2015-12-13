@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Web;
+using SistemaDeChamados.Domain.Entities;
 
 namespace SistemaDeChamados.Application.ViewModels
 {
@@ -30,6 +34,11 @@ namespace SistemaDeChamados.Application.ViewModels
 
     public class CriacaoChamadoVM
     {
+        public CriacaoChamadoVM()
+        {
+            Anexos = new List<HttpPostedFileBase>();
+        }
+
         public string Titulo { get; set; }
         [DisplayName("Descrição")]
         public string Descricao { get; set; }
@@ -38,5 +47,27 @@ namespace SistemaDeChamados.Application.ViewModels
         public long CategoriaId { get; set; }
         [DisplayName("Setores")]
         public long SetorId { get; set; }
+        public IList<HttpPostedFileBase> Anexos { get; set; }
+    }
+
+    public class VisualizarChamadoVM
+    {
+        public VisualizarChamadoVM()
+        {
+            NovaMensagem = new MensagemVM();
+        }
+
+        public long Id { get; set; }
+        public DateTime DataDeCriacao { get; set; }
+        public string Titulo { get; set; }
+        public string Status { get; set; }
+        public string Descricao { get; set; }
+        public long ColaboradorId { get; set; }
+        public string NomeAnalista { get; set; }
+        public string NomeColaborador { get; set; }
+        public int NumeroDeMensagens { get; set; }
+        public IEnumerable<Arquivo> Arquivos { get; set; }
+        public MensagemVM NovaMensagem { get; set; }
+        public long UsuarioLogadoId { get; set; }
     }
 }

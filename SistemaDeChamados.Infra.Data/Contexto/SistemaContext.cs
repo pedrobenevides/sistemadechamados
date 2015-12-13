@@ -25,12 +25,14 @@ namespace SistemaDeChamados.Infra.Data.Contexto
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Properties<string>().Configure(c => c.HasColumnType("VARCHAR"));
+
             modelBuilder.Configurations.Add(new ChamadoConfiguration());
             modelBuilder.Configurations.Add(new MensagemConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
             modelBuilder.Configurations.Add(new PerfilConfiguration());
             modelBuilder.Configurations.Add(new ColaboradorConfiguration());
             modelBuilder.Configurations.Add(new AnalistaConfiguration());
+            modelBuilder.Configurations.Add(new ArquivoConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

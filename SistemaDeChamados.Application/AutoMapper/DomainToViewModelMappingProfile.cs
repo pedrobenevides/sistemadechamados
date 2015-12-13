@@ -11,7 +11,6 @@ namespace SistemaDeChamados.Application.AutoMapper
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<Mensagem, MensagemVM>();
             Mapper.CreateMap<Chamado, ChamadoVM>();
             Mapper.CreateMap<Usuario, ColaboradorVM>();
             Mapper.CreateMap<Colaborador, ColaboradorVM>();

@@ -1,6 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using System.Web.SessionState;
-using Ninject;
 using SistemaDeChamados.Application.Interface;
 using SistemaDeChamados.Application.Interface.Socket;
 using SistemaDeChamados.Application.ViewModels;
@@ -12,23 +13,28 @@ namespace SistemaDeChamados.Web.Controllers
     public class ChamadosController : BaseController
     {
         private readonly ISetorAppService setorAppService;
+        private readonly IChamadoAppService chamadoAppService;
+        private readonly ICategoriaAppService categoriaAppService;
+        private readonly ISistemaHub signalRHub;
+        private readonly IMensagemAppService mensagemAppService;
 
-        [Inject]
-        public ICategoriaAppService CategoriaAppService { get; set; }
-        [Inject]
-        public IChamadoAppService ChamadoAppService { get; set; }
-        [Inject]
-        public ISistemaHub SignalRHub { get; set; }
-
-        public ChamadosController(ISetorAppService setorAppService)
+        public ChamadosController(ISetorAppService setorAppService, 
+                                    IChamadoAppService chamadoAppService, 
+                                    ICategoriaAppService categoriaAppService,  
+                                    ISistemaHub signalRHub,
+                                    IMensagemAppService mensagemAppService)
         {
             this.setorAppService = setorAppService;
+            this.chamadoAppService = chamadoAppService;
+            this.categoriaAppService = categoriaAppService;
+            this.signalRHub = signalRHub;
+            this.mensagemAppService = mensagemAppService;
         }
 
         [HttpGet, ComprimirResponse]
         public ActionResult Index()
         {
-            var vm = ChamadoAppService.Retrieve();
+            var vm = chamadoAppService.Retrieve();
             return View(vm);
         }
 
@@ -40,7 +46,7 @@ namespace SistemaDeChamados.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Novo(CriacaoChamadoVM model)
+        public async Task<ActionResult> Novo(CriacaoChamadoVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -49,12 +55,40 @@ namespace SistemaDeChamados.Web.Controllers
             }
 
             model.UsuarioId = UsuarioId;
-            ChamadoAppService.Create(model);
-            SignalRHub.Comunicar(setorAppService.ObterNomeDoSetorPorId(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name));
+            await chamadoAppService.CreateAsync(model);
 
+            await signalRHub.Comunicar(await setorAppService.ObterNomeDoSetorPorIdAsync(model.SetorId), string.Format("Foi adicionado um novo chamado pelo usuário {0}.", User.Identity.Name));
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Visualizar(long id)
+        {
+            var chamado = chamadoAppService.GetCompleteById(id);
+            chamado.UsuarioLogadoId = UsuarioId;
+
+            return View(chamado);
+        }
+
+        [HttpPost]
+        public JsonResult NovaMensagem(MensagemVM novaMensagem)
+        {
+            novaMensagem.UsuarioId = UsuarioId;
+            mensagemAppService.Create(novaMensagem);
+            novaMensagem.NomeUsuario = NomeUsuario;
+            novaMensagem.DataDeCriacao = DateTime.Now.ToString();
+
+            var chamado = chamadoAppService.GetById(novaMensagem.ChamadoId);
+            var usuarioASerNotificado = chamado.UsuarioCriadorId == UsuarioId
+                ? chamadoAppService.ObterIdDoAnalistaDesseChamado(novaMensagem.ChamadoId)
+                : UsuarioId;
+
+            signalRHub.AtualizarMsgBadge(mensagemAppService.ObterNumeroDeMensagensNaoLidas(usuarioASerNotificado),
+                User.Identity.Name);
+
+            return Json(novaMensagem, JsonRequestBehavior.AllowGet);
+        }
+        
         private void PreencherSetoresNoViewBag(long? selectedValue = null)
         {
             ViewBag.Setores = new SelectList(

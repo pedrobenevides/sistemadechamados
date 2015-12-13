@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaDeChamados.Domain.Interfaces.Services
 {
@@ -10,5 +11,6 @@ namespace SistemaDeChamados.Domain.Interfaces.Services
         void Update(T entity);
         void Delete(long id);
         T GetById(long id);
+        Task<T> GetByIdAsync(long id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using SistemaDeChamados.Domain.Interfaces.Repositories;
 using SistemaDeChamados.Infra.Data.Contexto;
@@ -53,6 +54,11 @@ namespace SistemaDeChamados.Infra.Data.Repositories
         public T GetById(long id)
         {
             return dbSet.Find(id);
+        }
+
+        public async Task<T> GetByIdAsync(long id)
+        {
+            return await dbSet.FindAsync(id);
         }
 
         public void Dispose()

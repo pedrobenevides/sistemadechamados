@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using AutoMapper;
 using SistemaDeChamados.Application.ViewModels;
 using SistemaDeChamados.Domain.DTO;
@@ -21,6 +22,9 @@ namespace SistemaDeChamados.Application.AutoMapper
             Mapper.CreateMap<ColaboradorVM, UsuarioSenhaDTO>();
             Mapper.CreateMap<PerfilVM, Perfil>();
             Mapper.CreateMap<CategoriaVM, Categoria>();
+            Mapper.CreateMap<HttpPostedFileBase, Arquivo>()
+                .ForMember(a => a.Tamanho, opt => opt.MapFrom(f => f.ContentLength))
+                .ForMember(a => a.Stream, opt => opt.MapFrom(f => f.InputStream));
         }
     }
 }

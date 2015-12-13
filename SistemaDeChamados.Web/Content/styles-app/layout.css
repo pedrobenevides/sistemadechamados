@@ -25,7 +25,7 @@
 /* CABEÇALHOS DE TABELA */
 
 .th-buttons {
-    width: 6%;
+    width: 8%;
 }
 
 .th-email {
@@ -53,4 +53,11 @@ hr {
 
 .btn-groupped {
     margin-right: 2px;
+}
+
+textarea {
+    -moz-resize: none;
+    -ms-resize: none;
+    -o-resize: none;
+    resize: none;
 }
